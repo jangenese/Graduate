@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduate.iOS", "Graduate\Gr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduate.WinPhone", "Graduate\Graduate.WinPhone\Graduate.WinPhone.csproj", "{0C692FFE-BE6C-474C-9C0E-EF4AFAB34CC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduate", "Graduate\Graduate\Graduate.csproj", "{8A1FA1DA-5491-4DE7-96A5-571FC7B219E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduate.Core", "Graduate\Graduate\Graduate.Core.csproj", "{8A1FA1DA-5491-4DE7-96A5-571FC7B219E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
