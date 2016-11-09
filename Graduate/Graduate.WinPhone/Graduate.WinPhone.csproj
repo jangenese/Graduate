@@ -79,8 +79,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Graduate\Graduate.csproj">
-      <Name>Graduate</Name>
+    <ProjectReference Include="..\Graduate\Graduate.Core.csproj">
+      <Name>Graduate.Core</Name>
+      <Project>{8A1FA1DA-5491-4DE7-96A5-571FC7B219E7}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

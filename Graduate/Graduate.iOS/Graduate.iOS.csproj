@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>922338a8-0e68-4dd4-9790-0f50a20e2b4b</ProjectGuid>
+    <ProjectGuid>{922338A8-0E68-4DD4-9790-0F50A20E2B4B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Graduate.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
@@ -67,8 +67,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Graduate\Graduate.csproj">
-      <Name>Graduate</Name>
+    <ProjectReference Include="..\Graduate\Graduate.Core.csproj">
+      <Name>Graduate.Core</Name>
+      <Project>{8A1FA1DA-5491-4DE7-96A5-571FC7B219E7}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
