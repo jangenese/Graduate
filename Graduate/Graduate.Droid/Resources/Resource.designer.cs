@@ -790,35 +790,35 @@ namespace Graduate.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f09003a
-			public const int abc_background_cache_hint_selector_material_dark = 2131296314;
+			// aapt resource value: 0x7f09003f
+			public const int abc_background_cache_hint_selector_material_dark = 2131296319;
 			
-			// aapt resource value: 0x7f09003b
-			public const int abc_background_cache_hint_selector_material_light = 2131296315;
+			// aapt resource value: 0x7f090040
+			public const int abc_background_cache_hint_selector_material_light = 2131296320;
 			
-			// aapt resource value: 0x7f09003c
-			public const int abc_btn_colored_borderless_text_material = 2131296316;
+			// aapt resource value: 0x7f090041
+			public const int abc_btn_colored_borderless_text_material = 2131296321;
 			
-			// aapt resource value: 0x7f09003d
-			public const int abc_color_highlight_material = 2131296317;
+			// aapt resource value: 0x7f090042
+			public const int abc_color_highlight_material = 2131296322;
 			
 			// aapt resource value: 0x7f090000
 			public const int abc_input_method_navigation_guard = 2131296256;
 			
-			// aapt resource value: 0x7f09003e
-			public const int abc_primary_text_disable_only_material_dark = 2131296318;
+			// aapt resource value: 0x7f090043
+			public const int abc_primary_text_disable_only_material_dark = 2131296323;
 			
-			// aapt resource value: 0x7f09003f
-			public const int abc_primary_text_disable_only_material_light = 2131296319;
+			// aapt resource value: 0x7f090044
+			public const int abc_primary_text_disable_only_material_light = 2131296324;
 			
-			// aapt resource value: 0x7f090040
-			public const int abc_primary_text_material_dark = 2131296320;
+			// aapt resource value: 0x7f090045
+			public const int abc_primary_text_material_dark = 2131296325;
 			
-			// aapt resource value: 0x7f090041
-			public const int abc_primary_text_material_light = 2131296321;
+			// aapt resource value: 0x7f090046
+			public const int abc_primary_text_material_light = 2131296326;
 			
-			// aapt resource value: 0x7f090042
-			public const int abc_search_url_text = 2131296322;
+			// aapt resource value: 0x7f090047
+			public const int abc_search_url_text = 2131296327;
 			
 			// aapt resource value: 0x7f090001
 			public const int abc_search_url_text_normal = 2131296257;
@@ -829,32 +829,35 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f090003
 			public const int abc_search_url_text_selected = 2131296259;
 			
-			// aapt resource value: 0x7f090043
-			public const int abc_secondary_text_material_dark = 2131296323;
-			
-			// aapt resource value: 0x7f090044
-			public const int abc_secondary_text_material_light = 2131296324;
-			
-			// aapt resource value: 0x7f090045
-			public const int abc_tint_btn_checkable = 2131296325;
-			
-			// aapt resource value: 0x7f090046
-			public const int abc_tint_default = 2131296326;
-			
-			// aapt resource value: 0x7f090047
-			public const int abc_tint_edittext = 2131296327;
-			
 			// aapt resource value: 0x7f090048
-			public const int abc_tint_seek_thumb = 2131296328;
+			public const int abc_secondary_text_material_dark = 2131296328;
 			
 			// aapt resource value: 0x7f090049
-			public const int abc_tint_spinner = 2131296329;
+			public const int abc_secondary_text_material_light = 2131296329;
 			
 			// aapt resource value: 0x7f09004a
-			public const int abc_tint_switch_thumb = 2131296330;
+			public const int abc_tint_btn_checkable = 2131296330;
 			
 			// aapt resource value: 0x7f09004b
-			public const int abc_tint_switch_track = 2131296331;
+			public const int abc_tint_default = 2131296331;
+			
+			// aapt resource value: 0x7f09004c
+			public const int abc_tint_edittext = 2131296332;
+			
+			// aapt resource value: 0x7f09004d
+			public const int abc_tint_seek_thumb = 2131296333;
+			
+			// aapt resource value: 0x7f09004e
+			public const int abc_tint_spinner = 2131296334;
+			
+			// aapt resource value: 0x7f09004f
+			public const int abc_tint_switch_thumb = 2131296335;
+			
+			// aapt resource value: 0x7f090050
+			public const int abc_tint_switch_track = 2131296336;
+			
+			// aapt resource value: 0x7f09003c
+			public const int accent = 2131296316;
 			
 			// aapt resource value: 0x7f090004
 			public const int accent_material_dark = 2131296260;
@@ -964,6 +967,12 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f090027
 			public const int material_grey_900 = 2131296295;
 			
+			// aapt resource value: 0x7f09003a
+			public const int primary = 2131296314;
+			
+			// aapt resource value: 0x7f09003b
+			public const int primaryDark = 2131296315;
+			
 			// aapt resource value: 0x7f090028
 			public const int primary_dark_material_dark = 2131296296;
 			
@@ -1006,23 +1015,29 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f090035
 			public const int secondary_text_disabled_material_light = 2131296309;
 			
+			// aapt resource value: 0x7f09003e
+			public const int splash_background = 2131296318;
+			
 			// aapt resource value: 0x7f090036
 			public const int switch_thumb_disabled_material_dark = 2131296310;
 			
 			// aapt resource value: 0x7f090037
 			public const int switch_thumb_disabled_material_light = 2131296311;
 			
-			// aapt resource value: 0x7f09004c
-			public const int switch_thumb_material_dark = 2131296332;
+			// aapt resource value: 0x7f090051
+			public const int switch_thumb_material_dark = 2131296337;
 			
-			// aapt resource value: 0x7f09004d
-			public const int switch_thumb_material_light = 2131296333;
+			// aapt resource value: 0x7f090052
+			public const int switch_thumb_material_light = 2131296338;
 			
 			// aapt resource value: 0x7f090038
 			public const int switch_thumb_normal_material_dark = 2131296312;
 			
 			// aapt resource value: 0x7f090039
 			public const int switch_thumb_normal_material_light = 2131296313;
+			
+			// aapt resource value: 0x7f09003d
+			public const int window_background = 2131296317;
 			
 			static Color()
 			{
@@ -1540,10 +1555,19 @@ namespace Graduate.Droid
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int Icon = 2130837587;
+			public const int back = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int notification_template_icon_bg = 2130837588;
+			public const int Icon = 2130837588;
+			
+			// aapt resource value: 0x7f020055
+			public const int Logo = 2130837589;
+			
+			// aapt resource value: 0x7f020057
+			public const int notification_template_icon_bg = 2130837591;
+			
+			// aapt resource value: 0x7f020056
+			public const int splash_screen = 2130837590;
 			
 			static Drawable()
 			{
@@ -1558,8 +1582,14 @@ namespace Graduate.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0a0055
-			public const int action0 = 2131361877;
+			// aapt resource value: 0x7f0a0059
+			public const int LinearLayoutScrollMain = 2131361881;
+			
+			// aapt resource value: 0x7f0a0058
+			public const int ScrollViewMain = 2131361880;
+			
+			// aapt resource value: 0x7f0a0063
+			public const int action0 = 2131361891;
 			
 			// aapt resource value: 0x7f0a0045
 			public const int action_bar = 2131361861;
@@ -1585,8 +1615,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0a0046
 			public const int action_context_bar = 2131361862;
 			
-			// aapt resource value: 0x7f0a0059
-			public const int action_divider = 2131361881;
+			// aapt resource value: 0x7f0a0067
+			public const int action_divider = 2131361895;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int action_menu_divider = 2131361794;
@@ -1621,17 +1651,29 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0a0022
 			public const int bottom = 2131361826;
 			
+			// aapt resource value: 0x7f0a0062
+			public const int button3 = 2131361890;
+			
+			// aapt resource value: 0x7f0a0055
+			public const int buttonAdd = 2131361877;
+			
+			// aapt resource value: 0x7f0a0060
+			public const int buttonCalculator = 2131361888;
+			
 			// aapt resource value: 0x7f0a002e
 			public const int buttonPanel = 2131361838;
 			
-			// aapt resource value: 0x7f0a0056
-			public const int cancel_action = 2131361878;
+			// aapt resource value: 0x7f0a0061
+			public const int buttonPlanner = 2131361889;
+			
+			// aapt resource value: 0x7f0a0064
+			public const int cancel_action = 2131361892;
 			
 			// aapt resource value: 0x7f0a003c
 			public const int checkbox = 2131361852;
 			
-			// aapt resource value: 0x7f0a005c
-			public const int chronometer = 2131361884;
+			// aapt resource value: 0x7f0a006a
+			public const int chronometer = 2131361898;
 			
 			// aapt resource value: 0x7f0a001e
 			public const int collapseActionView = 2131361822;
@@ -1654,20 +1696,32 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0a000c
 			public const int disableHome = 2131361804;
 			
+			// aapt resource value: 0x7f0a005f
+			public const int editTextGPARow1 = 2131361887;
+			
+			// aapt resource value: 0x7f0a005e
+			public const int editTextLetterRow1 = 2131361886;
+			
+			// aapt resource value: 0x7f0a005d
+			public const int editTextPercentRow1 = 2131361885;
+			
 			// aapt resource value: 0x7f0a0047
 			public const int edit_query = 2131361863;
 			
 			// aapt resource value: 0x7f0a001b
 			public const int end = 2131361819;
 			
-			// aapt resource value: 0x7f0a0061
-			public const int end_padder = 2131361889;
+			// aapt resource value: 0x7f0a006f
+			public const int end_padder = 2131361903;
 			
 			// aapt resource value: 0x7f0a0028
 			public const int expand_activities_button = 2131361832;
 			
 			// aapt resource value: 0x7f0a003b
 			public const int expanded_menu = 2131361851;
+			
+			// aapt resource value: 0x7f0a0070
+			public const int fragmentContainer = 2131361904;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int home = 2131361796;
@@ -1684,14 +1738,23 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0a0029
 			public const int image = 2131361833;
 			
-			// aapt resource value: 0x7f0a0060
-			public const int info = 2131361888;
+			// aapt resource value: 0x7f0a006e
+			public const int info = 2131361902;
 			
-			// aapt resource value: 0x7f0a005a
-			public const int line1 = 2131361882;
+			// aapt resource value: 0x7f0a0068
+			public const int line1 = 2131361896;
 			
-			// aapt resource value: 0x7f0a005e
-			public const int line3 = 2131361886;
+			// aapt resource value: 0x7f0a006c
+			public const int line3 = 2131361900;
+			
+			// aapt resource value: 0x7f0a0057
+			public const int linearLayoutHeading = 2131361879;
+			
+			// aapt resource value: 0x7f0a0054
+			public const int linearLayoutMain = 2131361876;
+			
+			// aapt resource value: 0x7f0a005b
+			public const int linearLayoutRow1 = 2131361883;
 			
 			// aapt resource value: 0x7f0a0009
 			public const int listMode = 2131361801;
@@ -1699,17 +1762,14 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0a002b
 			public const int list_item = 2131361835;
 			
-			// aapt resource value: 0x7f0a0058
-			public const int media_actions = 2131361880;
+			// aapt resource value: 0x7f0a0066
+			public const int media_actions = 2131361894;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int middle = 2131361820;
 			
 			// aapt resource value: 0x7f0a0014
 			public const int multiply = 2131361812;
-			
-			// aapt resource value: 0x7f0a0054
-			public const int myButton = 2131361876;
 			
 			// aapt resource value: 0x7f0a0020
 			public const int never = 2131361824;
@@ -1731,6 +1791,12 @@ namespace Graduate.Droid
 			
 			// aapt resource value: 0x7f0a003e
 			public const int radio = 2131361854;
+			
+			// aapt resource value: 0x7f0a0056
+			public const int relativeLayoutHeading = 2131361878;
+			
+			// aapt resource value: 0x7f0a005a
+			public const int relativeLayoutRow1 = 2131361882;
 			
 			// aapt resource value: 0x7f0a0015
 			public const int screen = 2131361813;
@@ -1804,8 +1870,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0a0018
 			public const int src_over = 2131361816;
 			
-			// aapt resource value: 0x7f0a0057
-			public const int status_bar_latest_event_content = 2131361879;
+			// aapt resource value: 0x7f0a0065
+			public const int status_bar_latest_event_content = 2131361893;
 			
 			// aapt resource value: 0x7f0a003f
 			public const int submenuarrow = 2131361855;
@@ -1816,17 +1882,20 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0a000b
 			public const int tabMode = 2131361803;
 			
-			// aapt resource value: 0x7f0a005f
-			public const int text = 2131361887;
+			// aapt resource value: 0x7f0a006d
+			public const int text = 2131361901;
 			
-			// aapt resource value: 0x7f0a005d
-			public const int text2 = 2131361885;
+			// aapt resource value: 0x7f0a006b
+			public const int text2 = 2131361899;
 			
 			// aapt resource value: 0x7f0a0037
 			public const int textSpacerNoButtons = 2131361847;
 			
-			// aapt resource value: 0x7f0a005b
-			public const int time = 2131361883;
+			// aapt resource value: 0x7f0a005c
+			public const int textViewEntryRow1 = 2131361884;
+			
+			// aapt resource value: 0x7f0a0069
+			public const int time = 2131361897;
 			
 			// aapt resource value: 0x7f0a002d
 			public const int title = 2131361837;
@@ -1969,43 +2038,64 @@ namespace Graduate.Droid
 			public const int abc_select_dialog_material = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int Main = 2130903066;
+			public const int CalculatorActivity = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int notification_media_action = 2130903067;
+			public const int CalculatorActivityBackup = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int notification_media_cancel_action = 2130903068;
+			public const int CalculatorRowFragment = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int notification_template_big_media = 2130903069;
+			public const int ClassFragment = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int notification_template_big_media_narrow = 2130903070;
+			public const int MainActivity = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int notification_template_lines = 2130903071;
+			public const int notification_media_action = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int notification_template_media = 2130903072;
+			public const int notification_media_cancel_action = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int notification_template_part_chronometer = 2130903073;
+			public const int notification_template_big_media = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int notification_template_part_time = 2130903074;
+			public const int notification_template_big_media_narrow = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int select_dialog_item_material = 2130903075;
+			public const int notification_template_lines = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int select_dialog_multichoice_material = 2130903076;
+			public const int notification_template_media = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int select_dialog_singlechoice_material = 2130903077;
+			public const int notification_template_part_chronometer = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int support_simple_spinner_dropdown_item = 2130903078;
+			public const int notification_template_part_time = 2130903078;
+			
+			// aapt resource value: 0x7f030027
+			public const int PlannerActivity_Main = 2130903079;
+			
+			// aapt resource value: 0x7f030028
+			public const int SchoolYear = 2130903080;
+			
+			// aapt resource value: 0x7f030029
+			public const int select_dialog_item_material = 2130903081;
+			
+			// aapt resource value: 0x7f03002a
+			public const int select_dialog_multichoice_material = 2130903082;
+			
+			// aapt resource value: 0x7f03002b
+			public const int select_dialog_singlechoice_material = 2130903083;
+			
+			// aapt resource value: 0x7f03002c
+			public const int SemesterFragment = 2130903084;
+			
+			// aapt resource value: 0x7f03002d
+			public const int support_simple_spinner_dropdown_item = 2130903085;
 			
 			static Layout()
 			{
@@ -2019,6 +2109,12 @@ namespace Graduate.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f050022
+			public const int ApplicationName = 2131034146;
+			
+			// aapt resource value: 0x7f050021
+			public const int Hello = 2131034145;
 			
 			// aapt resource value: 0x7f050000
 			public const int abc_action_bar_home_description = 2131034112;
@@ -2112,12 +2208,6 @@ namespace Graduate.Droid
 			
 			// aapt resource value: 0x7f050012
 			public const int abc_toolbar_collapse_description = 2131034130;
-			
-			// aapt resource value: 0x7f050022
-			public const int app_name = 2131034146;
-			
-			// aapt resource value: 0x7f050021
-			public const int hello = 2131034145;
 			
 			// aapt resource value: 0x7f050013
 			public const int search_menu_title = 2131034131;
@@ -2599,6 +2689,15 @@ namespace Graduate.Droid
 			
 			// aapt resource value: 0x7f07007d
 			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131165309;
+			
+			// aapt resource value: 0x7f07014c
+			public const int MyTheme = 2131165516;
+			
+			// aapt resource value: 0x7f07014b
+			public const int MyTheme_Base = 2131165515;
+			
+			// aapt resource value: 0x7f07014d
+			public const int MyTheme_Splash = 2131165517;
 			
 			// aapt resource value: 0x7f070019
 			public const int Platform_AppCompat = 2131165209;

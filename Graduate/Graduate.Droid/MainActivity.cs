@@ -2,34 +2,132 @@
 
 using Android.App;
 using Android.Content;
-using Android.Runtime;
-using Android.Views;
+
 using Android.Widget;
 using Android.OS;
 
+
+
+
+
+using System.IO;
+
+
 namespace Graduate.Droid
 {
-	[Activity (Label = "Graduate.Droid", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
+
+   [ Activity(Label = "MainActivity")]
+    
+    public class MainActivity : Activity
 	{
-		int count = 1;
+        private Button calculatorButton;
+        private Button plannerButton;
+        private Button dummyButton;
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+            SetContentView(Resource.Layout.MainActivity);
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
-		}
-	}
+
+            findViews();
+            handleEvents();
+        }
+
+
+        private void findViews()
+        {
+            calculatorButton = FindViewById<Button>(Resource.Id.buttonCalculator);
+            plannerButton = FindViewById<Button>(Resource.Id.buttonPlanner);
+        }
+
+        private void handleEvents()
+        {
+            calculatorButton.Click += calculatorButton_Click;
+            plannerButton.Click += plannerButton_Click;
+
+        }
+
+        private void calculatorButton_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(CalculatorActivity));
+            StartActivity(intent);
+        }
+
+        private void plannerButton_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(PlannerActivity_Main));
+            StartActivity(intent);
+        }
+
+
+        private void initializeDB()
+        {
+
+            String dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbGraduate.db3");
+
+            var stream = Android.App.Application.Context.Assets.Open("gpa.txt");
+
+
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+
+            Console.WriteLine("Initializing");
+            Console.WriteLine("Initializing");
+        }
+
+
+
+
+    }
 }
 
 
