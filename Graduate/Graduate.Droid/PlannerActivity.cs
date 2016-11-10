@@ -47,5 +47,12 @@ namespace Graduate.Droid
             this.ActionBar.AddTab(tab);
 
         }
+
+
+        public void findViews() {
+        }
+
+        public void handleEvents() {
+        }
     }
 }

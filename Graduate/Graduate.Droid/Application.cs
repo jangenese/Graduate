@@ -13,6 +13,7 @@ namespace Graduate.Droid
         public static GraduateApp Current { get; private set; }
 
       public Calculator calculator { get; set; }
+        public Planner planner { get; set; }
 
 
         SQLiteConnection conn;
@@ -38,8 +39,9 @@ namespace Graduate.Droid
             var path = Path.Combine(libraryPath, sqliteFilename);
             conn = new SQLiteConnection(path);
 
-            calculator = new Calculator(conn, stream);
+          calculator = new Calculator(conn, stream);
 
+            planner = new Planner(conn);
             
 
         }

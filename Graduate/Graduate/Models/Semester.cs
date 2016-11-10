@@ -1,12 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
 
 namespace Graduate.Core.Models
 {
- public   class Semester : GraduateEntity
+    public class Semester
     {
+
+        // SQLite attributes
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+       
+        public string Label { get; set; }
+        
+        public override string ToString()
+        {
+            return string.Format("[Grade: ID={0}, Label={1}]", ID, Label);
+        }
+
+        public Semester()
+        {
+        }
+
+        public Semester(String Label)
+        {
+            this.Label = Label;
+        }
+
     }
 }
