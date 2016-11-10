@@ -17,6 +17,9 @@ namespace Graduate.Droid
     public class CalculatorActivity : Activity
     {
         private Button addButton;
+        private EditText percent;
+        private EditText letter;
+        private EditText gpa;
         private int rows = 1;
 
       Calculator calculator;
@@ -36,16 +39,43 @@ namespace Graduate.Droid
           Console.WriteLine(calculator.toStringContent());
             Console.WriteLine("asdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsa");
 
+            Graduate.Core.Models.Grade grade = calculator.getPercent("100");
+
+            Console.WriteLine("Searrch returned back to calc activity");
+            Console.WriteLine(grade.ToString());
+
         }
 
         private void findViews()
         {
             addButton = FindViewById<Button>(Resource.Id.buttonAdd);
+            letter = FindViewById<EditText>(Resource.Id.editTextLetterRow1);
+            percent = FindViewById<EditText>(Resource.Id.editTextPercentRow1);
+            gpa = FindViewById<EditText>(Resource.Id.editTextGPARow1);
         }
 
         private void handleEvents()
         {
             addButton.Click += AddButton_Click;
+           percent.AfterTextChanged += Percent_AfterTextChanged;
+         
+        }
+
+       
+
+        
+
+        private void Percent_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+          String percentEntry = percent.Text.ToString();
+
+           Graduate.Core.Models.Grade grade =  calculator.getPercent("80");
+
+            Console.WriteLine("Searrch returned back to calc activity sakfdsjlhglksdjhglksjdhfglaksjdhfglkjs dhfglksjdfhglskdfjhgdfsk\n");
+            Console.WriteLine(grade.ToString());
+
+           gpa.Text = grade.GPA.ToString();
+            letter.Text = grade.Letter;
         }
 
         private void AddButton_Click(object sender, EventArgs e)

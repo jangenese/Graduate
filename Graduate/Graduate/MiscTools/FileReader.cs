@@ -15,13 +15,18 @@ namespace Graduate.Core.MiscTools
 
         public String readFile()
         {
-            String fileContent;
+            String fileContent = "";
             try
             {
 
                 using (StreamReader fileReader = new StreamReader(fileStream))
                 {
-                    fileContent = fileReader.ReadToEnd();
+
+                    while (!fileReader.EndOfStream) {
+                        fileContent += fileReader.ReadLine() + "\n";
+                    }
+
+                   
                     fileReader.Dispose();
                     return fileContent;
                 }

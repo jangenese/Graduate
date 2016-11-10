@@ -4,6 +4,8 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System;
 using Graduate.Core.Models;
+using Graduate.Core.MiscTools;
+using System.IO;
 
 namespace Graduate.Core.DAL.TableGateways
 {
@@ -16,15 +18,19 @@ namespace Graduate.Core.DAL.TableGateways
 
         public string path;
 
+        Stream fileStream;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Tasky.DL.TaskDatabase"/> TaskDatabase. 
         /// if the database doesn't exist, it will create the database and all the tables.
         /// </summary>
-        public GradesTableGateway(SQLiteConnection conn)
+        public GradesTableGateway(SQLiteConnection conn, Stream fileStream)
         {
+            this.fileStream = fileStream;
             database = conn;
             // create the tables
-            database.CreateTable<Grade>();
+            init();
+            
         }
 
         public IEnumerable<Grade> GetItems()
@@ -69,6 +75,45 @@ namespace Graduate.Core.DAL.TableGateways
             {
                 return database.Delete<Grade>(id);
             }
+        }
+
+
+        public Grade getItemByPercent(int percent) {
+
+            lock (locker)
+            {
+
+                return database.Table<Grade>().FirstOrDefault(x => x.Percent == percent);
+            }
+
+        }
+
+        public void init() {
+
+            FileReader fileReader = new FileReader(fileStream);
+            String fileContents = fileReader.readFile();
+            GradePopulator grades = new GradePopulator(fileContents);
+            IList<Grade> gradesRecords = grades.getTableContents();
+
+            try
+            {
+
+                database.DropTable<Grade>();
+            }
+            catch (System.IO.FileNotFoundException e)
+            {
+                throw new System.IO.FileNotFoundException("Table not Found", e);
+            }
+
+
+            database.CreateTable<Grade>();
+
+
+            foreach (Grade gradeEntry in gradesRecords) {
+
+                SaveItem(gradeEntry);
+            }
+
         }
     }
 }

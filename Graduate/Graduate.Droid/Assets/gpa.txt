@@ -1,0 +1,12 @@
+﻿95	100	A+	4.00	Excellent	Superior performance showing comprehensive understanding of the subject matter
+85	94	A 	4.00	Excellent	Superior performance showing comprehensive understanding of the subject matter
+80	84	A-	3.70	Good	Clearly above average performance with knowledge of subject matter generally complete
+77	79	B+ 	3.30	Good	Clearly above average performance with knowledge of subject matter generally complete
+73	76	B 	3.00	Satisfactory	Basic understanding of the subject matter
+70	72	B- 	2.70	Satisfactory	Basic understanding of the subject matter
+67	69	C+ 	2.30	Satisfactory	Basic understanding of the subject matter
+63	66	C	2.00	Marginal Performance	Insufficient preparation for subsequent courses in the same subject
+60	62	C- 	1.70	Marginal Performance	Insufficient preparation for subsequent courses in the same subject
+55	59	D+	1.30	Marginal Performance	Insufficient preparation for subsequent courses in the same subject
+50	54	D 	1.00	Marginal Performance	Insufficient preparation for subsequent courses in the same subject
+0	49	F 	0.00	Fail	Unsatisfactory performance or failure to meet course requirements

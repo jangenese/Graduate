@@ -37,6 +37,7 @@
     <Compile Include="DAL\TableGateways\SemesterTableGateway.cs" />
     <Compile Include="MiscTools\FileReader.cs" />
     <Compile Include="MiscTools\FileWriter.cs" />
+    <Compile Include="MiscTools\GradePopulator.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\GraduateEntity.cs" />
     <Compile Include="Models\Semester.cs" />

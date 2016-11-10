@@ -21,5 +21,11 @@ namespace Graduate.Core.Models
         {
         }
 
+        public Grade(int percent, String letter, Double gpa) {
+            Percent = percent;
+            Letter = letter;
+            GPA = gpa;
+        }
+
     }
 }

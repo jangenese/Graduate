@@ -99,13 +99,13 @@
                         android:layout_marginRight="10dp"
                         tools:visibility="invisible" />
                     <EditText
-                        android:inputType="number"
+                        
                         android:gravity="center"
                         android:layout_width="100dp"
                         android:textSize="20dp"
                         android:layout_height="match_parent"
                         android:id="@+id/editTextPercentRow1"
-                        android:text="100"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:background="@drawable/back" />
                     <EditText
@@ -116,17 +116,17 @@
                         android:layout_marginLeft="20dp"
                         android:layout_height="match_parent"
                         android:id="@+id/editTextLetterRow1"
-                        android:text="A+"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:background="@drawable/back" />
                     <EditText
-                        android:inputType="numberDecimal"
+                        
                         android:gravity="center"
                         android:layout_width="100dp"
                         android:textSize="20dp"
                         android:layout_height="match_parent"
                         android:id="@+id/editTextGPARow1"
-                        android:text="4.0"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:background="@drawable/back" />
                 </LinearLayout>

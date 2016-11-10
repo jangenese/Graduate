@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Graduate.Core.DAL.TableGateways;
 using System.Collections.Generic;
 using SQLite;
@@ -10,17 +11,19 @@ namespace Graduate.Core
     {
         GradesTableGateway gradesGateway;
         String testContent;
-        public Calculator(SQLiteConnection conn) {
-            gradesGateway = new DAL.TableGateways.GradesTableGateway(conn);
+        public Calculator(SQLiteConnection conn, Stream fileStream) {
+            gradesGateway = new DAL.TableGateways.GradesTableGateway(conn, fileStream);
 
-            for (int i = 0; i < 50; i++)
-            {
-                Grade g = new Grade();
-                g.GPA = 4.00;
-                g.Letter = "A+";
-                g.Percent = 100;
-                gradesGateway.SaveItem(g);
-            }
+           
+
+        //    for (int i = 0; i < 50; i++)
+      //      {
+      //          Grade g = new Grade();
+      //          g.GPA = 4.00;
+      //          g.Letter = "A+";
+     //           g.Percent = 100;
+    //            gradesGateway.SaveItem(g);
+   //         }
 
             IList<Grade> grades = new List<Grade>(gradesGateway.GetItems());
 
@@ -36,6 +39,14 @@ namespace Graduate.Core
             return testContent;
         }
 
+
+        public Grade getPercent(String percent) {
+
+            int percentLookup = Int32.Parse(percent);
+
+            return gradesGateway.getItemByPercent(percentLookup);
+
+        }
     }
     
 }

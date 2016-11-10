@@ -30,12 +30,15 @@ namespace Graduate.Droid
             base.OnCreate();
 
 
+            var stream = Android.App.Application.Context.Assets.Open("gpa.txt");
+
+
             var sqliteFilename = "Graduate.db3";
             string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var path = Path.Combine(libraryPath, sqliteFilename);
             conn = new SQLiteConnection(path);
 
-            calculator = new Calculator(conn);
+            calculator = new Calculator(conn, stream);
 
             
 
