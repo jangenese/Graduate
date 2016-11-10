@@ -36,13 +36,7 @@ namespace Graduate.Droid
         calculator = GraduateApp.Current.calculator;
 
         
-          Console.WriteLine(calculator.toStringContent());
-            Console.WriteLine("asdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsa");
-
-            Graduate.Core.Models.Grade grade = calculator.getPercent("100");
-
-            Console.WriteLine("Searrch returned back to calc activity");
-            Console.WriteLine(grade.ToString());
+         
 
         }
 
@@ -58,24 +52,26 @@ namespace Graduate.Droid
         {
             addButton.Click += AddButton_Click;
            percent.AfterTextChanged += Percent_AfterTextChanged;
+           
+           
          
         }
 
        
 
-        
-
         private void Percent_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
           String percentEntry = percent.Text.ToString();
 
-           Graduate.Core.Models.Grade grade =  calculator.getPercent("80");
+           Graduate.Core.Models.Grade grade =  calculator.getPercent(percentEntry);
 
-            Console.WriteLine("Searrch returned back to calc activity sakfdsjlhglksdjhglksjdhfglaksjdhfglkjs dhfglksjdfhglskdfjhgdfsk\n");
-            Console.WriteLine(grade.ToString());
+          
+         
 
-           gpa.Text = grade.GPA.ToString();
+            gpa.Text = grade.GPA.ToString();
             letter.Text = grade.Letter;
+
+
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -106,5 +102,6 @@ namespace Graduate.Droid
 
             mainLayout.AddView(newView);
         }
+       
     }
 }

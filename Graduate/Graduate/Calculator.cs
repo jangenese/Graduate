@@ -42,9 +42,26 @@ namespace Graduate.Core
 
         public Grade getPercent(String percent) {
 
-            int percentLookup = Int32.Parse(percent);
+            int percentLookup;
 
-            return gradesGateway.getItemByPercent(percentLookup);
+            try {
+                percentLookup = Int32.Parse(percent);
+            }catch (Exception e) {
+                percentLookup = 0;
+            }
+            
+
+            Grade grade =  gradesGateway.getItemByPercent(percentLookup);
+
+            try {
+                grade.GPA.ToString();
+            } catch (Exception e) {
+                grade = new Grade();
+                grade.GPA = 0;
+                grade.Letter = "";
+            }
+
+            return grade;
 
         }
     }
