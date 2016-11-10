@@ -1,7 +1,8 @@
 using System;
 using System.IO;
-
+using SQLite;
 using Android.App;
+using Graduate.Core;
 
 
 namespace Graduate.Droid
@@ -11,10 +12,10 @@ namespace Graduate.Droid
     {
         public static GraduateApp Current { get; private set; }
 
-    //    public Graduate.core.Calculator Calculator { get; set; }
-       
+      public Calculator calculator { get; set; }
 
-        String conn;
+
+        SQLiteConnection conn;
 
         public GraduateApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer)
@@ -28,10 +29,15 @@ namespace Graduate.Droid
 
             base.OnCreate();
 
-           
-            conn = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbGraduate.db3");
 
-         //   Calculator = new Graduate.core.Calculator(conn);
+            var sqliteFilename = "Graduate.db3";
+            string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var path = Path.Combine(libraryPath, sqliteFilename);
+            conn = new SQLiteConnection(path);
+
+            calculator = new Calculator(conn);
+
+            
 
         }
     }

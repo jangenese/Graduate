@@ -7,6 +7,7 @@ using Android.OS;
 
 using Android.Views;
 using Android.Widget;
+using Graduate.Core;
 
 
 
@@ -18,7 +19,7 @@ namespace Graduate.Droid
         private Button addButton;
         private int rows = 1;
 
-      //  Graduate.core.Calculator calculator;
+      Calculator calculator;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,11 +30,11 @@ namespace Graduate.Droid
             findViews();
             handleEvents();
 
-        //    calculator = GraduateApp.Current.Calculator;
+        calculator = GraduateApp.Current.calculator;
 
-         //   Console.WriteLine(calculator.ToString());
-        //    Console.WriteLine(calculator.toStringContent());
-        //    Console.WriteLine("asdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsa");
+        
+          Console.WriteLine(calculator.toStringContent());
+            Console.WriteLine("asdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsa");
 
         }
 
