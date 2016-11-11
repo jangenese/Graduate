@@ -7,6 +7,7 @@ using Android.OS;
 
 using Android.Views;
 using Android.Widget;
+using Graduate.Core;
 
 
 
@@ -16,9 +17,12 @@ namespace Graduate.Droid
     public class CalculatorActivity : Activity
     {
         private Button addButton;
+        private EditText percent;
+        private EditText letter;
+        private EditText gpa;
         private int rows = 1;
 
-      //  Graduate.core.Calculator calculator;
+      Calculator calculator;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,22 +33,45 @@ namespace Graduate.Droid
             findViews();
             handleEvents();
 
-        //    calculator = GraduateApp.Current.Calculator;
+        calculator = GraduateApp.Current.calculator;
 
-         //   Console.WriteLine(calculator.ToString());
-        //    Console.WriteLine(calculator.toStringContent());
-        //    Console.WriteLine("asdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsaasdfffffffasdfasdfasdfasdfasdfsa");
+        
+         
 
         }
 
         private void findViews()
         {
             addButton = FindViewById<Button>(Resource.Id.buttonAdd);
+            letter = FindViewById<EditText>(Resource.Id.editTextLetterRow1);
+            percent = FindViewById<EditText>(Resource.Id.editTextPercentRow1);
+            gpa = FindViewById<EditText>(Resource.Id.editTextGPARow1);
         }
 
         private void handleEvents()
         {
             addButton.Click += AddButton_Click;
+           percent.AfterTextChanged += Percent_AfterTextChanged;
+           
+           
+         
+        }
+
+       
+
+        private void Percent_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+          String percentEntry = percent.Text.ToString();
+
+           Graduate.Core.Models.Grade grade =  calculator.getPercent(percentEntry);
+
+          
+         
+
+            gpa.Text = grade.GPA.ToString();
+            letter.Text = grade.Letter;
+
+
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -75,5 +102,6 @@ namespace Graduate.Droid
 
             mainLayout.AddView(newView);
         }
+       
     }
 }

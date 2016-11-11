@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace Graduate.Droid.Fragments
 {
-    public class SemesterFragment : Fragment
+    public class SemesterFragment : BaseFragment
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,9 +25,25 @@ namespace Graduate.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+             return inflater.Inflate(Resource.Layout.SemesterFragment, container, false);
 
-            return base.OnCreateView(inflater, container, savedInstanceState);
+           // return base.OnCreateView(inflater, container, savedInstanceState);
         }
+
+        public override void OnActivityCreated(Bundle savedInstanceState)
+        {
+            base.OnActivityCreated(savedInstanceState);
+
+            FindViews();
+            HandleEvents();
+
+            graduateEntities = planner.getAllSemesters();
+
+
+
+            listView.Adapter = new Graduate.Core.SemesterListAdapter(this.Activity, graduateEntities);
+            
+        }
+
     }
 }
