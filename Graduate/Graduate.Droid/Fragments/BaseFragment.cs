@@ -32,23 +32,23 @@ namespace Graduate.Droid.Fragments
 
         protected void HandleEvents()
         {
-          //  listView.ItemClick += ListView_ItemClick;
+            listView.ItemClick += ListView_ItemClick;
         }
         protected void FindViews()
         {
             listView = this.View.FindViewById<ListView>(Resource.Id.listViewGraduateEntities);
         }
 
-     //   protected void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-    //    {
-    //        var hotDog = hotDogs[e.Position];
+        protected void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+           var entity = graduateEntities[e.Position];
 
-   //         var intent = new Intent();
-    //        intent.SetClass(this.Activity, typeof(HotDogDetailActivity));
-    //        intent.PutExtra("selectedHotDogId", hotDog.HotDogId);
+           var intent = new Intent();
+           intent.SetClass(this.Activity, typeof(EntityDetail));
+           intent.PutExtra("selectedEntityID", entity.ID );
 
-    //        StartActivityForResult(intent, 100);
-    //    }
+            StartActivityForResult(intent, 100);
+        }
 
     }
 }
