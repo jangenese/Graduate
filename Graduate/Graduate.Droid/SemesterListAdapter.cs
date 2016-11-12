@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.Widget;
-using Graduate.Core.Models;
+//using Graduate.Core.Models;
+using Graduate.Core.Data.Models;
 
 namespace Graduate.Core
 {
@@ -61,7 +62,7 @@ namespace Graduate.Core
                     Android.Resource.Layout.SimpleListItemChecked,
                     parent,
                     false)) as CheckedTextView;
-            view.SetText(item.Label== "" ? "<new semester>" : item.Label, TextView.BufferType.Normal);
+            view.SetText(item.label== "" ? "<new semester>" : item.label, TextView.BufferType.Normal);
            // view.Checked = item.Done;
 
 

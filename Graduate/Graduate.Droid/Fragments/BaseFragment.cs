@@ -12,7 +12,8 @@ using Android.Widget;
 //using RaysHotDogs.Core;
 
 using Graduate.Core;
-using Graduate.Core.Models;
+//using Graduate.Core.Models;
+using Graduate.Core.Data.Models;
 
 namespace Graduate.Droid.Fragments
 {
@@ -45,7 +46,7 @@ namespace Graduate.Droid.Fragments
 
            var intent = new Intent();
            intent.SetClass(this.Activity, typeof(EntityDetail));
-           intent.PutExtra("selectedEntityID", entity.ID );
+           intent.PutExtra("selectedEntityID", entity.Id );
 
             StartActivityForResult(intent, 100);
         }

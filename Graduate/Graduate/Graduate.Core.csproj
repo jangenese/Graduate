@@ -35,6 +35,15 @@
     <Compile Include="DAL\SQLiteDB.cs" />
     <Compile Include="DAL\TableGateways\GradesTableGateway.cs" />
     <Compile Include="DAL\TableGateways\SemesterTableGateway.cs" />
+    <Compile Include="Data\DataAccessLayer\ClassDataAccess.cs" />
+    <Compile Include="Data\DataAccessLayer\GraduateDatabase.cs" />
+    <Compile Include="Data\DataAccessLayer\SchoolYearDataAccess.cs" />
+    <Compile Include="Data\DataAccessLayer\SemesterDataAccess.cs" />
+    <Compile Include="Data\Models\Class.cs" />
+    <Compile Include="Data\Models\GraduateEntityBase.cs" />
+    <Compile Include="Data\Models\IGraduateEntity.cs" />
+    <Compile Include="Data\Models\SchoolYear.cs" />
+    <Compile Include="Data\Models\Semester.cs" />
     <Compile Include="MiscTools\FileReader.cs" />
     <Compile Include="MiscTools\FileWriter.cs" />
     <Compile Include="MiscTools\GradePopulator.cs" />
@@ -61,5 +70,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
