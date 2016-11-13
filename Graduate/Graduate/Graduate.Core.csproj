@@ -32,24 +32,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
-    <Compile Include="DAL\SQLiteDB.cs" />
-    <Compile Include="DAL\TableGateways\GradesTableGateway.cs" />
-    <Compile Include="DAL\TableGateways\SemesterTableGateway.cs" />
     <Compile Include="Data\DataAccessLayer\ClassDataAccess.cs" />
+    <Compile Include="Data\DataAccessLayer\GradeDataAccess.cs" />
     <Compile Include="Data\DataAccessLayer\GraduateDatabase.cs" />
     <Compile Include="Data\DataAccessLayer\SchoolYearDataAccess.cs" />
     <Compile Include="Data\DataAccessLayer\SemesterDataAccess.cs" />
     <Compile Include="Data\Models\Class.cs" />
+    <Compile Include="Data\Models\Grade.cs" />
     <Compile Include="Data\Models\GraduateEntityBase.cs" />
     <Compile Include="Data\Models\IGraduateEntity.cs" />
     <Compile Include="Data\Models\SchoolYear.cs" />
     <Compile Include="Data\Models\Semester.cs" />
-    <Compile Include="MiscTools\FileReader.cs" />
-    <Compile Include="MiscTools\FileWriter.cs" />
     <Compile Include="MiscTools\GradePopulator.cs" />
-    <Compile Include="Models\Grade.cs" />
-    <Compile Include="Models\GraduateEntity.cs" />
-    <Compile Include="Models\Semester.cs" />
     <Compile Include="Planner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,11 +53,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.0.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCLRaw.core.1.0.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
