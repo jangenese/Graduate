@@ -32,7 +32,7 @@ namespace Graduate.Droid
         }
 
         private void findViews() {
-            label = FindViewById<TextView>(Resource.Id.textViewLabel);
+            label = FindViewById<TextView>(Resource.Id.textViewOtherStuff);
         }
 
 

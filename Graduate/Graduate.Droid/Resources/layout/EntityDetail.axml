@@ -4,11 +4,111 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="25px"
-    android:minHeight="25px">
-    <TextView
-        android:text="Title"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    android:minHeight="25px"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewLabel" />
+        android:layout_height="60dp"
+        android:id="@+id/linearLayoutRoot"
+        android:layout_marginBottom="0.0dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayoutNameContainerHeader"
+            android:layout_width="225dp">
+            <TextView
+                android:text="Winter 2015"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/textViewName"
+                android:textSize="30dp" />
+            <TextView
+                android:text="2014-2015"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:id="@+id/textViewParentName"
+                android:textSize="15dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayoutStatsHeader">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayoutCreditsContainer">
+                <TextView
+                    android:text="Credits"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textViewCreditsLabel"
+                    android:gravity="center" />
+                <TextView
+                    android:text="12"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/textViewCredits"
+                    android:textSize="30dp"
+                    android:gravity="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="95dp"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayoutGradeContainer">
+                <TextView
+                    android:text="Completed"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textViewStatusLabel"
+                    android:gravity="center" />
+                <TextView
+                    android:text="B+"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/textViewGrade"
+                    android:textSize="30dp"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/linearLayoutListViewContainer">
+        <ListView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listViewChildItems"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="Other Stuff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewOtherStuff"
+            android:textSize="30dp" />
+    </LinearLayout>
 </LinearLayout>

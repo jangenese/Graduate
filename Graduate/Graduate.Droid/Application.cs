@@ -31,7 +31,7 @@ namespace Graduate.Droid
             base.OnCreate();
 
 
-            var stream = Android.App.Application.Context.Assets.Open("gpa.txt");
+           // var stream = Android.App.Application.Context.Assets.Open("gpa.txt"); //To Delete
 
 
             var sqliteFilename = "Graduate.db3";
@@ -39,7 +39,7 @@ namespace Graduate.Droid
             var path = Path.Combine(libraryPath, sqliteFilename);
             conn = new SQLiteConnection(path);
 
-          calculator = new Calculator(conn, stream);
+          calculator = new Calculator(conn);
 
             planner = new Planner(conn);
             

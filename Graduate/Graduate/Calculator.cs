@@ -12,7 +12,7 @@ namespace Graduate.Core
     {
         GradeDataAccess gradesGateway;
         String testContent;
-        public Calculator(SQLiteConnection conn, Stream fileStream) {
+        public Calculator(SQLiteConnection conn) {
             gradesGateway = new GradeDataAccess(conn);
 
 

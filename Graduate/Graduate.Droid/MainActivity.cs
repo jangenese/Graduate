@@ -62,69 +62,6 @@ namespace Graduate.Droid
         }
 
 
-        private void initializeDB()
-        {
-
-            String dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbGraduate.db3");
-
-            var stream = Android.App.Application.Context.Assets.Open("gpa.txt");
-
-
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-
-            Console.WriteLine("Initializing");
-            Console.WriteLine("Initializing");
-        }
-
-
 
 
     }
