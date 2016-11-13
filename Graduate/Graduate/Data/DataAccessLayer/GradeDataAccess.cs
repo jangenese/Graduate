@@ -11,13 +11,14 @@ namespace Graduate.Core.Data.DataAccessLayer
 {
     public class GradeDataAccess : GraduateDatabase
     {
-
+        private static object collisionLock = new object();
         SQLiteConnection database;
 
         public GradeDataAccess(SQLiteConnection conn) : base(conn)
         {
 
             database = conn;
+            init();
         }
 
 
@@ -27,22 +28,7 @@ namespace Graduate.Core.Data.DataAccessLayer
             GradePopulator grades = new GradePopulator();
             IList<Grade> gradesRecords = grades.getTableContents();
 
-            try
-            {
-
-
-
-                database.DropTable<Grade>();
-            }
-            catch (System.IO.FileNotFoundException e)
-            {
-                throw new System.IO.FileNotFoundException("Table not Found", e);
-            }
-
-
-            database.CreateTable<Grade>();
-
-
+            
             foreach (Grade gradeEntry in gradesRecords)
             {
 
@@ -57,8 +43,11 @@ namespace Graduate.Core.Data.DataAccessLayer
         {
 
 
-
-            return database.Table<Grade>().FirstOrDefault(x => x.Percent == percent);
+            lock (collisionLock)
+            {
+                return database.Table<Grade>().
+                  FirstOrDefault(grade => grade.Percent == percent);
+            }
 
 
         }

@@ -11,13 +11,11 @@ namespace Graduate.Droid
     public class GraduateApp : Application
     {
         public static GraduateApp Current { get; private set; }
-
-      public Calculator calculator { get; set; }
+        public Calculator calculator { get; set; }
         public Planner planner { get; set; }
 
-
+        public GradeConverter converter { get; set; }
         SQLiteConnection conn;
-
         public GraduateApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer)
         {
@@ -26,22 +24,18 @@ namespace Graduate.Droid
 
         public override void OnCreate()
         {
-
-
             base.OnCreate();
-
-
-           // var stream = Android.App.Application.Context.Assets.Open("gpa.txt"); //To Delete
-
 
             var sqliteFilename = "Graduate.db3";
             string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var path = Path.Combine(libraryPath, sqliteFilename);
             conn = new SQLiteConnection(path);
 
-          calculator = new Calculator(conn);
 
+          //  calculator = new Calculator(conn);
             planner = new Planner(conn);
+
+            converter = new GradeConverter(conn);
             
 
         }

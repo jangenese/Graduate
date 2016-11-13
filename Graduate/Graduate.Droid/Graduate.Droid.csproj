@@ -130,7 +130,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\CalculatorRowFragment.axml" />
     <AndroidResource Include="Resources\layout\ClassFragment.axml" />
@@ -139,7 +141,6 @@
     <AndroidResource Include="Resources\layout\SchoolYearFragment.axml" />
     <AndroidResource Include="Resources\layout\SemesterFragment.axml" />
     <AndroidResource Include="Resources\layout\CalculatorActivity.axml" />
-    <AndroidResource Include="Resources\layout\CalculatorActivityBackup.axml" />
     <AndroidResource Include="Resources\layout\EntityDetail.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

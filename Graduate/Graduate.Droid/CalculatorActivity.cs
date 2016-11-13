@@ -1,13 +1,11 @@
 using System;
-
-
 using Android.App;
-
 using Android.OS;
-
 using Android.Views;
 using Android.Widget;
+using Graduate.Core.Data.Models;
 using Graduate.Core;
+
 
 
 
@@ -22,7 +20,9 @@ namespace Graduate.Droid
         private EditText gpa;
         private int rows = 1;
 
-      Calculator calculator;
+        GradeConverter converter;
+
+       // Calculator calculator;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -30,12 +30,16 @@ namespace Graduate.Droid
 
             SetContentView(Resource.Layout.CalculatorActivity);
 
+            converter = GraduateApp.Current.converter;
+
             findViews();
             handleEvents();
 
-        calculator = GraduateApp.Current.calculator;
+            // calculator = GraduateApp.Current.calculator;
 
-        
+           
+
+           
          
 
         }
@@ -51,35 +55,26 @@ namespace Graduate.Droid
         private void handleEvents()
         {
             addButton.Click += AddButton_Click;
-           percent.AfterTextChanged += Percent_AfterTextChanged;
-           
-           
-         
+           percent.AfterTextChanged += Percent_AfterTextChanged;  
         }
 
        
 
         private void Percent_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
-          String percentEntry = percent.Text.ToString();
+            String percentEntry = percent.Text;
 
-           Graduate.Core.Data.Models.Grade grade =  calculator.getPercent(percentEntry);
-
-          
-         
+            Grade grade = converter.convertFromPercent(percentEntry);
 
             gpa.Text = grade.GPA.ToString();
             letter.Text = grade.Letter;
-
 
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             View newView;
-
             newView = getNewRowView(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutMain), null);
-
             addNewRow(newView);
         }
 
@@ -93,13 +88,9 @@ namespace Graduate.Droid
 
         private void addNewRow(View newView)
         {
-
             rows++;
-
             LinearLayout mainLayout = this.FindViewById<LinearLayout>(Resource.Id.LinearLayoutScrollMain);
-
             mainLayout.FindViewById<TextView>(Resource.Id.textViewEntryRow1).Text = rows.ToString();
-
             mainLayout.AddView(newView);
         }
        

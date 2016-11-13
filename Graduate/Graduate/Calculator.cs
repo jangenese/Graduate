@@ -10,22 +10,30 @@ namespace Graduate.Core
 {
    public class Calculator
     {
+
+       
+        String testReturn;
         GradeDataAccess gradesGateway;
         String testContent;
         public Calculator(SQLiteConnection conn) {
-            gradesGateway = new GradeDataAccess(conn);
-
-
-            
+            gradesGateway = new GradeDataAccess(conn);            
 
             IList<Grade> grades = new List<Grade>(gradesGateway.GetItems<Grade>());
-
-            foreach (Grade i in grades)
-            {
+            foreach (Grade i in grades)            {
                 testContent += i.ToString() + "\n";
             }
+            testPercentLookup(79);
+        }
+        
+
+        public void testPercentLookup(int percent) {
+            Grade gradeResult = gradesGateway.getItemByPercent(percent);
+            testReturn = gradeResult.ToString();
         }
 
+        public String getTestReturn() {
+            return testReturn;
+        }
 
         public String toStringContent()
         {
@@ -35,28 +43,49 @@ namespace Graduate.Core
 
         public Grade getPercent(String percent) {
 
-            int percentLookup;
+
+
+            int percentLookup = 100;
+
+          
 
             try {
-                percentLookup = Int32.Parse(percent);
+                percentLookup = Convert.ToInt32(percent);
             }catch (Exception e) {
-                percentLookup = 0;
+               
             }
-            
 
-            Grade grade =  gradesGateway.getItemByPercent(percentLookup);
+           
 
-            try {
-                grade.GPA.ToString();
-            } catch (Exception e) {
+            Grade grade = gradesGateway.getItemByPercent(95);
+            /*  
+
+              try
+              {
+                  grade.GPA.ToString();
+              }
+              catch (Exception e)
+              {
+                  grade = new Grade();
+                  grade.GPA = 0;
+                  grade.Letter = "";
+              }
+
+      */
+
+
+            if (grade == null) {
                 grade = new Grade();
                 grade.GPA = 0;
-                grade.Letter = "";
+                grade.Letter = "null recieved";
             }
 
             return grade;
 
         }
+
+
+        
     }
     
 }
