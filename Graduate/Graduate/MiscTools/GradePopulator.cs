@@ -5,25 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Graduate.Core.Models;
+using Graduate.Core.Data.Models;
 
 namespace Graduate.Core.MiscTools
 {
     class GradePopulator
     {
-        String fileContent;
-        String line;
-        public GradePopulator(String fileContent)
+       
+        public GradePopulator()
         {
-            this.fileContent = fileContent;
+            
         }
 
         public IList<Grade> getTableContents()
         {
 
-            IList<Grade> grades = new List<Grade>();
-            string[] lines = fileContent.Split('\n');
-
+            IList<Grade> grades = new List<Grade>();          
 
             String[] custom = new String[12];
             custom[0] = "95\t100\tA+\t4.00\t";

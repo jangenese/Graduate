@@ -63,7 +63,7 @@ namespace Graduate.Droid
         {
           String percentEntry = percent.Text.ToString();
 
-           Graduate.Core.Models.Grade grade =  calculator.getPercent(percentEntry);
+           Graduate.Core.Data.Models.Grade grade =  calculator.getPercent(percentEntry);
 
           
          

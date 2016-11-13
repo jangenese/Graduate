@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
-using Graduate.Core.DAL.TableGateways;
-
 using Graduate.Core.Data.DataAccessLayer;
 using Graduate.Core.Data.Models;
+
+
 namespace Graduate.Core
 {
    public class Planner
     {
 
-        SemesterTableGateway semesters;
+        SemesterDataAccess semesters;
         SemesterDataAccess semesterDA;
         public Planner(SQLiteConnection conn) {
-            semesters = new SemesterTableGateway(conn);
+            semesters = new SemesterDataAccess(conn);
           
 
             semesterDA = new SemesterDataAccess(conn);

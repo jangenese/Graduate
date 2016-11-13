@@ -1,31 +1,24 @@
 ﻿using System;
 using System.IO;
-using Graduate.Core.DAL.TableGateways;
 using System.Collections.Generic;
 using SQLite;
-using Graduate.Core.Models;
+using Graduate.Core.Data.Models;
+using Graduate.Core.Data.DataAccessLayer;
+
 
 namespace Graduate.Core
 {
    public class Calculator
     {
-        GradesTableGateway gradesGateway;
+        GradeDataAccess gradesGateway;
         String testContent;
         public Calculator(SQLiteConnection conn, Stream fileStream) {
-            gradesGateway = new DAL.TableGateways.GradesTableGateway(conn, fileStream);
+            gradesGateway = new GradeDataAccess(conn);
 
-           
 
-        //    for (int i = 0; i < 50; i++)
-      //      {
-      //          Grade g = new Grade();
-      //          g.GPA = 4.00;
-      //          g.Letter = "A+";
-     //           g.Percent = 100;
-    //            gradesGateway.SaveItem(g);
-   //         }
+            
 
-            IList<Grade> grades = new List<Grade>(gradesGateway.GetItems());
+            IList<Grade> grades = new List<Grade>(gradesGateway.GetItems<Grade>());
 
             foreach (Grade i in grades)
             {
