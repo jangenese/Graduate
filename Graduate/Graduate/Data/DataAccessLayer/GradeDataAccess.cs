@@ -51,5 +51,18 @@ namespace Graduate.Core.Data.DataAccessLayer
 
 
         }
+
+        public Grade getItemByLetter(String letter)
+        {
+
+
+            lock (collisionLock)
+            {
+                return database.Table<Grade>().
+                  FirstOrDefault(grade => grade.Letter == letter);
+            }
+
+
+        }
     }
 }
