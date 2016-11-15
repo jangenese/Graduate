@@ -19,7 +19,7 @@ namespace Graduate.Core.Data.DataAccessLayer
 
             database = conn;
             database.CreateTable<Grade>();
-            SaveItem<Grade>(new Grade(100, "A+", 4.00));
+           
             init();
         }
 
