@@ -56,11 +56,29 @@ namespace Graduate.Droid
         {
             addButton.Click += AddButton_Click;
            percent.AfterTextChanged += Percent_AfterTextChanged;
-       //     letter.AfterTextChanged += Letter_AfterTextChanged;
+        //   letter.AfterTextChanged += Letter_AfterTextChanged;
+
+
+         //   percent.Click += Percent_Click;
+          //  letter.Click += Letter_Click;
+        }
+
+        private void Letter_Click(object sender, EventArgs e)
+        {
+            percent.Focusable = false;
+            gpa.Focusable = false;
+        }
+
+        private void Percent_Click(object sender, EventArgs e)
+        {
+            letter.Focusable = false;
+            gpa.Focusable = false;
         }
 
         private void Letter_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
+        
+
             String letterEntry = letter.Text;
             Grade grade = converter.convertLetter(letterEntry);
 
@@ -70,6 +88,8 @@ namespace Graduate.Droid
 
         private void Percent_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
+          
+
             String percentEntry = percent.Text;
 
             Grade grade = converter.convertPercent(percentEntry);

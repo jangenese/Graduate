@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace Graduate.Core.Data.Models
 {
-    public class SchoolYear
+    public class SchoolYear : GraduateEntityBase
     {
         public SchoolYear() { }
 
-        public int FId { get; set; }
+        
         public String label { get; set; }
+
+        public SchoolYear(String label) {
+            this.label = label;
+
+        }
+
+       
     }
 }

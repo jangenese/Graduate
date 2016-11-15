@@ -51,7 +51,9 @@ namespace Graduate.Droid
 
         private void calculatorButton_Click(object sender, EventArgs e)
         {
-            var intent = new Intent(this, typeof(CalculatorActivity));
+            //  var intent = new Intent(this, typeof(CalculatorActivity));
+
+            var intent = new Intent(this, typeof(ConverterActivity));
             StartActivity(intent);
         }
 

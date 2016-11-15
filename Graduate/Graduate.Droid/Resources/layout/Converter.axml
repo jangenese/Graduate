@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/linearLayout1"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center">
+        <TextView
+            android:text="Percent"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/textView1"
+            android:textSize="15dp"
+            android:gravity="center" />
+        <EditText
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/editTextPercent"
+            android:textSize="60dp"
+            android:textAllCaps="true"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/linearLayout2"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center">
+        <TextView
+            android:text="Letter"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/textView2"
+            android:textSize="15dp"
+            android:gravity="center" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/editTextLetter"
+            android:textSize="60dp"
+            android:gravity="center"
+            android:textAllCaps="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/linearLayout3"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center">
+        <TextView
+            android:text="GPA"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/textView3"
+            android:textSize="15dp"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/textViewGPA"
+            android:textSize="50dp"
+            android:gravity="center"
+            android:textStyle="normal" />
+    </LinearLayout>
+</LinearLayout>

@@ -11,15 +11,14 @@ namespace Graduate.Core.Data.DataAccessLayer
   public class GraduateDatabase
     {
         SQLiteConnection connection { get; }
-        
+
+        private static object collisionLock = new object();
+
         public GraduateDatabase(SQLiteConnection conn)
         {
             this.connection = conn;
 
-            connection.DropTable<SchoolYear>();
-            connection.DropTable<Semester>();
-            connection.DropTable<Class>();
-            connection.DropTable<Grade>();
+          
             
 
             connection.CreateTable<SchoolYear>();
@@ -32,10 +31,16 @@ namespace Graduate.Core.Data.DataAccessLayer
 
         public T GetItem<T>(int id) where T : IGraduateEntity, new()
         {
+            lock (collisionLock)
+            {
+                return connection.Table<T>().
+                  FirstOrDefault(i => i.Id == id);
+            }
 
-            return (from i in connection.Table<T>()
-                    where i.Id == id
-                    select i).FirstOrDefault();
+           // return (from i in connection.Table<T>()
+           //         where i.Id == id
+            //        select i).FirstOrDefault();
+
 
         }
 

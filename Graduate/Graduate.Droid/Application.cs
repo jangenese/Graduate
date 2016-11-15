@@ -11,9 +11,8 @@ namespace Graduate.Droid
     public class GraduateApp : Application
     {
         public static GraduateApp Current { get; private set; }
-        public Calculator calculator { get; set; }
+        
         public Planner planner { get; set; }
-
         public GradeConverter converter { get; set; }
         SQLiteConnection conn;
         public GraduateApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
