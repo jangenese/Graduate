@@ -114,11 +114,14 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="CalculatorActivity.cs" />
+    <Compile Include="ConverterActivity.cs" />
     <Compile Include="EntityDetail.cs" />
-    <Compile Include="Fragments\BaseFragment.cs" />
     <Compile Include="Fragments\ClassFragment.cs" />
     <Compile Include="Fragments\SchoolYearFragment.cs" />
     <Compile Include="Fragments\SemesterFragment.cs" />
+    <Compile Include="ListAdapters\ClassListAdapter.cs" />
+    <Compile Include="ListAdapters\SchoolYearListAdapter.cs" />
+    <Compile Include="ListAdapters\SemesterListAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PlannerActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -142,6 +145,9 @@
     <AndroidResource Include="Resources\layout\SemesterFragment.axml" />
     <AndroidResource Include="Resources\layout\CalculatorActivity.axml" />
     <AndroidResource Include="Resources\layout\EntityDetail.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Converter.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -204,6 +210,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

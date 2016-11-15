@@ -3,46 +3,82 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SQLite;
-using Graduate.Core.Data.DataAccessLayer;
-using Graduate.Core.Data.Models;
 
+using SQLite;
+using Graduate.Core.Data.Models;
+using Graduate.Core.Manager;
 
 namespace Graduate.Core
 {
-   public class Planner
+ public   class Planner
     {
-
-        SemesterDataAccess semesters;
-        SemesterDataAccess semesterDA;
+        SemesterManager semesterManager;
+        ClassManager classManager;
+        SchoolYearManager schoolYearManager;
         public Planner(SQLiteConnection conn) {
-            semesters = new SemesterDataAccess(conn);
-          
+            semesterManager = new SemesterManager(conn);
+            classManager = new ClassManager(conn);
+            schoolYearManager = new SchoolYearManager(conn);
+            makeContents();
 
-            semesterDA = new SemesterDataAccess(conn);
-
-            populateSemester();
+            getSemester(1);
         }
-
-
-        
 
         public IList<Semester> getAllSemesters() {
-            //return new List<Semester>(semesters.GetItems());
-            IEnumerable<Semester> enumerable = semesterDA.GetItems<Semester>();
-            List<Semester> semesters = enumerable.ToList<Semester>();
-
-            return semesters;
-           
+            return semesterManager.getAll().ToList<Semester>();
         }
 
-        private void populateSemester() {
-            semesterDA.SaveItem<Semester>(new Semester("Winter 2015"));
-            semesterDA.SaveItem<Semester>(new Semester("Winter 2015"));
-            semesterDA.SaveItem<Semester>(new Semester("Winter 2015"));
-            semesterDA.SaveItem<Semester>(new Semester("Winter 2015"));
-            semesterDA.SaveItem<Semester>(new Semester("Winter 2015"));
-            
+
+
+
+        private void makeContents() {
+           semesterManager.addItem(new Semester("Winter 2015"));
+           semesterManager.addItem(new Semester("Winter 2016"));
+           semesterManager.addItem(new Semester("Winter 2017"));
+           semesterManager.addItem(new Semester("Winter 2018"));
+           semesterManager.addItem(new Semester("Winter 2019"));
+
+            classManager.addItem(new Class("COMP 0011"));
+            classManager.addItem(new Class("COMP 0012"));
+            classManager.addItem(new Class("COMP 0013"));
+            classManager.addItem(new Class("COMP 0014"));
+            classManager.addItem(new Class("COMP 0015"));
+
+            schoolYearManager.addItem(new SchoolYear("2014-2015"));
+            schoolYearManager.addItem(new SchoolYear("2015-2016"));
+            schoolYearManager.addItem(new SchoolYear("2016-2017"));
+            schoolYearManager.addItem(new SchoolYear("2017-2018"));
+            schoolYearManager.addItem(new SchoolYear("2018-2019"));
         }
+
+        public String ToStringSemesters() {
+            return semesterManager.toStringAllSemesters();
+        }
+
+        public Semester getSemester(int id) {
+            return semesterManager.getSemester(id);
+        }
+
+        public IList<Class> getAllClasss()
+        {
+            return classManager.getAll().ToList<Class>();
+        }
+
+        public IList<SchoolYear> getAllSchoolYears()
+        {
+            return schoolYearManager.getAll().ToList<SchoolYear>();
+        }
+
+
+        public Class getClass(int id)
+        {
+            return classManager.getClass(id);
+        }
+
+        public SchoolYear getSchoolYear(int id)
+        {
+            return schoolYearManager.getSchoolYear(id);
+        }
+
     }
 }

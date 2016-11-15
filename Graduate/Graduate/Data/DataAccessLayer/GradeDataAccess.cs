@@ -18,12 +18,16 @@ namespace Graduate.Core.Data.DataAccessLayer
         {
 
             database = conn;
+            database.CreateTable<Grade>();
+           
             init();
         }
 
 
         public void init()
         {
+
+           
 
             GradePopulator grades = new GradePopulator();
             IList<Grade> gradesRecords = grades.getTableContents();
@@ -47,6 +51,19 @@ namespace Graduate.Core.Data.DataAccessLayer
             {
                 return database.Table<Grade>().
                   FirstOrDefault(grade => grade.Percent == percent);
+            }
+
+
+        }
+
+        public Grade getItemByLetter(String letter)
+        {
+
+
+            lock (collisionLock)
+            {
+                return database.Table<Grade>().
+                  FirstOrDefault(grade => grade.Letter == letter);
             }
 
 

@@ -7,5 +7,7 @@ namespace Graduate.Core.Data.Models
         int Id { get; set; }
 
         
+
+        
     }
 }

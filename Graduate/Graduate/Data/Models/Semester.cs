@@ -21,6 +21,14 @@ namespace Graduate.Core.Data.Models
         public int FId { get; set; } = 0;
         public String label { get; set; }
 
-       
+
+        public override string ToString()
+        {
+            return string.Format("[Semster: ID={0}, Label={1}]", Id, label);
+        }
+
+
+
+
     }
 }
