@@ -18,13 +18,13 @@ namespace Graduate.Core.Data.DataAccessLayer
         {
             this.connection = conn;
 
-          
             
+
 
             connection.CreateTable<SchoolYear>();
             connection.CreateTable<Semester>();
             connection.CreateTable<Class>();
-            connection.CreateTable<Grade>();
+           
 
         }
 

@@ -49,7 +49,7 @@ namespace Graduate.Core.MiscTools
                 for (int i = min; i <= max; i++) {
                     Grade grade = new Grade(i, letter, gpa);
 
-                   
+                    grades.Add(grade);
                 }
 
             }

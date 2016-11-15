@@ -32,6 +32,19 @@ namespace Graduate.Droid
 
             findViews();
             handleEvents();
+
+
+            Console.WriteLine("Printing Grades");
+            Console.WriteLine("Printing Grades");
+            Console.WriteLine("Printing Grades");
+            Console.WriteLine("Printing Grades");
+            Console.WriteLine("Printing Grades");
+            Console.WriteLine("Printing Grades");
+            Console.WriteLine("Printing Grades");
+            Console.WriteLine("Printing Grades");
+
+            Console.WriteLine(gradeConverter.ToStringGrades());
+            
         }
 
         private void findViews() {
@@ -40,23 +53,21 @@ namespace Graduate.Droid
             gpa = FindViewById<TextView>(Resource.Id.textViewGPA);
         }
 
-        private void handleEvents() {
-            
-            
+        private void handleEvents() {    
 
             percent.AfterTextChanged += Percent_AfterTextChanged;
         
-        }
-
-             
+        }        
        
-
        
         private void Percent_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
             String percentEntry = percent.Text;
 
             Grade grade = gradeConverter.convertPercent(percentEntry);
+
+            Console.WriteLine("Printing Returned Grade");
+            Console.WriteLine(grade.ToString());
 
             letter.Text = grade.Letter;
             gpa.Text = grade.GPA.ToString();

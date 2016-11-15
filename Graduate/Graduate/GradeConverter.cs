@@ -23,7 +23,17 @@ namespace Graduate.Core
 
         public Grade convertLetter(String letter) {
             return gradeManager.getByLetter(letter);
+        }
 
+        public String ToStringGrades() {
+            String str = "";
+           IEnumerable<Grade> grades = gradeManager.getAllGrades();
+            foreach (Grade grade in grades) {
+                str += grade.ToString();
+
+            }
+
+            return str;
         }
     }
 }

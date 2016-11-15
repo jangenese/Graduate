@@ -18,12 +18,16 @@ namespace Graduate.Core.Data.DataAccessLayer
         {
 
             database = conn;
+            database.CreateTable<Grade>();
+            SaveItem<Grade>(new Grade(100, "A+", 4.00));
             init();
         }
 
 
         public void init()
         {
+
+           
 
             GradePopulator grades = new GradePopulator();
             IList<Grade> gradesRecords = grades.getTableContents();
