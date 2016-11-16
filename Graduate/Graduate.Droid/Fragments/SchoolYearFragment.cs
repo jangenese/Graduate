@@ -58,6 +58,7 @@ namespace Graduate.Droid.Fragments
         }
         protected void FindViews()
         {
+           
             listView = this.View.FindViewById<ListView>(Resource.Id.listViewGraduateEntities);
         }
 

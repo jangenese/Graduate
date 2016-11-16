@@ -4,26 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
-    <Button
-        android:text="Calculator"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/buttonCalculator"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp" />
-    <Button
-        android:text="Planner"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/buttonPlanner"
-        android:layout_gravity="center"
+    <ImageView
+        android:src="@drawable/logo"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
+        android:id="@+id/imageView1"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp" />
-    <Button
-        android:text="Dummy"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/button3"
-        android:layout_gravity="center" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/linearLayout1">
+        <Button
+            android:text="Calculator"
+            android:id="@+id/buttonCalculator"
+            android:gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp" />
+        <Button
+            android:text="Planner"
+            android:id="@+id/buttonPlanner"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
 </LinearLayout>
