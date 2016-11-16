@@ -11,37 +11,48 @@ using SQLite;
 
 namespace Graduate.Core.Manager
 {
- public   class SemesterManager
+    public class SemesterManager
     {
 
         SemesterDataAccess semesters;
-        public SemesterManager(SQLiteConnection conn) {
+        public SemesterManager(SQLiteConnection conn)
+        {
             semesters = new SemesterDataAccess(conn);
         }
 
 
-        public IEnumerable<Semester> getAll() {
+        public IEnumerable<Semester> getAll()
+        {
             return semesters.GetItems<Semester>();
         }
 
-        public void addItem(Semester sem) {
+        public void addItem(Semester sem)
+        {
             semesters.SaveItem<Semester>(sem);
         }
 
-        public String toStringAllSemesters() {
+        public String toStringAllSemesters()
+        {
             String str = "";
 
             IList<Semester> sems = semesters.GetItems<Semester>().ToList<Semester>();
-            foreach (Semester sem in sems) {
+            foreach (Semester sem in sems)
+            {
                 str += sem.ToString() + "\n";
             }
 
             return str;
         }
 
-        public Semester getSemester(int id) {
+        public Semester getSemester(int id)
+        {
             return semesters.getItemById(id);
 
+        }
+
+        public void saveSemester(Semester sem)
+        {
+            semesters.SaveItem<Semester>(sem);
         }
     }
 }

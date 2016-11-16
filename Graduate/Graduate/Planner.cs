@@ -80,5 +80,16 @@ namespace Graduate.Core
             return schoolYearManager.getSchoolYear(id);
         }
 
+        public void saveSemester(Semester sem) {
+            semesterManager.saveSemester(sem);
+        }
+
+        public void saveSchoolYear(SchoolYear sy) {
+            schoolYearManager.addItem(sy);
+        }
+
+        public void saveClass(Class c) {
+            classManager.addItem(c);
+        }
     }
 }
