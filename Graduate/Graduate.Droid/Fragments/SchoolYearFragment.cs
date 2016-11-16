@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
+using com.refractored.fab;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
 
@@ -21,6 +21,7 @@ namespace Graduate.Droid.Fragments
         protected ListView listView;
         protected Planner planner;
         protected IList<SchoolYear> schoolYears;
+        protected FloatingActionButton fab;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -55,10 +56,19 @@ namespace Graduate.Droid.Fragments
         protected void HandleEvents()
         {
             listView.ItemClick += ListView_ItemClick;
+            fab.Click += Fab_Click;
+        }
+
+        private void Fab_Click(object sender, EventArgs e)
+        {
+
+
+            var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
+            StartActivity(intent);
         }
         protected void FindViews()
         {
-           
+            fab = this.View.FindViewById<FloatingActionButton>(Resource.Id.fab);
             listView = this.View.FindViewById<ListView>(Resource.Id.listViewGraduateEntities);
         }
 
