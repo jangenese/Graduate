@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
+using com.refractored.fab;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
 
@@ -19,7 +19,7 @@ namespace Graduate.Droid.Fragments
     public class SemesterFragment : Fragment
     {
         protected ListView listView;
-        
+        protected FloatingActionButton fab;
         protected Planner planner;
         protected IList<Semester> semesters;
 
@@ -44,6 +44,19 @@ namespace Graduate.Droid.Fragments
            // return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
+        public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+
+            if (resultCode == Result.Ok)
+            {
+                Console.WriteLine("Hello World Result Code OK");
+                populateListView();
+            }
+         
+    }
+
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
 
@@ -54,22 +67,44 @@ namespace Graduate.Droid.Fragments
             FindViews();
             HandleEvents();
 
-            semesters = planner.getAllSemesters();
-           
-
-            listView.Adapter = new Graduate.Droid.ListAdapters.SemesterListAdapter(this.Activity, semesters);               
-               
+            populateListView();
             
         }
 
+        private void populateListView(){
+            semesters = planner.getAllSemesters();
 
+            SemesterListAdapter semAdapter = new SemesterListAdapter(this.Activity, semesters);
 
+            listView.Adapter = semAdapter;
+        }
+
+       
         protected void HandleEvents()
         {
             listView.ItemClick += ListView_ItemClick;
+            fab.Click += Fab_Click;
         }
+
+        private void Fab_Click(object sender, EventArgs e)
+        {
+
+
+            var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
+            StartActivityForResult(intent, 1);
+
+           
+
+
+        }
+
+
+       
+
+
         protected void FindViews()
         {
+            fab = this.View.FindViewById<FloatingActionButton>(Resource.Id.fab);
             listView = this.View.FindViewById<ListView>(Resource.Id.listViewGraduateEntities);
         }
 
