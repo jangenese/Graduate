@@ -2079,22 +2079,16 @@ namespace Graduate.Droid
 			public const int Icon = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int Icon_old = 2130837595;
+			public const int Logo = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int Logo = 2130837596;
-			
-			// aapt resource value: 0x7f02005d
-			public const int Logo_old = 2130837597;
+			public const int navigation_empty_icon = 2130837596;
 			
 			// aapt resource value: 0x7f02005e
-			public const int navigation_empty_icon = 2130837598;
+			public const int notification_template_icon_bg = 2130837598;
 			
-			// aapt resource value: 0x7f020060
-			public const int notification_template_icon_bg = 2130837600;
-			
-			// aapt resource value: 0x7f02005f
-			public const int splash_screen = 2130837599;
+			// aapt resource value: 0x7f02005d
+			public const int splash_screen = 2130837597;
 			
 			static Drawable()
 			{
