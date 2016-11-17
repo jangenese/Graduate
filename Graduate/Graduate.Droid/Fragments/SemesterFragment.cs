@@ -91,6 +91,7 @@ namespace Graduate.Droid.Fragments
 
 
             var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
+            intent.PutExtra("type", 2);
             StartActivityForResult(intent, 1);
 
            

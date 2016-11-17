@@ -20,9 +20,9 @@ namespace Graduate.Core.Data.DataAccessLayer
 
             
 
-
+            connection.CreateTable<Grade>();
             connection.CreateTable<SchoolYear>();
-            connection.CreateTable<Semester>();
+           connection.CreateTable<Semester>();
             connection.CreateTable<Class>();
            
 
@@ -51,6 +51,12 @@ namespace Graduate.Core.Data.DataAccessLayer
                     select i);
 
         }
+
+
+
+        
+
+
 
         public int SaveItem<T>(T item) where T : IGraduateEntity
         {

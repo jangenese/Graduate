@@ -13,6 +13,7 @@ using Android.Widget;
 using com.refractored.fab;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
+using Graduate.Droid.ListAdapters;
 
 namespace Graduate.Droid.Fragments
 {
@@ -25,12 +26,12 @@ namespace Graduate.Droid.Fragments
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);           
+            base.OnCreate(savedInstanceState);
 
 
             planner = GraduateApp.Current.planner;
 
-            
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -41,20 +42,43 @@ namespace Graduate.Droid.Fragments
             // return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
+        public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+
+            if (resultCode == Result.Ok)
+            {
+                Console.WriteLine("Hello World Result Code OK");
+                populateListView();
+            }
+
+        }
+
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
 
-           base.OnActivityCreated(savedInstanceState);
+            base.OnActivityCreated(savedInstanceState);
 
             FindViews();
             HandleEvents();
 
+            populateListView();
+
+        }
+
+        private void populateListView() {
             classs = planner.getAllClasss();
 
+            ClassListAdapter classAdapter = new ClassListAdapter(this.Activity, classs);
 
-            listView.Adapter = new Graduate.Droid.ListAdapters.ClassListAdapter(this.Activity, classs);
-            
+            listView.Adapter = classAdapter;         
+
+           
         }
+
+
+
 
 
 
@@ -69,7 +93,8 @@ namespace Graduate.Droid.Fragments
          
 
            var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
-          StartActivity(intent);
+            intent.PutExtra("type", 3);
+            StartActivityForResult(intent, 1);
         }
 
         protected void FindViews()

@@ -13,6 +13,7 @@ using Android.Widget;
 using com.refractored.fab;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
+using Graduate.Droid.ListAdapters;
 
 namespace Graduate.Droid.Fragments
 {
@@ -39,16 +40,36 @@ namespace Graduate.Droid.Fragments
             // return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
+        public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+
+            if (resultCode == Result.Ok)
+            {
+                Console.WriteLine("Hello World Result Code OK");
+                populateListView();
+            }
+
+        }
+
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
 
             FindViews();
             HandleEvents();
+            populateListView();
+            
+        }
+
+        private void populateListView() {
 
             schoolYears = planner.getAllSchoolYears();
 
-            listView.Adapter = new Graduate.Droid.ListAdapters.SchoolYearListAdapter(this.Activity, schoolYears);
+            SchoolYearListAdapter syAdapter = new SchoolYearListAdapter(this.Activity, schoolYears);
+
+            listView.Adapter = syAdapter;
         }
 
 
@@ -64,7 +85,8 @@ namespace Graduate.Droid.Fragments
 
 
             var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
-            StartActivity(intent);
+            intent.PutExtra("type", 1);
+            StartActivityForResult(intent, 1);
         }
         protected void FindViews()
         {

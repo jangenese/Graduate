@@ -12,6 +12,9 @@ namespace Graduate.Core.Data.Models
 
         
         public String label { get; set; }
+        public int grade { get; set; }
+        public int goalGrade { get; set; }
+
 
         public SchoolYear(String label) {
             this.label = label;
