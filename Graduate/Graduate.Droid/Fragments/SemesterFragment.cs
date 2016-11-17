@@ -44,6 +44,19 @@ namespace Graduate.Droid.Fragments
            // return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
+        public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+
+            if (resultCode == Result.Ok)
+            {
+                Console.WriteLine("Hello World Result Code OK");
+                populateListView();
+            }
+         
+    }
+
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
 
@@ -54,16 +67,19 @@ namespace Graduate.Droid.Fragments
             FindViews();
             HandleEvents();
 
-            semesters = planner.getAllSemesters();
-           
-
-            listView.Adapter = new Graduate.Droid.ListAdapters.SemesterListAdapter(this.Activity, semesters);               
-               
+            populateListView();
             
         }
 
+        private void populateListView(){
+            semesters = planner.getAllSemesters();
 
+            SemesterListAdapter semAdapter = new SemesterListAdapter(this.Activity, semesters);
 
+            listView.Adapter = semAdapter;
+        }
+
+       
         protected void HandleEvents()
         {
             listView.ItemClick += ListView_ItemClick;
@@ -75,8 +91,17 @@ namespace Graduate.Droid.Fragments
 
 
             var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
-            StartActivity(intent);
+            StartActivityForResult(intent, 1);
+
+           
+
+
         }
+
+
+       
+
+
         protected void FindViews()
         {
             fab = this.View.FindViewById<FloatingActionButton>(Resource.Id.fab);

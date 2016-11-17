@@ -50,6 +50,8 @@ namespace Graduate.Droid
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+
+            SetResult(Result.Ok, null);
             Finish();
         }
 
@@ -62,6 +64,8 @@ namespace Graduate.Droid
 
             GraduateApp.Current.planner.saveSemester(sem);
 
+            SetResult(Result.Ok, null);
+            
             Finish();
         }
     }
