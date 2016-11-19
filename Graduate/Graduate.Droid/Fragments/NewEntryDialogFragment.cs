@@ -179,16 +179,23 @@ namespace Graduate.Droid.Fragments
         }
 
         private void modifySchoolYearForm() {
+            title.Text = "New Entry: SchoolYear";
+            entryType.Text = "School Year";
             parentRow.Visibility = ViewStates.Gone;
             classRow.Visibility = ViewStates.Gone;
         }
 
         private void modifySemesterForm() {
+            title.Text = "New Entry: Semester";
+            parentType.Text = "School Year";
+            entryType.Text = "Semester";
             classRow.Visibility = ViewStates.Gone;
         }
 
         private void modifyClassForm() {
-            
+            title.Text = "New Entry: Class";
+            parentType.Text = "Semester";
+            entryType.Text = "Class";
         }
 
 

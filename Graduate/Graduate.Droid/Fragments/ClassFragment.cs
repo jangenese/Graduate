@@ -79,12 +79,6 @@ namespace Graduate.Droid.Fragments
         }
 
 
-        private void refreshListView() {
-            listView.InvalidateViews();
-        }
-
-
-
 
 
 

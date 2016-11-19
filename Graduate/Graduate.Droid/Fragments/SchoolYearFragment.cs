@@ -89,6 +89,12 @@ namespace Graduate.Droid.Fragments
             //   StartActivityForResult(intent, 1);
 
 
+            showEntryForm();
+
+        }
+
+
+        private void showEntryForm() {
             FragmentTransaction ft = FragmentManager.BeginTransaction();
             //Remove fragment else it will crash as it is already added to backstack
             Fragment prev = FragmentManager.FindFragmentByTag("dialog");
@@ -104,7 +110,6 @@ namespace Graduate.Droid.Fragments
             dialogFrag.SetTargetFragment(this, 1);
             dialogFrag.type = 1;
             dialogFrag.Show(ft, "dialog");
-
         }
         protected void FindViews()
         {
