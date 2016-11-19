@@ -47,6 +47,8 @@ namespace Graduate.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+           Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
+
             // Use this to return your custom view for this Fragment
             fragmentView = inflater.Inflate(Resource.Layout.NewEntryDialogFragment, container, false);
             planner = GraduateApp.Current.planner;
