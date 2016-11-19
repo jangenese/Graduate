@@ -110,8 +110,11 @@ namespace Graduate.Droid.Fragments
             // Create and show the dialog.
             NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
 
-            dialogFrag.type = 1;
+            dialogFrag.type = 3;
             dialogFrag.Show(ft, "dialog");
+
+
+         
             
 
         }

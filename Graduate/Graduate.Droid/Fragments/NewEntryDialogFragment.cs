@@ -30,6 +30,10 @@ namespace Graduate.Droid.Fragments
         private EditText creditsEntry;
         private Button cancelButton;
         private Button saveButton;
+        private Planner planner;
+
+        private LinearLayout parentRow;
+        private LinearLayout classRow;
 
 
         private View fragmentView;
@@ -45,9 +49,12 @@ namespace Graduate.Droid.Fragments
         {
             // Use this to return your custom view for this Fragment
             fragmentView = inflater.Inflate(Resource.Layout.NewEntryDialogFragment, container, false);
+            planner = GraduateApp.Current.planner;
 
             findViews();
             handleEvents();
+
+            checkFormType(type);
 
             return fragmentView;
         }
@@ -69,6 +76,8 @@ namespace Graduate.Droid.Fragments
             cancelButton = fragmentView.FindViewById<Button>(Resource.Id.buttonCancel);
             saveButton = fragmentView.FindViewById<Button>(Resource.Id.buttonSave);
 
+            parentRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutParentRow);
+            classRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutClassRow);
     
         }
 
@@ -88,21 +97,97 @@ namespace Graduate.Droid.Fragments
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            saveSemester();
+                     
+            saveEntry(type);
             Dismiss();
             Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
         }
 
         private void saveSchoolYear() {
-            Console.WriteLine("Saving SchoolYear");
+
+            SchoolYear sy = new SchoolYear() { };
+            sy.label = entry.Text.ToString();
+            planner.saveSchoolYear(sy);                    
         }
 
         private void saveSemester() {
-            Console.WriteLine("Saving Semester");
+            Semester sem = new Semester();
+            sem.label = entry.Text.ToString();
+            sem.FId = 1;
+            planner.saveSemester(sem);
         }
 
         private void saveClass() {
-            Console.WriteLine("Saving Semester");
+            Class c = new Class();
+            c.label = entry.Text.ToString();
+            c.grade = 4;
+            c.goalGrade = 4;
+            c.FId = 1;
+
+            planner.saveClass(c);
+            
+        }
+
+        private void saveEntry(int type)
+        {
+            switch (type)
+            {
+                case 1:
+
+                    saveSchoolYear();
+
+                    break;
+                case 2:
+
+                    saveSemester();
+
+                    break;
+                case 3:
+                    ;
+                    saveClass();
+                    break;
+                default:
+
+                    break;
+            }
+        }
+
+        private void checkFormType(int type) {
+            switch (type)
+            {
+                case 1:
+
+                    modifySchoolYearForm();
+
+                    break;
+                case 2:
+
+                    modifySemesterForm();
+
+                    break;
+                case 3:
+                    ;
+                    modifyClassForm();
+                    break;
+                default:
+
+                    break;
+            }
+        }
+
+        private void modifySchoolYearForm() {
+            parentRow.Visibility = ViewStates.Gone;
+            classRow.Visibility = ViewStates.Gone;
+        }
+
+        private void modifySemesterForm() {
+            classRow.Visibility = ViewStates.Gone;
+        }
+
+        private void modifyClassForm() {
+            
+        }
+
+
         }
     }
-}

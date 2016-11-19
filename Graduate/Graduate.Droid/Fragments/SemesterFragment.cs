@@ -90,17 +90,34 @@ namespace Graduate.Droid.Fragments
         {
 
 
-            var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
-            intent.PutExtra("type", 2);
-            StartActivityForResult(intent, 1);
+            //      var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
+            //     intent.PutExtra("type", 2);
+            //      StartActivityForResult(intent, 1);
 
-           
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            //Remove fragment else it will crash as it is already added to backstack
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+
+            ft.AddToBackStack(null);
+
+            // Create and show the dialog.
+            NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
+
+            dialogFrag.type = 2;
+            dialogFrag.Show(ft, "dialog");
+
+
+
 
 
         }
 
 
-       
+
 
 
         protected void FindViews()
