@@ -55,8 +55,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/autoCompleteTextViewParentEntry"
                     android:textSize="20dp"
-                    android:gravity="center"
-                    android:text="2016-2017" />
+                    android:gravity="center" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -85,7 +84,6 @@
                     android:layout_height="match_parent"
                     android:id="@+id/autoCompleteTextViewLabelEntry"
                     android:textSize="20dp"
-                    android:text="Winter 2016"
                     android:gravity="center" />
             </LinearLayout>
         </LinearLayout>

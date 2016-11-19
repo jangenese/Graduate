@@ -181,6 +181,7 @@ namespace Graduate.Droid.Fragments
         private void modifySchoolYearForm() {
             title.Text = "New Entry: SchoolYear";
             entryType.Text = "School Year";
+            entry.Hint = "YYYY - YYYY";
             parentRow.Visibility = ViewStates.Gone;
             classRow.Visibility = ViewStates.Gone;
         }
@@ -189,6 +190,7 @@ namespace Graduate.Droid.Fragments
             title.Text = "New Entry: Semester";
             parentType.Text = "School Year";
             entryType.Text = "Semester";
+            entry.Hint = "Season YYYY";
             classRow.Visibility = ViewStates.Gone;
         }
 
@@ -196,6 +198,7 @@ namespace Graduate.Droid.Fragments
             title.Text = "New Entry: Class";
             parentType.Text = "Semester";
             entryType.Text = "Class";
+            entry.Hint = "ABCD - 1234";
         }
 
 
