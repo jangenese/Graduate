@@ -98,7 +98,10 @@ namespace Graduate.Droid.Fragments
         private void SaveButton_Click(object sender, EventArgs e)
         {
                      
-            saveEntry(type);
+            saveEntry(type);          
+
+            this.TargetFragment.OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
+
             Dismiss();
             Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
         }

@@ -46,6 +46,7 @@ namespace Graduate.Droid.Fragments
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
+            
 
             if (resultCode == Result.Ok)
             {
@@ -72,9 +73,14 @@ namespace Graduate.Droid.Fragments
 
             ClassListAdapter classAdapter = new ClassListAdapter(this.Activity, classs);
 
-            listView.Adapter = classAdapter;         
+            listView.Adapter = classAdapter;
 
-           
+
+        }
+
+
+        private void refreshListView() {
+            listView.InvalidateViews();
         }
 
 
@@ -95,7 +101,20 @@ namespace Graduate.Droid.Fragments
             //      intent.PutExtra("type", 3);
             //    StartActivityForResult(intent, 1);
 
-            
+
+
+            showEntryForm();
+
+           
+
+
+
+        }
+
+        private void showEntryForm() {
+
+
+           
 
             FragmentTransaction ft = FragmentManager.BeginTransaction();
             //Remove fragment else it will crash as it is already added to backstack
@@ -109,13 +128,10 @@ namespace Graduate.Droid.Fragments
 
             // Create and show the dialog.
             NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
+            dialogFrag.SetTargetFragment(this, 1);
 
             dialogFrag.type = 3;
             dialogFrag.Show(ft, "dialog");
-
-
-         
-            
 
         }
 
