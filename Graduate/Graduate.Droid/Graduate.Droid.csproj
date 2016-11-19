@@ -129,6 +129,7 @@
     <Compile Include="ConverterActivity.cs" />
     <Compile Include="EntityDetail.cs" />
     <Compile Include="Fragments\ClassFragment.cs" />
+    <Compile Include="Fragments\NewEntryDialogFragment.cs" />
     <Compile Include="Fragments\SchoolYearFragment.cs" />
     <Compile Include="Fragments\SemesterFragment.cs" />
     <Compile Include="GraduateEntityEntryActivity.cs" />
@@ -166,6 +167,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\GraduateEntityEntryActivity.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\NewEntryDialogFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
