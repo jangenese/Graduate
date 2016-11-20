@@ -140,7 +140,6 @@
     <Compile Include="PlannerActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SemesterListAdapter.cs" />
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +158,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\SemesterFragment.axml" />
-    <AndroidResource Include="Resources\layout\CalculatorActivity.axml" />
+    <AndroidResource Include="Resources\layout\CalculatorActivity.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\EntityDetail.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -170,6 +171,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\NewEntryDialogFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ListViewPlanner.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

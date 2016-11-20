@@ -7,22 +7,22 @@ using Graduate.Core.Data.Models;
 namespace Graduate.Droid.ListAdapters
 {
     /// <summary>
-    /// Adapter that presents Tasks in a row-view
+    /// Adapter that presents Classes in a row-view
     /// </summary>
     public class ClassListAdapter : BaseAdapter<Class>
     {
         Activity context = null;
-        IList<Class> tasks = new List<Class>();
+        IList<Class> classes = new List<Class>();
 
-        public ClassListAdapter(Activity context, IList<Class> tasks) : base()
+        public ClassListAdapter(Activity context, IList<Class> classes) : base()
         {
             this.context = context;
-            this.tasks = tasks;
+            this.classes = classes;
         }
 
         public override Class this[int position]
         {
-            get { return tasks[position]; }
+            get { return classes[position]; }
         }
 
         public override long GetItemId(int position)
@@ -32,42 +32,37 @@ namespace Graduate.Droid.ListAdapters
 
         public override int Count
         {
-            get { return tasks.Count; }
+            get { return classes.Count; }
         }
 
         public override Android.Views.View GetView(int position, Android.Views.View convertView, Android.Views.ViewGroup parent)
-        {
-            // Get our object for position
-            var item = tasks[position];
+        {          
+            var item = classes[position];
 
-            //Try to reuse convertView if it's not  null, otherwise inflate it from our item layout
-            // gives us some performance gains by not always inflating a new view
-            // will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
+            var row = convertView;
 
-            //			var view = (convertView ?? 
-            //					context.LayoutInflater.Inflate(
-            //					Resource.Layout.TaskListItem, 
-            //					parent, 
-            //					false)) as LinearLayout;
-            //			// Find references to each subview in the list item's view
-            //			var txtName = view.FindViewById<TextView>(Resource.Id.NameText);
-            //			var txtDescription = view.FindViewById<TextView>(Resource.Id.NotesText);
-            //			//Assign item's values to the various subviews
-            //			txtName.SetText (item.Name, TextView.BufferType.Normal);
-            //			txtDescription.SetText (item.Notes, TextView.BufferType.Normal);
+            if (row == null)
+            {
+                row = this.context.LayoutInflater.Inflate(Resource.Layout.ListViewPlanner, parent, false);
+            }
 
-            // TODO: use this code to populate the row, and remove the above view
-            var view = (convertView ??
-                context.LayoutInflater.Inflate(
-                    Android.Resource.Layout.SimpleListItemChecked,
-                    parent,
-                    false)) as CheckedTextView;
-            view.SetText(item.label == "" ? "<new semester>" : item.label, TextView.BufferType.Normal);
+            TextView label = row.FindViewById<TextView>(Resource.Id.textViewLabel);
+            TextView entry = row.FindViewById<TextView>(Resource.Id.textViewEntry);
+            TextView status = row.FindViewById<TextView>(Resource.Id.textViewStatus);
+            TextView statusEntry = row.FindViewById<TextView>(Resource.Id.textViewStatusEntry);
+            TextView grade = row.FindViewById<TextView>(Resource.Id.textViewGrade);
+            TextView gradeEntry = row.FindViewById<TextView>(Resource.Id.textViewGradeEntry);
 
 
 
-            //Finally return the view
-            return view;
+            label.Text = "Class";
+            entry.Text = item.label;
+            status.Text = "Status";
+            statusEntry.Text = "Completed";
+            grade.Text = "Grade";
+            gradeEntry.Text = item.grade.ToString();
+           
+            return row;
         }
     }
 }
