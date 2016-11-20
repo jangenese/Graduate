@@ -12,6 +12,8 @@ using Android.Widget;
 
 using Graduate.Core;
 using Graduate.Core.Data.Models;
+using Graduate.Droid.ListAdapters;
+using Graduate.Core.MiscTools;
 
 
 
@@ -23,8 +25,13 @@ namespace Graduate.Droid
         private TextView label;
         private int selectedID;
         private Planner planner;
-
+        private ListView childrenList;
         private TextView name;
+        private GraduateEntityBase entity = null;
+        private int childrenPosition;
+
+       
+        
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -38,6 +45,7 @@ namespace Graduate.Droid
             selectedID = Intent.Extras.GetInt("selectedEntityID");
 
             findViews();
+            handleEvents();
 
             label.Text = selectedID.ToString();
 
@@ -65,6 +73,25 @@ namespace Graduate.Droid
         private void findViews() {
             label = FindViewById<TextView>(Resource.Id.textViewOtherStuff);
             name = FindViewById<TextView>(Resource.Id.textViewName);
+            childrenList = FindViewById<ListView>(Resource.Id.listViewChildItems);
+        }
+
+        private void handleEvents() {
+            childrenList.ItemClick += ChildrenList_ItemClick;
+        }
+
+        private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            //  var entity = classs[e.Position];
+
+            childrenPosition = e.Position;
+
+            var intent = new Intent();
+            intent.SetClass(this, typeof(EntityDetail));
+            intent.PutExtra("type", 3);
+            intent.PutExtra("selectedEntityID", entity.Id);
+
+            StartActivityForResult(intent, 100);
         }
 
         private void populateSemesterDetail(int id) {
@@ -74,6 +101,15 @@ namespace Graduate.Droid
 
             name.Text = semester.label;
 
+            IList<Class> children = planner.getSemesterChildren(id).ToList<Class>();
+            
+
+            ClassListAdapter childAdapter = new ClassListAdapter(this, children);
+
+            childrenList.Adapter = childAdapter;
+
+            entity = children[childrenPosition];
+
         }
 
         private void populateSchoolYearDetail(int id) {
@@ -81,6 +117,14 @@ namespace Graduate.Droid
 
             name.Text = sy.label;
 
+
+            IList<Semester> children = planner.getSchoolYearChildren(id).ToList<Semester>();
+
+            Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
+
+            childrenList.Adapter = childAdapter;
+
+            entity = children[childrenPosition];
         }
 
         private void populateClassDetail(int id)
@@ -90,7 +134,12 @@ namespace Graduate.Droid
 
             name.Text = c.label;
 
+
+            
+
         }
+
+
 
 
 

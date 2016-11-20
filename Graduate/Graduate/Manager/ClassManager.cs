@@ -51,5 +51,11 @@ namespace Graduate.Core.Manager
           //  return classs.GetItem<Class>(id); //borken
 
         }
+
+        public IEnumerable<Class> getClassesByFID(int fid) {
+            return classs.getItemsByFID(fid);
+        }
+
+        
     }
 }

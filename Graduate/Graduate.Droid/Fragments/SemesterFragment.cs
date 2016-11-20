@@ -13,6 +13,7 @@ using Android.Widget;
 using com.refractored.fab;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
+using Graduate.Droid.ListAdapters;
 
 namespace Graduate.Droid.Fragments
 {
@@ -73,9 +74,7 @@ namespace Graduate.Droid.Fragments
 
         private void populateListView(){
             semesters = planner.getAllSemesters();
-
             SemesterListAdapter semAdapter = new SemesterListAdapter(this.Activity, semesters);
-
             listView.Adapter = semAdapter;
         }
 
@@ -90,16 +89,35 @@ namespace Graduate.Droid.Fragments
         {
 
 
-            var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
-            StartActivityForResult(intent, 1);
 
-           
+
+            showEntryForm();
 
 
         }
 
 
-       
+        private void showEntryForm() {
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            //Remove fragment else it will crash as it is already added to backstack
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+
+            ft.AddToBackStack(null);
+
+            // Create and show the dialog.
+            NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
+            dialogFrag.SetTargetFragment(this, 1);
+            dialogFrag.type = 2;
+            dialogFrag.Show(ft, "dialog");
+
+        }
+
+
+
 
 
         protected void FindViews()

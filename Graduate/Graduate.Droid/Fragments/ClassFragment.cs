@@ -13,6 +13,7 @@ using Android.Widget;
 using com.refractored.fab;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
+using Graduate.Droid.ListAdapters;
 
 namespace Graduate.Droid.Fragments
 {
@@ -25,12 +26,12 @@ namespace Graduate.Droid.Fragments
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);           
+            base.OnCreate(savedInstanceState);
 
 
             planner = GraduateApp.Current.planner;
 
-            
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -41,20 +42,43 @@ namespace Graduate.Droid.Fragments
             // return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
+        public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            
+
+            if (resultCode == Result.Ok)
+            {
+                Console.WriteLine("Hello World Result Code OK");
+                populateListView();
+            }
+
+        }
+
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
 
-           base.OnActivityCreated(savedInstanceState);
+            base.OnActivityCreated(savedInstanceState);
 
             FindViews();
             HandleEvents();
 
+            populateListView();
+
+        }
+
+        private void populateListView() {
             classs = planner.getAllClasss();
 
+            ClassListAdapter classAdapter = new ClassListAdapter(this.Activity, classs);
 
-            listView.Adapter = new Graduate.Droid.ListAdapters.ClassListAdapter(this.Activity, classs);
-            
+            listView.Adapter = classAdapter;
+
+
         }
+
+
 
 
 
@@ -66,10 +90,43 @@ namespace Graduate.Droid.Fragments
 
         private void Fab_Click(object sender, EventArgs e)
         {
-         
 
-           var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
-          StartActivity(intent);
+            //  var intent = new Intent(this.Activity, typeof(GraduateEntityEntryActivity));
+            //      intent.PutExtra("type", 3);
+            //    StartActivityForResult(intent, 1);
+
+
+
+            showEntryForm();
+
+           
+
+
+
+        }
+
+        private void showEntryForm() {
+
+
+           
+
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            //Remove fragment else it will crash as it is already added to backstack
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+
+            ft.AddToBackStack(null);
+
+            // Create and show the dialog.
+            NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
+            dialogFrag.SetTargetFragment(this, 1);
+
+            dialogFrag.type = 3;
+            dialogFrag.Show(ft, "dialog");
+
         }
 
         protected void FindViews()

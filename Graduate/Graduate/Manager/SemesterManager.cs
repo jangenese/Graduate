@@ -54,5 +54,12 @@ namespace Graduate.Core.Manager
         {
             semesters.SaveItem<Semester>(sem);
         }
+
+        public IEnumerable<Semester> getSemestersByFID(int fid) {
+           return semesters.getItemsByFID(fid);
+        }
+
+       
+        
     }
 }

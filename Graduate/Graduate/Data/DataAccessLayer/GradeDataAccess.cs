@@ -18,7 +18,7 @@ namespace Graduate.Core.Data.DataAccessLayer
         {
 
             database = conn;
-            database.CreateTable<Grade>();
+            
            
             init();
         }

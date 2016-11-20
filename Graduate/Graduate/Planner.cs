@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Graduate.Core.Data.Models;
 using Graduate.Core.Manager;
+using Graduate.Core.MiscTools;
 
 namespace Graduate.Core
 {
@@ -19,9 +20,9 @@ namespace Graduate.Core
             semesterManager = new SemesterManager(conn);
             classManager = new ClassManager(conn);
             schoolYearManager = new SchoolYearManager(conn);
-            makeContents();
+         // makeContents();
 
-            getSemester(1);
+            
         }
 
         public IList<Semester> getAllSemesters() {
@@ -91,5 +92,14 @@ namespace Graduate.Core
         public void saveClass(Class c) {
             classManager.addItem(c);
         }
+
+        public IEnumerable<Class> getSemesterChildren(int fid) {
+           return classManager.getClassesByFID(fid);
+        }
+
+        public IEnumerable<Semester> getSchoolYearChildren(int fid) {
+            return semesterManager.getSemestersByFID(fid);
+        }
+       
     }
 }

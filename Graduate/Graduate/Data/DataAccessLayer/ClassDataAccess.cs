@@ -32,5 +32,10 @@ namespace Graduate.Core.Data.DataAccessLayer
 
         }
 
+        public IEnumerable<Class> getItemsByFID(int fid)
+        {
+            return (from i in database.Table<Class>() where i.FId == fid select i);
+        }
+
     }
 }

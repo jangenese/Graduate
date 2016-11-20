@@ -23,14 +23,23 @@ namespace Graduate.Core.Data.DataAccessLayer
         public Semester getItemById(int id)
         {
 
-
             lock (collisionLock)
             {
                 return database.Table<Semester>().
                   FirstOrDefault(sem => sem.Id == id);
             }
 
-
         }
+
+        public IEnumerable<Semester> getItemsByFID(int fid)
+        {
+            return (from i in database.Table<Semester>() where i.FId == fid select i);
+        }
+
+
     }
+
+
+   
+
 }
