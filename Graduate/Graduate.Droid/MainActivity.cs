@@ -21,8 +21,7 @@ namespace Graduate.Droid
     public class MainActivity : Activity
 	{
         private Button calculatorButton;
-        private Button plannerButton;
-        private Button dummyButton;
+        private Button plannerButton;       
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

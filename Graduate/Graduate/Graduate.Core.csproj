@@ -52,6 +52,17 @@
     <Compile Include="MiscTools\GraduateEntityList.cs" />
     <Compile Include="Planner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ClassRepository.cs" />
+    <Compile Include="Repository\GradeRepository.cs" />
+    <Compile Include="Repository\SchoolYearRepository.cs" />
+    <Compile Include="Repository\SemesterRepository.cs" />
+    <Compile Include="View\Manager\ClassViewManager.cs" />
+    <Compile Include="View\Manager\SchoolYearViewManager.cs" />
+    <Compile Include="View\Manager\SemesterViewManager.cs" />
+    <Compile Include="View\Model\ClassView.cs" />
+    <Compile Include="View\Model\SchoolYearView.cs" />
+    <Compile Include="View\Model\SemesterView.cs" />
+    <Compile Include="View\Model\ViewBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SQLite-net, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">

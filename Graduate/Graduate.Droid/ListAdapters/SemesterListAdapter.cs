@@ -60,7 +60,7 @@ namespace Graduate.Droid.ListAdapters
             status.Text = "Status";
             statusEntry.Text = "Completed";
             grade.Text = "Grade";
-            gradeEntry.Text = item.grade.ToString();
+          //  gradeEntry.Text = item.grade.ToString();
 
             return row;
         }

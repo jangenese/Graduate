@@ -14,6 +14,7 @@ using Graduate.Core;
 using Graduate.Core.Data.Models;
 using Graduate.Droid.ListAdapters;
 using Graduate.Core.MiscTools;
+using Graduate.Core.View.Model;
 
 
 
@@ -97,40 +98,40 @@ namespace Graduate.Droid
         private void populateSemesterDetail(int id) {
             Console.WriteLine("Looking for the semester with ID" +  id);
 
-            Semester semester = planner.getSemester(id);
+            SemesterView semester = planner.getSemester("1");
 
             name.Text = semester.label;
 
-            IList<Class> children = planner.getSemesterChildren(id).ToList<Class>();
+        //    IList<Class> children = planner.getSemesterChildren(id).ToList<Class>();
             
 
-            ClassListAdapter childAdapter = new ClassListAdapter(this, children);
+        //    ClassListAdapter childAdapter = new ClassListAdapter(this, children);
 
-            childrenList.Adapter = childAdapter;
+        //    childrenList.Adapter = childAdapter;
 
-            entity = children[childrenPosition];
+        //    entity = children[childrenPosition];
 
         }
 
         private void populateSchoolYearDetail(int id) {
-            SchoolYear sy = planner.getSchoolYear(id);
+            SchoolYearView sy = planner.getSchoolYear("1");
 
             name.Text = sy.label;
 
 
-            IList<Semester> children = planner.getSchoolYearChildren(id).ToList<Semester>();
+        //    IList<Semester> children = planner.getSchoolYearChildren(id).ToList<Semester>();
 
-            Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
+       //     Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
 
-            childrenList.Adapter = childAdapter;
+       //     childrenList.Adapter = childAdapter;
 
-            entity = children[childrenPosition];
+        //    entity = children[childrenPosition];
         }
 
         private void populateClassDetail(int id)
         {
 
-            Class c = planner.getClass(id);
+            ClassView c = planner.getClass("1");
 
             name.Text = c.label;
 

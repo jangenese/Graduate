@@ -4,62 +4,97 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Graduate.Core.Data.DataAccessLayer;
-using Graduate.Core.Data.Models;
 
+using Graduate.Core.Data.Models;
+using Graduate.Core.Repository;
 using SQLite;
 
 namespace Graduate.Core.Manager
 {
     public class SemesterManager
     {
-
-        SemesterDataAccess semesters;
+        SemesterRepository repo;
         public SemesterManager(SQLiteConnection conn)
         {
-            semesters = new SemesterDataAccess(conn);
+            repo = new SemesterRepository(conn);
         }
 
-
-        public IEnumerable<Semester> getAll()
+        public void SaveItem(String fid, String label)
         {
-            return semesters.GetItems<Semester>();
+            Semester sem = new Semester();
+            sem.FId = stringToInt(fid);
+            sem.label = label;   
+
+            repo.saveItem(sem);
         }
 
-        public void addItem(Semester sem)
+        public IEnumerable<Semester> getSemesters()
         {
-            semesters.SaveItem<Semester>(sem);
+            return repo.getItems();
         }
 
-        public String toStringAllSemesters()
+        public Semester getSemesterByID(String id)
         {
-            String str = "";
+            int i = stringToInt(id);
+            Semester sem = repo.getItem(i);
 
-            IList<Semester> sems = semesters.GetItems<Semester>().ToList<Semester>();
-            foreach (Semester sem in sems)
+            if (isNull(sem))
             {
-                str += sem.ToString() + "\n";
+                sem = returnNullEntity();
             }
 
-            return str;
+            return sem;
         }
 
-        public Semester getSemester(int id)
+        public IEnumerable<Semester> getSemestersByFID(String fid)
         {
-            return semesters.getItemById(id);
-
+            int i = stringToInt(fid);
+            return repo.getItemsByFID(i);
         }
-
-        public void saveSemester(Semester sem)
+        private int stringToInt(String str)
         {
-            semesters.SaveItem<Semester>(sem);
+            int i = 0;
+            try
+            {
+                i = Convert.ToInt32(str);
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            return i;
         }
 
-        public IEnumerable<Semester> getSemestersByFID(int fid) {
-           return semesters.getItemsByFID(fid);
+        private double stringToDouble(String str)
+        {
+            double i = 0;
+            try
+            {
+                i = Convert.ToDouble(str);
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            return i;
         }
 
-       
-        
+        private Boolean isNull(Semester entity)
+        {
+            Boolean b = false;
+
+            if (entity == null)
+            {
+                b = true;
+            }
+
+            return b;
+        }
+
+        private Semester returnNullEntity()
+        {
+            return new Semester();
+        }
+
     }
 }

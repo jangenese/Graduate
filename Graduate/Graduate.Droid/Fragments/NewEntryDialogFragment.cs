@@ -109,28 +109,16 @@ namespace Graduate.Droid.Fragments
         }
 
         private void saveSchoolYear() {
-
-            SchoolYear sy = new SchoolYear() { };
-            sy.label = entry.Text.ToString();
-            planner.saveSchoolYear(sy);                    
+            planner.saveSchoolYear(entry.Text.ToString());                   
         }
 
-        private void saveSemester() {
-            Semester sem = new Semester();
-            sem.label = entry.Text.ToString();
-            sem.FId = 1;
-            planner.saveSemester(sem);
+        private void saveSemester() {        
+
+            planner.saveSemester("1", entry.Text.ToString());
         }
 
-        private void saveClass() {
-            Class c = new Class();
-            c.label = entry.Text.ToString();
-            c.grade = 4;
-            c.goalGrade = 4;
-            c.FId = 1;
-
-            planner.saveClass(c);
-            
+        private void saveClass() {   
+            planner.saveClass("1", entry.Text.ToString(), "3", "3", true);
         }
 
         private void saveEntry(int type)

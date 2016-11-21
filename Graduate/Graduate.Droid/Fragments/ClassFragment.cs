@@ -69,7 +69,7 @@ namespace Graduate.Droid.Fragments
         }
 
         private void populateListView() {
-            classs = planner.getAllClasss();
+            classs = planner.getAllClasses();
 
             ClassListAdapter classAdapter = new ClassListAdapter(this.Activity, classs);
 

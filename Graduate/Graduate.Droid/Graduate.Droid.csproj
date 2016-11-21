@@ -132,7 +132,6 @@
     <Compile Include="Fragments\NewEntryDialogFragment.cs" />
     <Compile Include="Fragments\SchoolYearFragment.cs" />
     <Compile Include="Fragments\SemesterFragment.cs" />
-    <Compile Include="GraduateEntityEntryActivity.cs" />
     <Compile Include="ListAdapters\ClassListAdapter.cs" />
     <Compile Include="ListAdapters\SchoolYearListAdapter.cs" />
     <Compile Include="ListAdapters\SemesterListAdapter.cs" />

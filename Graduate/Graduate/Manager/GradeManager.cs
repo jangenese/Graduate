@@ -27,6 +27,7 @@ namespace Graduate.Core.Manager
             }
             catch (System.Exception e)
             {
+                throw e;
             }
 
             return i;
