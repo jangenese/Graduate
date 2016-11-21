@@ -30,9 +30,9 @@ namespace Graduate.Core.View.Manager
             return populateSemesterView(sem);
         }
 
-        private IEnumerable<Class> getChildren(String fid)
+        private IList<Class> getChildren(String fid)
         {
-            return classManager.getClasssByFID(fid);
+            return classManager.getClasssByFID(fid).ToList<Class>();
         }
 
         private SemesterView populateSemesterView(Semester sem)

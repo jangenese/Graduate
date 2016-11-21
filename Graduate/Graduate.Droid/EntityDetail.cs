@@ -102,14 +102,14 @@ namespace Graduate.Droid
 
             name.Text = semester.label;
 
-        //    IList<Class> children = planner.getSemesterChildren(id).ToList<Class>();
+            IList<Class> children = semester.children;
             
 
-        //    ClassListAdapter childAdapter = new ClassListAdapter(this, children);
+            ClassListAdapter childAdapter = new ClassListAdapter(this, children);
 
-        //    childrenList.Adapter = childAdapter;
+            childrenList.Adapter = childAdapter;
 
-        //    entity = children[childrenPosition];
+            entity = children[childrenPosition];
 
         }
 
@@ -119,13 +119,13 @@ namespace Graduate.Droid
             name.Text = sy.label;
 
 
-        //    IList<Semester> children = planner.getSchoolYearChildren(id).ToList<Semester>();
+            IList<Semester> children = sy.children;
 
-       //     Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
+            Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
 
-       //     childrenList.Adapter = childAdapter;
+            childrenList.Adapter = childAdapter;
 
-        //    entity = children[childrenPosition];
+            entity = children[childrenPosition];
         }
 
         private void populateClassDetail(int id)

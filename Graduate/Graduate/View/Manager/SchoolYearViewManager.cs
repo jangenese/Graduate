@@ -27,8 +27,8 @@ namespace Graduate.Core.View.Manager
             return populateSchoolView(sy);
         }
 
-        private IEnumerable<Semester> getChildren(String fid) {
-            return semesterManager.getSemestersByFID(fid);
+        private IList<Semester> getChildren(String fid) {
+            return semesterManager.getSemestersByFID(fid).ToList<Semester>();
         }
 
         private SchoolYearView populateSchoolView(SchoolYear sy) {

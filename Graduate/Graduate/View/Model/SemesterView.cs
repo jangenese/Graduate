@@ -9,7 +9,7 @@ namespace Graduate.Core.View.Model
 {
    public class SemesterView : ViewBase
     {
-        public IEnumerable<Class> children;
+        public IList<Class> children;
         public SemesterView()
         {
         }

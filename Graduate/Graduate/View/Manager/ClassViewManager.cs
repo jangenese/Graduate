@@ -28,12 +28,7 @@ namespace Graduate.Core.View.Manager
 
             return populateClassView(c);
         }
-
-        private IEnumerable<Class> getChildren(String fid)
-        {
-            return classManager.getClasssByFID(fid);
-        }
-
+             
         private ClassView populateClassView(Class c)
         {
             ClassView classView = new ClassView();

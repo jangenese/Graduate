@@ -10,7 +10,7 @@ namespace Graduate.Core.View.Model
    public class SchoolYearView : ViewBase
     {
 
-        public IEnumerable<Semester> children;
+        public IList<Semester> children;
         public SchoolYearView() {
 
         }
