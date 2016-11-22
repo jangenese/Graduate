@@ -75,7 +75,7 @@ namespace Graduate.Core.View.Manager
             }
 
 
-            return grade/count;
+            return Math.Round((grade/count), 2);
         }
 
         private String getParentLabel(String fid) {

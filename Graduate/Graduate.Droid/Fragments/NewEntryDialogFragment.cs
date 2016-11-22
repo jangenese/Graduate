@@ -118,7 +118,7 @@ namespace Graduate.Droid.Fragments
         }
 
         private void saveClass() {   
-            planner.saveClass("1", entry.Text.ToString(), "3", "3", true);
+            planner.saveClass("1", entry.Text, gradeEntry.Text, creditsEntry.Text, true);
         }
 
         private void saveEntry(int type)
