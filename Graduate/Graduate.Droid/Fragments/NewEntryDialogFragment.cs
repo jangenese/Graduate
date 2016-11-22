@@ -35,6 +35,8 @@ namespace Graduate.Droid.Fragments
         private LinearLayout parentRow;
         private LinearLayout classRow;
 
+        private int parentPosition = 0;
+
 
         private View fragmentView;
         public int type { get; set; } = 0;
@@ -90,13 +92,21 @@ namespace Graduate.Droid.Fragments
         {
             saveButton.Click += SaveButton_Click;
             cancelButton.Click += CancelButton_Click;
+            parentEntry.ItemSelected += ParentEntry_ItemSelected;
+        }
+
+        private void ParentEntry_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            parentPosition = e.Position;            
         }
 
         private void populateAutoCompleteLists() {
-            var parentEntryOptions = new String[] { "Hello", "Hey", "Heja", "Hi", "Hola", "Bonjour", "Gday", "Goodbye", "Sayonara", "Farewell", "Adios" };
-                   
+            //var parentEntryOptions = new String[] { "Hello", "Hey", "Heja", "Hi", "Hola", "Bonjour", "Gday", "Goodbye", "Sayonara", "Farewell", "Adios" };
+
+            var parentEntryOptions = planner.getAllSchoolYearLabels();
 
            ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
+            
            parentEntry.Adapter = parentEntryAdapter;
         }
 
@@ -121,9 +131,14 @@ namespace Graduate.Droid.Fragments
             planner.saveSchoolYear(entry.Text.ToString());                   
         }
 
-        private void saveSemester() {        
+        private void saveSemester() {
+            int i = parentPosition + 1;
 
-            planner.saveSemester("1", entry.Text.ToString());
+            Console.WriteLine("\n\n\n\n\n\n Printing Position" + parentEntry.Text);
+            Console.WriteLine(i.ToString());
+            
+            String test = i.ToString();
+            planner.saveSemester(test, entry.Text.ToString());
         }
 
         private void saveClass() {   

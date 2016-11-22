@@ -85,5 +85,17 @@ namespace Graduate.Core.Manager
             return new SchoolYear();
         }
 
+        public List<String> getSchoolYearLabels()
+        {
+            List<String> labels = new List<String>();
+            IEnumerable <SchoolYear> schoolYears= getSchoolYears();
+
+            foreach (SchoolYear sy in schoolYears) {
+                labels.Add(sy.label.ToString());
+            }
+
+            return labels;
+        }
+
     }
 }

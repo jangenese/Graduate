@@ -73,5 +73,9 @@ namespace Graduate.Core
             return classManager.getClasses().ToList<Class>();
         }
 
+        public List<String> getAllSchoolYearLabels() {
+           return schoolYearManager.getSchoolYearLabels();
+        }
+
     }
 }
