@@ -24,12 +24,17 @@ namespace Graduate.Droid
     public class EntityDetail : Activity
     {
         private TextView label;
-        private int selectedID;
-        private Planner planner;
+        private TextView parentLabel;
+        private TextView credits;
+        private TextView status;
+        private TextView grade;
         private ListView childrenList;
-        private TextView name;
+        private int selectedID;
+        private Planner planner;       
+       
         private GraduateEntityBase entity = null;
         private int childrenPosition;
+        private int childrenType = 0;
 
        
         
@@ -72,8 +77,11 @@ namespace Graduate.Droid
         }
 
         private void findViews() {
-            label = FindViewById<TextView>(Resource.Id.textViewOtherStuff);
-            name = FindViewById<TextView>(Resource.Id.textViewName);
+            label = FindViewById<TextView>(Resource.Id.textViewLabel);
+            parentLabel = FindViewById<TextView>(Resource.Id.textViewParentLabel);
+            credits = FindViewById<TextView>(Resource.Id.textViewCredits);
+            status = FindViewById<TextView>(Resource.Id.textViewStatusLabel);
+            grade = FindViewById<TextView>(Resource.Id.textViewGrade);
             childrenList = FindViewById<ListView>(Resource.Id.listViewChildItems);
         }
 
@@ -89,18 +97,19 @@ namespace Graduate.Droid
 
             var intent = new Intent();
             intent.SetClass(this, typeof(EntityDetail));
-            intent.PutExtra("type", 3);
+            intent.PutExtra("type", childrenType);
             intent.PutExtra("selectedEntityID", entity.Id);
 
             StartActivityForResult(intent, 100);
         }
 
         private void populateSemesterDetail(int id) {
-            Console.WriteLine("Looking for the semester with ID" +  id);
-
             SemesterView semester = planner.getSemester("1");
-
-            name.Text = semester.label;
+            label.Text = semester.label;
+            parentLabel.Text = semester.parentLabel;
+            credits.Text = semester.credits;
+            status.Text = semester.status;
+            grade.Text = semester.grade;
 
             IList<Class> children = semester.children;
             
@@ -108,7 +117,7 @@ namespace Graduate.Droid
             ClassListAdapter childAdapter = new ClassListAdapter(this, children);
 
             childrenList.Adapter = childAdapter;
-
+            childrenType = 3;
             entity = children[childrenPosition];
 
         }
@@ -116,7 +125,7 @@ namespace Graduate.Droid
         private void populateSchoolYearDetail(int id) {
             SchoolYearView sy = planner.getSchoolYear("1");
 
-            name.Text = sy.label;
+            label.Text = sy.label;
 
 
             IList<Semester> children = sy.children;
@@ -124,7 +133,7 @@ namespace Graduate.Droid
             Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
 
             childrenList.Adapter = childAdapter;
-
+            childrenType = 2;
             entity = children[childrenPosition];
         }
 
@@ -133,7 +142,7 @@ namespace Graduate.Droid
 
             ClassView c = planner.getClass("1");
 
-            name.Text = c.label;
+            label.Text = c.label;
 
 
             

@@ -41,17 +41,63 @@ namespace Graduate.Core.View.Manager
             semesterView.id = sem.Id;
             semesterView.label = sem.label;
             semesterView.children = getChildren("1");
+            semesterView.credits = getCreditsFromChildren("1").ToString() ;
+            semesterView.grade = getGradeFromChildren("1").ToString();
+            semesterView.parentLabel = getParentLabel("1");
+            semesterView.status = getStatus("1");
             return semesterView;
         }
 
-        private int getCreditsFromChildren()
+        private int getCreditsFromChildren(String fid)
         {
-            return 0;
+            int i = 0;
+
+            IList<Class> children = getChildren(fid);
+
+            foreach (Class c in children) {
+                i += c.credits;
+            }
+
+            return i;
         }
 
-        private double getGradeFromChildren()
+        private double getGradeFromChildren(String fid)
         {
-            return 0.00;
+            double grade = 0;
+            int count = 0;
+
+            IList<Class> children = getChildren(fid);
+
+            foreach (Class c in children)
+            {
+                grade += c.grade;
+                count++;
+            }
+
+
+            return grade/count;
+        }
+
+        private String getParentLabel(String fid) {
+            SchoolYear sy = schoolYearManager.getSchoolYearByID(fid);
+            return sy.label;
+        }
+
+        private String getStatus(String fid) {
+            String status = "Completed";
+           
+
+            IList<Class> children = getChildren(fid);
+
+            foreach (Class c in children)
+            {
+                if (!c.completed) {
+                    status = "InProgress";
+                }                
+            }
+
+
+            return status;
         }
     }
 }

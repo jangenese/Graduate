@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearLayout1" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout1"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_weight="1">
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:weightSum="100">
+            <TextView
+                android:text="Percent Low"
+                android:layout_column="0"
+                android:id="@+id/textView3"
+                android:layout_weight="25" />
+            <TextView
+                android:text="Percent High"
+                android:layout_column="1"
+                android:id="@+id/textView4"
+                android:layout_weight="25" />
+            <TextView
+                android:text="Letter"
+                android:layout_column="2"
+                android:id="@+id/textView2"
+                android:layout_weight="25" />
+            <TextView
+                android:text="GPA"
+                android:id="@+id/textView1"
+                android:layout_column="1"
+                android:layout_weight="25" />
+        </TableRow>
+    </TableLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearLayout2" />
+</LinearLayout>
