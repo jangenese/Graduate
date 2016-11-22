@@ -21,7 +21,7 @@ namespace Graduate.Droid.Fragments
 
         private TextView title;
         private TextView parentType;
-        private EditText parentEntry;
+        private AutoCompleteTextView parentEntry;
         private TextView entryType;
         private EditText entry;
         private TextView grade;
@@ -54,6 +54,7 @@ namespace Graduate.Droid.Fragments
             planner = GraduateApp.Current.planner;
 
             findViews();
+            populateAutoCompleteLists();
             handleEvents();
 
             checkFormType(type);
@@ -89,6 +90,14 @@ namespace Graduate.Droid.Fragments
         {
             saveButton.Click += SaveButton_Click;
             cancelButton.Click += CancelButton_Click;
+        }
+
+        private void populateAutoCompleteLists() {
+            var parentEntryOptions = new String[] { "Hello", "Hey", "Heja", "Hi", "Hola", "Bonjour", "Gday", "Goodbye", "Sayonara", "Farewell", "Adios" };
+                   
+
+           ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
+           parentEntry.Adapter = parentEntryAdapter;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
