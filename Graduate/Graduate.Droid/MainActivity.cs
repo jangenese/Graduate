@@ -25,6 +25,7 @@ namespace Graduate.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            this.Title = "Graduate";
 
             SetContentView(Resource.Layout.MainActivity);
 

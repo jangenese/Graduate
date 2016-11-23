@@ -15,7 +15,7 @@ namespace Graduate.Core.Data.Models
         public String label { get; set; }
         public double grade { get; set; }
         public double goalGrade { get; set; }
-        public Boolean completed { get; set; }
+        public Boolean completed { get; set; } = false;
 
         public int credits { get; set; }
 

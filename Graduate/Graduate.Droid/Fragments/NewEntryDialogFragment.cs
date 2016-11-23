@@ -39,7 +39,7 @@ namespace Graduate.Droid.Fragments
         private LinearLayout checkBoxRow;
 
         private int parentPosition = 0;
-        private Boolean status = true;
+        private Boolean status = false;
 
 
         private View fragmentView;
@@ -148,11 +148,11 @@ namespace Graduate.Droid.Fragments
             Console.WriteLine(i.ToString());
             
             String test = i.ToString();
-            planner.saveSemester(test, entry.Text.ToString());
+            planner.saveSemester(getParentPosition(), entry.Text.ToString());
         }
 
         private void saveClass() {   
-            planner.saveClass("1", entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+            planner.saveClass(getParentPosition(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
         }
 
         private void saveEntry(int type)
@@ -231,6 +231,12 @@ namespace Graduate.Droid.Fragments
             parentType.Text = "Semester";
             entryType.Text = "Class";
             entry.Hint = "ABCD - 1234";
+        }
+
+        private String getParentPosition() {
+            int i = parentPosition + 1;
+
+            return i.ToString();
         }
 
 
