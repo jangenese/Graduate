@@ -104,7 +104,7 @@ namespace Graduate.Droid
         }
 
         private void populateSemesterDetail(int id) {
-            SemesterView semester = planner.getSemester("1");
+            SemesterView semester = planner.getSemester(id.ToString());
             label.Text = semester.label;
             parentLabel.Text = semester.parentLabel;
             credits.Text = semester.credits;
@@ -123,9 +123,13 @@ namespace Graduate.Droid
         }
 
         private void populateSchoolYearDetail(int id) {
-            SchoolYearView sy = planner.getSchoolYear("1");
+            SchoolYearView sy = planner.getSchoolYear(id.ToString());
 
             label.Text = sy.label;
+            parentLabel.Text = sy.parentLabel;
+            credits.Text = sy.credits;
+            status.Text = sy.status;
+            grade.Text = sy.grade;
 
 
             IList<Semester> children = sy.children;
@@ -139,21 +143,14 @@ namespace Graduate.Droid
 
         private void populateClassDetail(int id)
         {
-
-            ClassView c = planner.getClass("1");
+            ClassView c = planner.getClass(id.ToString());
 
             label.Text = c.label;
-
-
-            
-
+            parentLabel.Text = c.parentLabel;
+            credits.Text = c.credits;
+            parentLabel.Text = c.parentLabel;
+            status.Text = c.status;
+            grade.Text = c.grade;
         }
-
-
-
-
-
-
-
     }
 }

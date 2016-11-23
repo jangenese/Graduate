@@ -40,11 +40,11 @@ namespace Graduate.Core.View.Manager
             SemesterView semesterView = new SemesterView();
             semesterView.id = sem.Id;
             semesterView.label = sem.label;
-            semesterView.children = getChildren("1");
-            semesterView.credits = getCreditsFromChildren("1").ToString() ;
-            semesterView.grade = getGradeFromChildren("1").ToString();
-            semesterView.parentLabel = getParentLabel("1");
-            semesterView.status = getStatus("1");
+            semesterView.children = getChildren(sem.Id.ToString());
+            semesterView.credits = getCreditsFromChildren(sem.Id.ToString()).ToString() ;
+            semesterView.grade = getGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.parentLabel = getParentLabel(sem.Id.ToString());
+            semesterView.status = getStatus(sem.Id.ToString());
             return semesterView;
         }
 
@@ -95,8 +95,6 @@ namespace Graduate.Core.View.Manager
                     status = "InProgress";
                 }                
             }
-
-
             return status;
         }
     }

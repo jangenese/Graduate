@@ -24,7 +24,7 @@ namespace Graduate.Core.Manager
             c.goalGrade = 4.00;
             c.grade = stringToDouble(grade);
             c.credits = stringToInt(credit);
-
+            c.completed = completed;
             repo.saveItem(c);
         }
 

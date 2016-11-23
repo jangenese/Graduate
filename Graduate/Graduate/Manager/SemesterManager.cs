@@ -96,5 +96,18 @@ namespace Graduate.Core.Manager
             return new Semester();
         }
 
+        public List<String> getSemesterLabels()
+        {
+            List<String> labels = new List<String>();
+            IEnumerable<Semester> semesters = getSemesters();
+
+            foreach (Semester sem in semesters)
+            {
+                labels.Add(sem.label.ToString());
+            }
+
+            return labels;
+        }
+
     }
 }

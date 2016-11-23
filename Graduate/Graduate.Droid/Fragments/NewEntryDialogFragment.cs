@@ -28,14 +28,18 @@ namespace Graduate.Droid.Fragments
         private EditText gradeEntry;
         private TextView credits;
         private EditText creditsEntry;
+        private CheckBox checkbox;
         private Button cancelButton;
         private Button saveButton;
         private Planner planner;
+        
 
         private LinearLayout parentRow;
         private LinearLayout classRow;
+        private LinearLayout checkBoxRow;
 
         private int parentPosition = 0;
+        private Boolean status = true;
 
 
         private View fragmentView;
@@ -55,8 +59,7 @@ namespace Graduate.Droid.Fragments
             fragmentView = inflater.Inflate(Resource.Layout.NewEntryDialogFragment, container, false);
             planner = GraduateApp.Current.planner;
 
-            findViews();
-            populateAutoCompleteLists();
+            findViews();            
             handleEvents();
 
             checkFormType(type);
@@ -78,11 +81,14 @@ namespace Graduate.Droid.Fragments
             gradeEntry = fragmentView.FindViewById<AutoCompleteTextView>(Resource.Id.autoCompleteTextViewGradeEntry);
             credits = fragmentView.FindViewById<TextView>(Resource.Id.textViewCreditsLabel);
             creditsEntry = fragmentView.FindViewById<EditText>(Resource.Id.editTextCreditsEntry);
+            checkbox = fragmentView.FindViewById<CheckBox>(Resource.Id.checkBoxCompleted);
             cancelButton = fragmentView.FindViewById<Button>(Resource.Id.buttonCancel);
             saveButton = fragmentView.FindViewById<Button>(Resource.Id.buttonSave);
 
             parentRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutParentRow);
-            classRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutClassRow);
+            classRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutMainClass);
+            checkBoxRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutCheckBoxRow);
+            
     
         }
 
@@ -92,24 +98,28 @@ namespace Graduate.Droid.Fragments
         {
             saveButton.Click += SaveButton_Click;
             cancelButton.Click += CancelButton_Click;
+            checkbox.Click += Checkbox_Click;
             parentEntry.ItemSelected += ParentEntry_ItemSelected;
+        }
+
+        private void Checkbox_Click(object sender, EventArgs e)
+        {
+            if (checkbox.Checked)
+            {
+                status = true;
+                grade.Text = "Grade";
+            }
+            else {
+                status = false;
+                grade.Text = "Goal";
+            }
         }
 
         private void ParentEntry_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             parentPosition = e.Position;            
         }
-
-        private void populateAutoCompleteLists() {
-            //var parentEntryOptions = new String[] { "Hello", "Hey", "Heja", "Hi", "Hola", "Bonjour", "Gday", "Goodbye", "Sayonara", "Farewell", "Adios" };
-
-            var parentEntryOptions = planner.getAllSchoolYearLabels();
-
-           ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
-            
-           parentEntry.Adapter = parentEntryAdapter;
-        }
-
+        
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Dismiss();
@@ -142,7 +152,7 @@ namespace Graduate.Droid.Fragments
         }
 
         private void saveClass() {   
-            planner.saveClass("1", entry.Text, gradeEntry.Text, creditsEntry.Text, true);
+            planner.saveClass("1", entry.Text, gradeEntry.Text, creditsEntry.Text, status);
         }
 
         private void saveEntry(int type)
@@ -198,17 +208,25 @@ namespace Graduate.Droid.Fragments
             entry.Hint = "YYYY - YYYY";
             parentRow.Visibility = ViewStates.Gone;
             classRow.Visibility = ViewStates.Gone;
+            checkBoxRow.Visibility = ViewStates.Gone;
         }
 
         private void modifySemesterForm() {
+            var parentEntryOptions = planner.getAllSchoolYearLabels();
+            ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
+            parentEntry.Adapter = parentEntryAdapter;
             title.Text = "New Entry: Semester";
             parentType.Text = "School Year";
             entryType.Text = "Semester";
             entry.Hint = "Season YYYY";
             classRow.Visibility = ViewStates.Gone;
+            checkBoxRow.Visibility = ViewStates.Gone;
         }
 
         private void modifyClassForm() {
+            var parentEntryOptions = planner.getAllSemesterLabels();
+            ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
+            parentEntry.Adapter = parentEntryAdapter;
             title.Text = "New Entry: Class";
             parentType.Text = "Semester";
             entryType.Text = "Class";

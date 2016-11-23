@@ -15,37 +15,102 @@ namespace Graduate.Core.View.Manager
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
-        public SchoolYearViewManager(SQLiteConnection conn) {
+        public SchoolYearViewManager(SQLiteConnection conn)
+        {
             schoolYearManager = new SchoolYearManager(conn);
             semesterManager = new SemesterManager(conn);
             classManager = new ClassManager(conn);
         }
 
-        public SchoolYearView getSchoolYearView(String id) {
+        public SchoolYearView getSchoolYearView(String id)
+        {
             SchoolYear sy = schoolYearManager.getSchoolYearByID(id);
 
-            return populateSchoolView(sy);
+            return populateSchoolYearView(sy);
+        }
+
+        private IList<Class> getChildrensChildren(String fid)
+        {
+            List<Class> classChildren = new List<Class>();
+            IEnumerable<Semester> semesterChildren = semesterManager.getSemestersByFID(fid);
+
+            foreach (Semester sem in semesterChildren) {
+                IEnumerable<Class> children = classManager.getClasssByFID(sem.Id.ToString());
+                foreach (Class c in children) {
+                    classChildren.Add(c);
+                }
+            }
+
+            return classChildren;
         }
 
         private IList<Semester> getChildren(String fid) {
             return semesterManager.getSemestersByFID(fid).ToList<Semester>();
         }
 
-        private SchoolYearView populateSchoolView(SchoolYear sy) {
-            SchoolYearView syView = new SchoolYearView();
-            syView.id = sy.Id;
-            syView.label = sy.label;
-            syView.children = getChildren("1");            
-            return syView;
-        }
-
-        private int getCreditsFromChildren() {
-            return 0;
-        }
-
-        private double getGradeFromChildren()
+        private SchoolYearView populateSchoolYearView(SchoolYear sy)
         {
-            return 0.00;
+            SchoolYearView schoolYearView = new SchoolYearView();
+            schoolYearView.id = sy.Id;
+            schoolYearView.label = sy.label;
+            schoolYearView.children = getChildren(sy.Id.ToString());
+            schoolYearView.credits = getCreditsFromChildren(sy.Id.ToString()).ToString();
+            schoolYearView.grade = getGradeFromChildren(sy.Id.ToString()).ToString();
+            schoolYearView.parentLabel = "";
+            schoolYearView.status = getStatus(sy.Id.ToString());
+            return schoolYearView;
+        }
+
+        private int getCreditsFromChildren(String fid)
+        {
+            int i = 0;
+
+            IList<Class> children = getChildrensChildren(fid);
+
+            foreach (Class c in children)
+            {
+                i += c.credits;
+            }
+
+            return i;
+        }
+
+        private double getGradeFromChildren(String fid)
+        {
+            double grade = 0;
+            int count = 0;
+
+            IList<Class> children = getChildrensChildren(fid);
+
+            foreach (Class c in children)
+            {
+                grade += c.grade;
+                count++;
+            }
+
+
+            return Math.Round((grade / count), 2);
+        }
+
+       
+
+        private String getStatus(String fid)
+        {
+            String status = "Completed";
+
+
+            IList<Class> children = getChildrensChildren(fid);
+
+            foreach (Class c in children)
+            {
+                if (!c.completed)
+                {
+                    status = "InProgress";
+                }
+            }
+
+
+            return status;
         }
     }
 }

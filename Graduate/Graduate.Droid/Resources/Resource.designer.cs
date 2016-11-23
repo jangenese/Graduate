@@ -2109,8 +2109,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060071
 			public const int ScrollViewMain = 2131099761;
 			
-			// aapt resource value: 0x7f0600cc
-			public const int action0 = 2131099852;
+			// aapt resource value: 0x7f0600cf
+			public const int action0 = 2131099855;
 			
 			// aapt resource value: 0x7f06005e
 			public const int action_bar = 2131099742;
@@ -2136,8 +2136,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06005f
 			public const int action_context_bar = 2131099743;
 			
-			// aapt resource value: 0x7f0600d0
-			public const int action_divider = 2131099856;
+			// aapt resource value: 0x7f0600d3
+			public const int action_divider = 2131099859;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -2175,11 +2175,11 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600aa
 			public const int autoCompleteTextView1 = 2131099818;
 			
-			// aapt resource value: 0x7f0600c6
-			public const int autoCompleteTextViewGradeEntry = 2131099846;
+			// aapt resource value: 0x7f0600c7
+			public const int autoCompleteTextViewGradeEntry = 2131099847;
 			
-			// aapt resource value: 0x7f0600c1
-			public const int autoCompleteTextViewLabelEntry = 2131099841;
+			// aapt resource value: 0x7f0600c2
+			public const int autoCompleteTextViewLabelEntry = 2131099842;
 			
 			// aapt resource value: 0x7f0600bf
 			public const int autoCompleteTextViewParentEntry = 2131099839;
@@ -2208,8 +2208,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600b0
 			public const int buttonSave = 2131099824;
 			
-			// aapt resource value: 0x7f0600cd
-			public const int cancel_action = 2131099853;
+			// aapt resource value: 0x7f0600d0
+			public const int cancel_action = 2131099856;
 			
 			// aapt resource value: 0x7f06002c
 			public const int center = 2131099692;
@@ -2220,11 +2220,14 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06002e
 			public const int center_vertical = 2131099694;
 			
+			// aapt resource value: 0x7f0600cc
+			public const int checkBoxCompleted = 2131099852;
+			
 			// aapt resource value: 0x7f060055
 			public const int checkbox = 2131099733;
 			
-			// aapt resource value: 0x7f0600d3
-			public const int chronometer = 2131099859;
+			// aapt resource value: 0x7f0600d6
+			public const int chronometer = 2131099862;
 			
 			// aapt resource value: 0x7f060035
 			public const int clip_horizontal = 2131099701;
@@ -2277,8 +2280,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600ac
 			public const int editText3 = 2131099820;
 			
-			// aapt resource value: 0x7f0600c9
-			public const int editTextCreditsEntry = 2131099849;
+			// aapt resource value: 0x7f0600ca
+			public const int editTextCreditsEntry = 2131099850;
 			
 			// aapt resource value: 0x7f0600ae
 			public const int editTextFID = 2131099822;
@@ -2310,8 +2313,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06001d
 			public const int end = 2131099677;
 			
-			// aapt resource value: 0x7f0600d8
-			public const int end_padder = 2131099864;
+			// aapt resource value: 0x7f0600db
+			public const int end_padder = 2131099867;
 			
 			// aapt resource value: 0x7f060026
 			public const int enterAlways = 2131099686;
@@ -2343,8 +2346,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06003b
 			public const int @fixed = 2131099707;
 			
-			// aapt resource value: 0x7f0600d9
-			public const int fragmentContainer = 2131099865;
+			// aapt resource value: 0x7f0600dc
+			public const int fragmentContainer = 2131099868;
 			
 			// aapt resource value: 0x7f060005
 			public const int home = 2131099653;
@@ -2364,8 +2367,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600b8
 			public const int imageView1 = 2131099832;
 			
-			// aapt resource value: 0x7f0600d7
-			public const int info = 2131099863;
+			// aapt resource value: 0x7f0600da
+			public const int info = 2131099866;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
@@ -2373,26 +2376,23 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060030
 			public const int left = 2131099696;
 			
-			// aapt resource value: 0x7f0600d1
-			public const int line1 = 2131099857;
+			// aapt resource value: 0x7f0600d4
+			public const int line1 = 2131099860;
 			
-			// aapt resource value: 0x7f0600d5
-			public const int line3 = 2131099861;
+			// aapt resource value: 0x7f0600d8
+			public const int line3 = 2131099864;
 			
 			// aapt resource value: 0x7f06007b
 			public const int linearLayout1 = 2131099771;
 			
-			// aapt resource value: 0x7f0600c7
-			public const int linearLayout10 = 2131099847;
-			
 			// aapt resource value: 0x7f0600c8
-			public const int linearLayout11 = 2131099848;
+			public const int linearLayout10 = 2131099848;
 			
-			// aapt resource value: 0x7f0600ca
-			public const int linearLayout12 = 2131099850;
+			// aapt resource value: 0x7f0600c9
+			public const int linearLayout11 = 2131099849;
 			
-			// aapt resource value: 0x7f0600cb
-			public const int linearLayout13 = 2131099851;
+			// aapt resource value: 0x7f0600ce
+			public const int linearLayout13 = 2131099854;
 			
 			// aapt resource value: 0x7f06009d
 			public const int linearLayout14 = 2131099805;
@@ -2436,20 +2436,23 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600b6
 			public const int linearLayout4 = 2131099830;
 			
-			// aapt resource value: 0x7f0600c0
-			public const int linearLayout5 = 2131099840;
-			
-			// aapt resource value: 0x7f0600c2
-			public const int linearLayout6 = 2131099842;
-			
-			// aapt resource value: 0x7f0600c4
-			public const int linearLayout8 = 2131099844;
+			// aapt resource value: 0x7f0600c1
+			public const int linearLayout5 = 2131099841;
 			
 			// aapt resource value: 0x7f0600c5
-			public const int linearLayout9 = 2131099845;
+			public const int linearLayout8 = 2131099845;
 			
-			// aapt resource value: 0x7f0600c3
-			public const int linearLayoutClassRow = 2131099843;
+			// aapt resource value: 0x7f0600c6
+			public const int linearLayout9 = 2131099846;
+			
+			// aapt resource value: 0x7f0600cd
+			public const int linearLayoutButtonRow = 2131099853;
+			
+			// aapt resource value: 0x7f0600cb
+			public const int linearLayoutCheckBoxRow = 2131099851;
+			
+			// aapt resource value: 0x7f0600c4
+			public const int linearLayoutClass = 2131099844;
 			
 			// aapt resource value: 0x7f060093
 			public const int linearLayoutCreditsContainer = 2131099795;
@@ -2465,6 +2468,12 @@ namespace Graduate.Droid
 			
 			// aapt resource value: 0x7f06006d
 			public const int linearLayoutMain = 2131099757;
+			
+			// aapt resource value: 0x7f0600c3
+			public const int linearLayoutMainClass = 2131099843;
+			
+			// aapt resource value: 0x7f0600c0
+			public const int linearLayoutMainRow = 2131099840;
 			
 			// aapt resource value: 0x7f06008f
 			public const int linearLayoutNameContainerHeader = 2131099791;
@@ -2496,8 +2505,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060044
 			public const int list_item = 2131099716;
 			
-			// aapt resource value: 0x7f0600cf
-			public const int media_actions = 2131099855;
+			// aapt resource value: 0x7f0600d2
+			public const int media_actions = 2131099858;
 			
 			// aapt resource value: 0x7f06001e
 			public const int middle = 2131099678;
@@ -2640,8 +2649,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060032
 			public const int start = 2131099698;
 			
-			// aapt resource value: 0x7f0600ce
-			public const int status_bar_latest_event_content = 2131099854;
+			// aapt resource value: 0x7f0600d1
+			public const int status_bar_latest_event_content = 2131099857;
 			
 			// aapt resource value: 0x7f060058
 			public const int submenuarrow = 2131099736;
@@ -2652,11 +2661,11 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06000d
 			public const int tabMode = 2131099661;
 			
-			// aapt resource value: 0x7f0600d6
-			public const int text = 2131099862;
+			// aapt resource value: 0x7f0600d9
+			public const int text = 2131099865;
 			
-			// aapt resource value: 0x7f0600d4
-			public const int text2 = 2131099860;
+			// aapt resource value: 0x7f0600d7
+			public const int text2 = 2131099863;
 			
 			// aapt resource value: 0x7f060050
 			public const int textSpacerNoButtons = 2131099728;
@@ -2724,8 +2733,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06008d
 			public const int text_input_password_toggle = 2131099789;
 			
-			// aapt resource value: 0x7f0600d2
-			public const int time = 2131099858;
+			// aapt resource value: 0x7f0600d5
+			public const int time = 2131099861;
 			
 			// aapt resource value: 0x7f060046
 			public const int title = 2131099718;

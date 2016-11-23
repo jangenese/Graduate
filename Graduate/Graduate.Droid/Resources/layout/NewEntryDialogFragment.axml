@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/linearLayoutParentRow"
-            android:id="@+id/linearLayout4">
+            android:id="@+id/linearLayoutMainRow">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -93,13 +93,13 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/linearLayout4"
-            android:id="@+id/linearLayout6">
+            android:layout_below="@id/linearLayoutMainRow"
+            android:id="@+id/linearLayoutMainClass">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/linearLayoutClassRow">
+                android:id="@+id/linearLayoutClass">
                 <LinearLayout
                     android:orientation="vertical"
                     android:minWidth="25px"
@@ -171,37 +171,53 @@
             android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
-            android:id="@+id/linearLayout12"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/linearLayoutMainClass"
+            android:id="@+id/linearLayoutCheckBoxRow">
+            <CheckBox
+                android:text="Completed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxCompleted"
+                android:textSize="19dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/linearLayout6">
+            android:layout_below="@id/linearLayoutCheckBoxRow"
+            android:id="@+id/linearLayoutButtonRow">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/linearLayout13">
+                android:id="@+id/linearLayout13"
+                android:weightSum="100">
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/linearLayout14"
-                    android:layout_weight="1"
-                    android:minWidth="25px"
-                    android:minHeight="25px">
+                    android:layout_weight="50">
                     <Button
                         android:text="Cancel"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/buttonCancel" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/linearLayout15"
-                    android:layout_weight="1">
+                    android:layout_weight="50">
                     <Button
                         android:text="Save"
                         android:layout_width="match_parent"

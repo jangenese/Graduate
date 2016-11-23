@@ -77,5 +77,9 @@ namespace Graduate.Core
            return schoolYearManager.getSchoolYearLabels();
         }
 
+        public List<String> getAllSemesterLabels() {
+            return semesterManager.getSemesterLabels();
+        }
+
     }
 }
