@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace Graduate.Core.View.Model
 {
     
-    public class ActivityView : ViewBase
+    public class ClassActivityView : ViewBase
     {
         public String weight { get; set; }
 
-        public ActivityView() {
+        public ClassActivityView() {
 
         }
     }

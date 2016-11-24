@@ -10,18 +10,18 @@ using Graduate.Core.Data.Models;
 
 namespace Graduate.Core.Manager
 {
-   public class ActivityManager
+   public class ClassActivityManager
     {
 
-        ActivityRepository repo;
-        public ActivityManager(SQLiteConnection conn)
+        ClassActivityRepository repo;
+        public ClassActivityManager(SQLiteConnection conn)
         {
-            repo = new ActivityRepository(conn);
+            repo = new ClassActivityRepository(conn);
         }
 
         public void SaveItem(String fid, String label, String grade, String weight, Boolean completed)
         {
-            Activity activity = new Activity();
+            ClassActivity activity = new ClassActivity();
             activity.FId = stringToInt(fid);
             activity.label = label;
             activity.goalGrade = 4.00;
@@ -31,10 +31,10 @@ namespace Graduate.Core.Manager
             repo.saveItem(activity);
         }
 
-        public Activity getActivityByID(String id)
+        public ClassActivity getClassActivityByID(String id)
         {
             int i = stringToInt(id);
-            Activity c = repo.getItem(i);
+            ClassActivity c = repo.getItem(i);
 
             if (isNull(c))
             {
@@ -44,12 +44,12 @@ namespace Graduate.Core.Manager
             return c;
         }
 
-        public IEnumerable<Activity> getActivityes()
+        public IEnumerable<ClassActivity> getClassActivities()
         {
             return repo.getItems();
         }
 
-        public IEnumerable<Activity> getActivitysByFID(String fid)
+        public IEnumerable<ClassActivity> getClassActivitiesByFID(String fid)
         {
             int i = stringToInt(fid);
             return repo.getItemsByFID(i);
@@ -82,7 +82,7 @@ namespace Graduate.Core.Manager
             return i;
         }
 
-        private Boolean isNull(Activity entity)
+        private Boolean isNull(ClassActivity entity)
         {
             Boolean b = false;
 
@@ -94,9 +94,9 @@ namespace Graduate.Core.Manager
             return b;
         }
 
-        private Activity returnNullEntity()
+        private ClassActivity returnNullEntity()
         {
-            return new Activity();
+            return new ClassActivity();
         }
     }
 }

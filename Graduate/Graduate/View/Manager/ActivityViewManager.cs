@@ -9,34 +9,36 @@ using Graduate.Core.View.Model;
 
 namespace Graduate.Core.View.Manager
 {
-    public class ActivityViewManager
+    public class ClassActivityViewManager
     {
 
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
-        ActivityManager classManager;
-        public ActivityViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ActivityManager classManager)
+        ClassManager classManager;
+        ClassActivityManager cActivityManager;
+        public ClassActivityViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager, ClassActivityManager cActivityManager)
         {
             this.schoolYearManager = schoolYearManager;
             this.semesterManager = semesterManager;
             this.classManager = classManager;
+            this.cActivityManager = cActivityManager;
         }
 
-        public ActivityView getActivityView(String id)
+        public ClassActivityView getClassActivityView(String id)
         {
-            Activity c = classManager.getActivityByID(id);
+            ClassActivity classActivity = cActivityManager.getClassActivityByID(id);
 
-            return populateActivityView(c);
+            return populateClassActivityView(classActivity);
         }
 
-        private IList<Activity> getChildren(String fid)
+        private IList<ClassActivity> getChildren(String fid)
         {
-            return classManager.getActivitysByFID(fid).ToList<Activity>();
+            return cActivityManager.getClassActivitiesByFID(fid).ToList<ClassActivity>();
         }
 
-        private ActivityView populateActivityView(Activity activity)
+        private ClassActivityView populateClassActivityView(ClassActivity activity)
         {
-            ActivityView activityView = new ActivityView();
+            ClassActivityView activityView = new ClassActivityView();
             activityView.id = activity.Id;
             activityView.label = activity.label;
             activityView.weight = activity.weight.ToString();

@@ -9,7 +9,7 @@ namespace Graduate.Core.View.Model
 {
    public class ClassView : ViewBase
     {
-        public IList<Activity> children;
+        public IList<ClassActivity> children;
         public ClassView() { }
 
     }

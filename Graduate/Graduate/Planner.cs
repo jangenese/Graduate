@@ -18,21 +18,23 @@ namespace Graduate.Core
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
-        ActivityManager activityManager;
+        ClassActivityManager classActivityManager;
 
         SchoolYearViewManager schoolYearViewManager;
         SemesterViewManager semesterViewManager;
         ClassViewManager classViewManager;
+        ClassActivityViewManager classActivityViewManager;
 
         public Planner(SQLiteConnection conn) {
             schoolYearManager = new SchoolYearManager(conn);
             semesterManager = new SemesterManager(conn);
             classManager = new ClassManager(conn);
-            activityManager = new ActivityManager(conn);
+            classActivityManager = new ClassActivityManager(conn);
 
             schoolYearViewManager = new SchoolYearViewManager(schoolYearManager, semesterManager, classManager);
             semesterViewManager = new SemesterViewManager(schoolYearManager, semesterManager, classManager);
             classViewManager = new ClassViewManager(schoolYearManager, semesterManager, classManager);
+            classActivityViewManager = new ClassActivityViewManager(schoolYearManager, semesterManager, classManager, classActivityManager);
         }
 
         public SemesterView getSemester(String id) {
@@ -60,9 +62,9 @@ namespace Graduate.Core
             classManager.SaveItem(fid, label, grade, credits, completed);
         }
 
-        public void saveActivity(String fid, String label, String grade, String weight, Boolean completed)
+        public void saveClassActivity(String fid, String label, String grade, String weight, Boolean completed)
         {
-            activityManager.SaveItem(fid, label, grade, weight, completed);
+            classActivityManager.SaveItem(fid, label, grade, weight, completed);
         }
 
         public IList<SchoolYear> getAllSchoolYears()

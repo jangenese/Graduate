@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graduate.Core.Data.Models
 {
-    public class Activity : GraduateEntityBase
+    public class ClassActivity : GraduateEntityBase
     {
         public int FId { get; set; }
         public String label { get; set; }
@@ -15,10 +15,10 @@ namespace Graduate.Core.Data.Models
         public Boolean completed { get; set; } = false;
         public int weight { get; set; }
 
-        public Activity() {
+        public ClassActivity() {
         }
 
-        public Activity(int fid, String label, int weight, int mark, Boolean completed) {
+        public ClassActivity(int fid, String label, int weight, int mark, Boolean completed) {
 
         }
     }

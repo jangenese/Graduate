@@ -8,27 +8,27 @@ using Graduate.Core.Data.Models;
 
 namespace Graduate.Core.Data.DataAccessLayer
 {
-    public class ActivityDataAccess : GradeDataAccess
+    public class ClassActivityDataAccess : GradeDataAccess
     {
         private static object collisionLock = new object();
         SQLiteConnection database;
-        public ActivityDataAccess(SQLiteConnection conn): base(conn) {
+        public ClassActivityDataAccess(SQLiteConnection conn): base(conn) {
             database = conn;
         }
 
-        public Activity getItemById(int id)
+        public ClassActivity getItemById(int id)
         {
 
             lock (collisionLock)
             {
-                return database.Table<Activity>().
+                return database.Table<ClassActivity>().
                   FirstOrDefault(c => c.Id == id);
             }
         }
 
-        public IEnumerable<Activity> getItemsByFID(int fid)
+        public IEnumerable<ClassActivity> getItemsByFID(int fid)
         {
-            return (from i in database.Table<Activity>() where i.FId == fid select i);
+            return (from i in database.Table<ClassActivity>() where i.FId == fid select i);
         }
     }
 }
