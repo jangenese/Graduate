@@ -15,7 +15,7 @@ using Graduate.Core.Data.Models;
 using Graduate.Droid.ListAdapters;
 using Graduate.Core.MiscTools;
 using Graduate.Core.View.Model;
-
+using com.refractored.fab;
 
 
 namespace Graduate.Droid
@@ -30,8 +30,11 @@ namespace Graduate.Droid
         private TextView grade;
         private ListView childrenList;
         private int selectedID;
-        private Planner planner;       
-       
+        private Planner planner;
+
+
+        private FloatingActionButton fab;
+
         private GraduateEntityBase entity = null;
         private int childrenPosition;
         private int childrenType = 0;
@@ -44,13 +47,14 @@ namespace Graduate.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.EntityDetail);
+            SetContentView(Resource.Layout.layout1);
 
             planner = GraduateApp.Current.planner;
 
             selectedID = Intent.Extras.GetInt("selectedEntityID");
 
             findViews();
+            fab.AttachToListView(childrenList);
             handleEvents();
 
             label.Text = selectedID.ToString();
@@ -83,6 +87,7 @@ namespace Graduate.Droid
             status = FindViewById<TextView>(Resource.Id.textViewStatusLabel);
             grade = FindViewById<TextView>(Resource.Id.textViewGrade);
             childrenList = FindViewById<ListView>(Resource.Id.listViewChildItems);
+            fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
         }
 
         private void handleEvents() {
