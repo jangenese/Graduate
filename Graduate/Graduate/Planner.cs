@@ -18,6 +18,7 @@ namespace Graduate.Core
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
+        ActivityManager activityManager;
 
         SchoolYearViewManager schoolYearViewManager;
         SemesterViewManager semesterViewManager;
@@ -27,6 +28,7 @@ namespace Graduate.Core
             schoolYearManager = new SchoolYearManager(conn);
             semesterManager = new SemesterManager(conn);
             classManager = new ClassManager(conn);
+            activityManager = new ActivityManager(conn);
 
             schoolYearViewManager = new SchoolYearViewManager(schoolYearManager, semesterManager, classManager);
             semesterViewManager = new SemesterViewManager(schoolYearManager, semesterManager, classManager);
@@ -56,6 +58,11 @@ namespace Graduate.Core
 
         public void saveClass(String fid, String label, String grade, String credits, Boolean completed) {
             classManager.SaveItem(fid, label, grade, credits, completed);
+        }
+
+        public void saveActivity(String fid, String label, String grade, String weight, Boolean completed)
+        {
+            activityManager.SaveItem(fid, label, grade, weight, completed);
         }
 
         public IList<SchoolYear> getAllSchoolYears()
