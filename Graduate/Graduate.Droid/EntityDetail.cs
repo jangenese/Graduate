@@ -142,7 +142,15 @@ namespace Graduate.Droid
 
             childrenList.Adapter = childAdapter;
             childrenType = 2;
-            entity = children[childrenPosition];
+
+
+            try
+            {
+                entity = children[childrenPosition];
+            }
+            catch {
+
+            }
         }
 
         private void populateClassDetail(int id)
