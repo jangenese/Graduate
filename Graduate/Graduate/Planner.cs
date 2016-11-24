@@ -28,9 +28,9 @@ namespace Graduate.Core
             semesterManager = new SemesterManager(conn);
             classManager = new ClassManager(conn);
 
-            schoolYearViewManager = new SchoolYearViewManager(conn);
-            semesterViewManager = new SemesterViewManager(conn);
-            classViewManager = new ClassViewManager(conn);
+            schoolYearViewManager = new SchoolYearViewManager(schoolYearManager, semesterManager, classManager);
+            semesterViewManager = new SemesterViewManager(schoolYearManager, semesterManager, classManager);
+            classViewManager = new ClassViewManager(schoolYearManager, semesterManager, classManager);
         }
 
         public SemesterView getSemester(String id) {

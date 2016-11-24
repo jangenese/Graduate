@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Android.App;
 using Android.Widget;
 using Graduate.Core.Data.Models;
+using Graduate.Core.View.Model;
 
 
 namespace Graduate.Droid.ListAdapters
@@ -38,6 +39,7 @@ namespace Graduate.Droid.ListAdapters
         public override Android.Views.View GetView(int position, Android.Views.View convertView, Android.Views.ViewGroup parent)
         {
             var item = semesters[position];
+            SemesterView sem = GraduateApp.Current.planner.getSemester(item.Id.ToString());
 
             var row = convertView;
 
@@ -56,11 +58,11 @@ namespace Graduate.Droid.ListAdapters
 
 
             label.Text = "Semester";
-            entry.Text = item.label;
+            entry.Text = sem.label;
             status.Text = "Status";
-            statusEntry.Text = "Completed";
+            statusEntry.Text = sem.status;
             grade.Text = "Grade";
-          //  gradeEntry.Text = item.grade.ToString();
+            gradeEntry.Text = sem.grade;
 
             return row;
         }

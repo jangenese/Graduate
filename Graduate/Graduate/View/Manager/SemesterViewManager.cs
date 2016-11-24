@@ -16,11 +16,11 @@ namespace Graduate.Core.View.Manager
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
-        public SemesterViewManager(SQLiteConnection conn)
+        public SemesterViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager)
         {
-            schoolYearManager = new SchoolYearManager(conn);
-            semesterManager = new SemesterManager(conn);
-            classManager = new ClassManager(conn);
+            this.schoolYearManager = schoolYearManager;
+            this.semesterManager = semesterManager;
+            this.classManager = classManager;
         }
 
         public SemesterView getSemesterView(String id)

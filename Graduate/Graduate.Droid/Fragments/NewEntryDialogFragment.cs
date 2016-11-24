@@ -12,6 +12,7 @@ using Android.Widget;
 
 using Graduate.Core.Data.Models;
 using Graduate.Core;
+using Graduate.Droid.ListAdapters;
 
 
 namespace Graduate.Droid.Fragments
@@ -98,8 +99,8 @@ namespace Graduate.Droid.Fragments
         {
             saveButton.Click += SaveButton_Click;
             cancelButton.Click += CancelButton_Click;
-            checkbox.Click += Checkbox_Click;
-            parentEntry.ItemSelected += ParentEntry_ItemSelected;
+            checkbox.Click += Checkbox_Click;            
+            
         }
 
         private void Checkbox_Click(object sender, EventArgs e)
@@ -114,11 +115,7 @@ namespace Graduate.Droid.Fragments
                 grade.Text = "Goal";
             }
         }
-
-        private void ParentEntry_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            parentPosition = e.Position;            
-        }
+        
         
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -138,21 +135,18 @@ namespace Graduate.Droid.Fragments
         }
 
         private void saveSchoolYear() {
+
             planner.saveSchoolYear(entry.Text.ToString());                   
         }
 
-        private void saveSemester() {
-            int i = parentPosition + 1;
-
-            Console.WriteLine("\n\n\n\n\n\n Printing Position" + parentEntry.Text);
-            Console.WriteLine(i.ToString());
-            
-            String test = i.ToString();
-            planner.saveSemester(getParentPosition(), entry.Text.ToString());
+        private void saveSemester() {  
+            String fid = getSchoolYearParentID(parentEntry.Text, planner.getAllSchoolYears());
+            planner.saveSemester(fid, entry.Text.ToString());
         }
 
-        private void saveClass() {   
-            planner.saveClass(getParentPosition(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+        private void saveClass() {
+            String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
+            planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
         }
 
         private void saveEntry(int type)
@@ -214,7 +208,11 @@ namespace Graduate.Droid.Fragments
         private void modifySemesterForm() {
             var parentEntryOptions = planner.getAllSchoolYearLabels();
             ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
-            parentEntry.Adapter = parentEntryAdapter;
+
+            
+            
+
+            parentEntry.Adapter = parentEntryAdapter;            
             title.Text = "New Entry: Semester";
             parentType.Text = "School Year";
             entryType.Text = "Semester";
@@ -234,11 +232,38 @@ namespace Graduate.Droid.Fragments
         }
 
         private String getParentPosition() {
+            
+
             int i = parentPosition + 1;
 
             return i.ToString();
         }
 
+        private String getSchoolYearParentID(String label, IList<SchoolYear> list) {
+            int i = 0;            
+            foreach (SchoolYear sy in list) {
+                if (label == sy.label) {
+                    i = sy.Id;
+                }
+            }
 
+            return i.ToString();
         }
+
+        private String getSemesterParentID(String label, IList<Semester> list)
+        {
+            int i = 0;
+            foreach (Semester sem in list)
+            {
+                if (label == sem.label)
+                {
+                    i = sem.Id;
+                }
+            }
+
+            return i.ToString();
+        }
+
+
+    }
     }

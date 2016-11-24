@@ -118,7 +118,11 @@ namespace Graduate.Droid
 
             childrenList.Adapter = childAdapter;
             childrenType = 3;
-            entity = children[childrenPosition];
+            try{
+                entity = children[childrenPosition];
+            }catch {
+
+            }
 
         }
 
