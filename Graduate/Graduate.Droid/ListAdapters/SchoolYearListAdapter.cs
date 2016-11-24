@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Android.App;
 using Android.Widget;
 using Graduate.Core.Data.Models;
+using Graduate.Core.View.Model;
 
 
 namespace Graduate.Droid.ListAdapters
@@ -40,6 +41,8 @@ namespace Graduate.Droid.ListAdapters
             
             var item = schoolYears[position];
 
+            SchoolYearView sy = GraduateApp.Current.planner.getSchoolYear(item.Id.ToString());
+
             var row = convertView;
 
             if (row == null)
@@ -57,11 +60,13 @@ namespace Graduate.Droid.ListAdapters
 
 
             label.Text = "SchoolYear";
-            entry.Text = item.label;
+            entry.Text = sy.label;
             status.Text = "Status";
-            statusEntry.Text = "Completed";
+            statusEntry.Text = sy.status;
             grade.Text = "Grade";
-            gradeEntry.Text = item.grade.ToString();
+            gradeEntry.Text = sy.grade;
+
+    
 
             return row;
         }

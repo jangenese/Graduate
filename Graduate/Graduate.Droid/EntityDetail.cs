@@ -14,6 +14,7 @@ using Graduate.Core;
 using Graduate.Core.Data.Models;
 using Graduate.Droid.ListAdapters;
 using Graduate.Core.MiscTools;
+using Graduate.Core.View.Model;
 
 
 
@@ -23,12 +24,17 @@ namespace Graduate.Droid
     public class EntityDetail : Activity
     {
         private TextView label;
-        private int selectedID;
-        private Planner planner;
+        private TextView parentLabel;
+        private TextView credits;
+        private TextView status;
+        private TextView grade;
         private ListView childrenList;
-        private TextView name;
+        private int selectedID;
+        private Planner planner;       
+       
         private GraduateEntityBase entity = null;
         private int childrenPosition;
+        private int childrenType = 0;
 
        
         
@@ -71,8 +77,11 @@ namespace Graduate.Droid
         }
 
         private void findViews() {
-            label = FindViewById<TextView>(Resource.Id.textViewOtherStuff);
-            name = FindViewById<TextView>(Resource.Id.textViewName);
+            label = FindViewById<TextView>(Resource.Id.textViewLabel);
+            parentLabel = FindViewById<TextView>(Resource.Id.textViewParentLabel);
+            credits = FindViewById<TextView>(Resource.Id.textViewCredits);
+            status = FindViewById<TextView>(Resource.Id.textViewStatusLabel);
+            grade = FindViewById<TextView>(Resource.Id.textViewGrade);
             childrenList = FindViewById<ListView>(Resource.Id.listViewChildItems);
         }
 
@@ -88,62 +97,72 @@ namespace Graduate.Droid
 
             var intent = new Intent();
             intent.SetClass(this, typeof(EntityDetail));
-            intent.PutExtra("type", 3);
+            intent.PutExtra("type", childrenType);
             intent.PutExtra("selectedEntityID", entity.Id);
 
             StartActivityForResult(intent, 100);
         }
 
         private void populateSemesterDetail(int id) {
-            Console.WriteLine("Looking for the semester with ID" +  id);
+            SemesterView semester = planner.getSemester(id.ToString());
+            label.Text = semester.label;
+            parentLabel.Text = semester.parentLabel;
+            credits.Text = semester.credits;
+            status.Text = semester.status;
+            grade.Text = semester.grade;
 
-            Semester semester = planner.getSemester(id);
-
-            name.Text = semester.label;
-
-            IList<Class> children = planner.getSemesterChildren(id).ToList<Class>();
+            IList<Class> children = semester.children;
             
 
             ClassListAdapter childAdapter = new ClassListAdapter(this, children);
 
             childrenList.Adapter = childAdapter;
+            childrenType = 3;
+            try{
+                entity = children[childrenPosition];
+            }catch {
 
-            entity = children[childrenPosition];
+            }
 
         }
 
         private void populateSchoolYearDetail(int id) {
-            SchoolYear sy = planner.getSchoolYear(id);
+            SchoolYearView sy = planner.getSchoolYear(id.ToString());
 
-            name.Text = sy.label;
+            label.Text = sy.label;
+            parentLabel.Text = sy.parentLabel;
+            credits.Text = sy.credits;
+            status.Text = sy.status;
+            grade.Text = sy.grade;
 
 
-            IList<Semester> children = planner.getSchoolYearChildren(id).ToList<Semester>();
+            IList<Semester> children = sy.children;
 
             Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
 
             childrenList.Adapter = childAdapter;
+            childrenType = 2;
 
-            entity = children[childrenPosition];
+
+            try
+            {
+                entity = children[childrenPosition];
+            }
+            catch {
+
+            }
         }
 
         private void populateClassDetail(int id)
         {
+            ClassView c = planner.getClass(id.ToString());
 
-            Class c = planner.getClass(id);
-
-            name.Text = c.label;
-
-
-            
-
+            label.Text = c.label;
+            parentLabel.Text = c.parentLabel;
+            credits.Text = c.credits;
+            parentLabel.Text = c.parentLabel;
+            status.Text = c.status;
+            grade.Text = c.grade;
         }
-
-
-
-
-
-
-
     }
 }

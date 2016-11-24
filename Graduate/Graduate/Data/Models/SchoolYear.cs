@@ -11,16 +11,18 @@ namespace Graduate.Core.Data.Models
         public SchoolYear() { }
 
         
-        public String label { get; set; }
-        public int grade { get; set; }
+        public String label { get; set; }       
         public int goalGrade { get; set; }
-
 
         public SchoolYear(String label) {
             this.label = label;
 
         }
 
-       
+        public override string ToString()
+        {
+            return string.Format("[SchoolYear: ID={0}, Label={1}], GoalGrade={2}]", Id, label, goalGrade);
+        }
+
     }
 }

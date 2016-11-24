@@ -17,21 +17,13 @@ namespace Graduate.Core.Data.DataAccessLayer
         public SchoolYearDataAccess(SQLiteConnection conn) : base(conn) {
             database = conn;
         }
-
-
-
-
         public SchoolYear getItemById(int id)
         {
-
-
             lock (collisionLock)
             {
                 return database.Table<SchoolYear>().
                   FirstOrDefault(sy => sy.Id == id);
             }
-
-
         }
     }
 

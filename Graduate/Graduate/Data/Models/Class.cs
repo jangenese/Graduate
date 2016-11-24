@@ -13,12 +13,19 @@ namespace Graduate.Core.Data.Models
 
         public int FId { get; set; }
         public String label { get; set; }
-        public int grade { get; set; }
-        public int goalGrade { get; set; }
+        public double grade { get; set; }
+        public double goalGrade { get; set; }
+        public Boolean completed { get; set; } = false;
 
+        public int credits { get; set; }
 
         public Class(String label) {
             this.label = label;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Class: ID={0}, Label={1}], GoalGrade={2}, Grade={3}, Completed={4}, Credits={5}]", Id, label, goalGrade, grade, completed, credits);
         }
 
 

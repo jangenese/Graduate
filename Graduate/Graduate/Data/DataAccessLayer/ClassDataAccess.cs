@@ -17,19 +17,14 @@ namespace Graduate.Core.Data.DataAccessLayer
             database = conn;
         }
 
-
-
         public Class getItemById(int id)
         {
-
 
             lock (collisionLock)
             {
                 return database.Table<Class>().
                   FirstOrDefault(c => c.Id == id);
             }
-
-
         }
 
         public IEnumerable<Class> getItemsByFID(int fid)

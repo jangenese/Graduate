@@ -20,8 +20,7 @@ namespace Graduate.Core.Data.Models
         }
 
         public int FId { get; set; } = 0;
-        public String label { get; set; }
-        public int grade { get; set; } 
+        public String label { get; set; }       
         public int goalGrade { get; set; }
 
        
@@ -29,7 +28,7 @@ namespace Graduate.Core.Data.Models
        
         public override string ToString()
         {
-            return string.Format("[Semster: ID={0}, Label={1}]", Id, label);
+            return string.Format("[Semster: ID={0}, Label={1}], GoalGrade={2}]", Id, label, goalGrade);
         }
 
 

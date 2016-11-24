@@ -4,58 +4,92 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Graduate.Core.Data.DataAccessLayer;
-using Graduate.Core.Data.Models;
-
 using SQLite;
+using Graduate.Core.Repository;
+using Graduate.Core.Data.Models;
 
 namespace Graduate.Core.Manager
 {
     public class ClassManager
     {
-
-        ClassDataAccess classs;
-        public ClassManager(SQLiteConnection conn)
-        {
-            classs = new ClassDataAccess(conn);
+        ClassRepository repo;
+        public ClassManager(SQLiteConnection conn) {
+            repo = new ClassRepository(conn);
         }
 
-
-        public IEnumerable<Class> getAll()
-        {
-            return classs.GetItems<Class>();
+        public void SaveItem(String fid, String label, String grade, String credit, Boolean completed) { 
+            Class c = new Class();
+            c.FId = stringToInt(fid);
+            c.label = label;
+            c.goalGrade = 4.00;
+            c.grade = stringToDouble(grade);
+            c.credits = stringToInt(credit);
+            c.completed = completed;
+            repo.saveItem(c);
         }
 
-        public void addItem(Class sem)
-        {
-            classs.SaveItem<Class>(sem);
-        }
+        public Class getClassByID(String id) {
+            int i = stringToInt(id);
+            Class c = repo.getItem(i);
 
-        public String toStringAllClasss()
-        {
-            String str = "";
-
-            IList<Class> sems = classs.GetItems<Class>().ToList<Class>();
-            foreach (Class sem in sems)
-            {
-                str += sem.ToString() + "\n";
+            if (isNull(c)) {
+                c = returnNullEntity();
             }
 
-            return str;
+            return c;
         }
 
-        public Class getClass(int id)
+        public IEnumerable<Class> getClasses() {
+            return repo.getItems();
+        }
+
+        public IEnumerable<Class> getClasssByFID(String fid) {
+            int i = stringToInt(fid);
+            return repo.getItemsByFID(i);
+        }
+        private int stringToInt(String str)
         {
-             return classs.getItemById(id);
-
-          //  return classs.GetItem<Class>(id); //borken
-
+            int i = 0;
+            try
+            {
+                i = Convert.ToInt32(str);
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            return i;
         }
 
-        public IEnumerable<Class> getClassesByFID(int fid) {
-            return classs.getItemsByFID(fid);
+        private double stringToDouble(String str)
+        {
+            double i = 0;
+            try
+            {
+                i = Convert.ToDouble(str);
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            return i;
         }
 
-        
+        private Boolean isNull(Class entity)
+        {
+            Boolean b = false;
+
+            if (entity == null)
+            {
+                b = true;
+            }
+
+            return b;
+        }
+
+        private Class returnNullEntity()
+        {
+            return new Class();
+        }
     }
 }
