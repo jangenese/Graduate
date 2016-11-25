@@ -23,7 +23,7 @@ using Graduate.Droid.Fragments;
 namespace Graduate.Droid
 {
     [Activity(Label = "EntityDetail")]
-    public class EntityDetail : Activity
+    public class EntityDetail : Activity, IDialogInterfaceOnDismissListener
     {
         private TextView label;
         private TextView parentLabel;
@@ -40,11 +40,17 @@ namespace Graduate.Droid
         private GraduateEntityBase entity = null;
         private int childrenPosition;
         private int childrenType = 0;
-        
-        
 
-       
-        
+
+        void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
+        {
+            Console.WriteLine("Dialog Was Dismissed");
+            Console.WriteLine("Dialog Was Dismissed");
+            Console.WriteLine("Dialog Was Dismissed");
+            populatePage();
+        }
+
+
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -61,10 +67,14 @@ namespace Graduate.Droid
             fab.AttachToListView(childrenList);
             handleEvents();
 
-            label.Text = selectedID.ToString();
+            label.Text = selectedID.ToString();            
+            populatePage();
 
-            int enityType = Intent.Extras.GetInt("type");
-            switch (enityType)
+        }
+
+
+        private void populatePage() {
+            switch (Intent.Extras.GetInt("type"))
             {
                 case 1:
                     Console.WriteLine("SchoolYear Recieved");
@@ -84,6 +94,7 @@ namespace Graduate.Droid
             }
         }
 
+    
         private void findViews() {
             label = FindViewById<TextView>(Resource.Id.textViewLabel);
             parentLabel = FindViewById<TextView>(Resource.Id.textViewParentLabel);
@@ -126,8 +137,7 @@ namespace Graduate.Droid
             status.Text = semester.status;
             grade.Text = semester.grade;
 
-            IList<Class> children = semester.children;
-            
+            IList<Class> children = semester.children;            
 
             ClassListAdapter childAdapter = new ClassListAdapter(this, children);
 
@@ -207,10 +217,14 @@ namespace Graduate.Droid
 
             ft.AddToBackStack(null);
 
+            Intent intent = new Intent();
+
             // Create and show the dialog.
             NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
             dialogFrag.parentId = selectedID;
             //dialogFrag.SetTargetFragment(this, 1);
+
+           
             Console.WriteLine("Passing Type Now");
             Console.WriteLine(childrenType.ToString());
             dialogFrag.type = childrenType;
@@ -218,5 +232,9 @@ namespace Graduate.Droid
             dialogFrag.Show(ft, "dialog");
 
         }
+
+
     }
-}
+
+       
+    }

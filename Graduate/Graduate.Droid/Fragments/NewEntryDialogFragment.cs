@@ -70,6 +70,13 @@ namespace Graduate.Droid.Fragments
             return fragmentView;
         }
 
+        public override void OnDismiss(IDialogInterface dialog)
+        {
+            base.OnDismiss(dialog);
+            Activity activity = this.Activity;
+            ((IDialogInterfaceOnDismissListener)activity).OnDismiss(dialog);
+        }
+
 
         private void findViews()
         {
@@ -135,9 +142,6 @@ namespace Graduate.Droid.Fragments
             } else {
                 this.TargetFragment.OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
             }
-
-
-            
 
             Dismiss();
             Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
