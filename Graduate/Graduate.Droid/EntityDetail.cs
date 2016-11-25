@@ -16,6 +16,8 @@ using Graduate.Droid.ListAdapters;
 using Graduate.Core.MiscTools;
 using Graduate.Core.View.Model;
 using com.refractored.fab;
+using Graduate.Droid.Fragments;
+
 
 
 namespace Graduate.Droid
@@ -38,6 +40,8 @@ namespace Graduate.Droid
         private GraduateEntityBase entity = null;
         private int childrenPosition;
         private int childrenType = 0;
+        
+        
 
        
         
@@ -92,6 +96,12 @@ namespace Graduate.Droid
 
         private void handleEvents() {
             childrenList.ItemClick += ChildrenList_ItemClick;
+            fab.Click += Fab_Click;
+        }
+
+        private void Fab_Click(object sender, EventArgs e)
+        {
+            showEntryForm();
         }
 
         private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -168,6 +178,44 @@ namespace Graduate.Droid
             parentLabel.Text = c.parentLabel;
             status.Text = c.status;
             grade.Text = c.grade;
+
+            IList<ClassActivity> children = c.children;
+
+            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, children);
+
+            childrenList.Adapter = childAdapter;
+            childrenType = 4;
+            try
+            {
+                entity = children[childrenPosition];
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void showEntryForm()
+        {
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            //Remove fragment else it will crash as it is already added to backstack
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+
+            ft.AddToBackStack(null);
+
+            // Create and show the dialog.
+            NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
+            //dialogFrag.SetTargetFragment(this, 1);
+            Console.WriteLine("Passing Type Now");
+            Console.WriteLine(childrenType.ToString());
+            dialogFrag.type = childrenType;
+            dialogFrag.fromParent = true;
+            dialogFrag.Show(ft, "dialog");
+
         }
     }
 }

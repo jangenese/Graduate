@@ -33,7 +33,7 @@ namespace Graduate.Core
 
             schoolYearViewManager = new SchoolYearViewManager(schoolYearManager, semesterManager, classManager);
             semesterViewManager = new SemesterViewManager(schoolYearManager, semesterManager, classManager);
-            classViewManager = new ClassViewManager(schoolYearManager, semesterManager, classManager);
+            classViewManager = new ClassViewManager(schoolYearManager, semesterManager, classManager, classActivityManager);
             classActivityViewManager = new ClassActivityViewManager(schoolYearManager, semesterManager, classManager, classActivityManager);
         }
 
@@ -49,6 +49,10 @@ namespace Graduate.Core
         public SchoolYearView getSchoolYear(String id) {
             return schoolYearViewManager.getSchoolYearView(id);
         }
+
+        public ClassActivityView getClassActivity(String id) {
+            return classActivityViewManager.getClassActivityView(id);
+        } 
 
         public void saveSemester(String fid, String label) {
             semesterManager.SaveItem(fid, label);
@@ -82,6 +86,10 @@ namespace Graduate.Core
             return classManager.getClasses().ToList<Class>();
         }
 
+        public IList<ClassActivity> getAllClassAcivities() {
+            return classActivityManager.getClassActivities().ToList<ClassActivity>();
+        }
+
         public List<String> getAllSchoolYearLabels() {
            return schoolYearManager.getSchoolYearLabels();
         }
@@ -89,6 +97,8 @@ namespace Graduate.Core
         public List<String> getAllSemesterLabels() {
             return semesterManager.getSemesterLabels();
         }
+
+
 
     }
 }
