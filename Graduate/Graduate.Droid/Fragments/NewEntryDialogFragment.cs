@@ -41,6 +41,7 @@ namespace Graduate.Droid.Fragments
 
         private int parentPosition = 0;
         private Boolean status = false;
+        public int parentId { get; set; } = 0;
 
 
         private View fragmentView;
@@ -129,7 +130,14 @@ namespace Graduate.Droid.Fragments
 
             saveEntry(type);
 
-            this.TargetFragment.OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
+            if (fromParent) {
+                OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
+            } else {
+                this.TargetFragment.OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
+            }
+
+
+            
 
             Dismiss();
             Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
@@ -141,13 +149,26 @@ namespace Graduate.Droid.Fragments
         }
 
         private void saveSemester() {
-            String fid = getSchoolYearParentID(parentEntry.Text, planner.getAllSchoolYears());
-            planner.saveSemester(fid, entry.Text.ToString());
+
+            if (fromParent) {
+                planner.saveSemester(parentId.ToString(), entry.Text.ToString());
+            } else {
+                String fid = getSchoolYearParentID(parentEntry.Text, planner.getAllSchoolYears());
+                planner.saveSemester(fid, entry.Text.ToString());
+            }
+
+            
         }
 
         private void saveClass() {
-            String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
-            planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+            if (fromParent) {
+                planner.saveClass(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+            } else {
+                String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
+                planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+            }
+
+            
         }
 
         private void saveClassActivity() {

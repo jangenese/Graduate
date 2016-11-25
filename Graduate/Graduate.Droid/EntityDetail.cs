@@ -209,6 +209,7 @@ namespace Graduate.Droid
 
             // Create and show the dialog.
             NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
+            dialogFrag.parentId = selectedID;
             //dialogFrag.SetTargetFragment(this, 1);
             Console.WriteLine("Passing Type Now");
             Console.WriteLine(childrenType.ToString());
