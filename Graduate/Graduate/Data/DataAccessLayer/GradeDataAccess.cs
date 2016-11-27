@@ -17,7 +17,7 @@ namespace Graduate.Core.Data.DataAccessLayer
         public GradeDataAccess(SQLiteConnection conn) : base(conn)
         {
             database = conn; 
-            init();
+            //init();
         }
 
         public void init()

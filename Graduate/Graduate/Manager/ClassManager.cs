@@ -13,8 +13,10 @@ namespace Graduate.Core.Manager
     public class ClassManager
     {
         ClassRepository repo;
+        GradeRepository gradeRepo;
         public ClassManager(SQLiteConnection conn) {
             repo = new ClassRepository(conn);
+            gradeRepo = new GradeRepository(conn);
         }
 
         public void SaveItem(String fid, String label, String grade, String credit, Boolean completed) { 
@@ -22,7 +24,7 @@ namespace Graduate.Core.Manager
             c.FId = stringToInt(fid);
             c.label = label;
             c.goalGrade = 4.00;
-            c.grade = stringToDouble(grade);
+            c.grade = getGradeFromSchema(grade);
             c.credits = stringToInt(credit);
             c.completed = completed;
             repo.saveItem(c);
@@ -73,6 +75,14 @@ namespace Graduate.Core.Manager
                 throw e;
             }
             return i;
+        }
+
+        private double getGradeFromSchema(String letter) {
+            
+
+            Grade g = gradeRepo.getItemByLetter(letter);
+
+            return g.GPA;          
         }
 
         private Boolean isNull(Class entity)
