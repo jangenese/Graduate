@@ -78,8 +78,6 @@ namespace Graduate.Droid.Fragments
                 Activity activity = this.Activity;
                 ((IDialogInterfaceOnDismissListener)activity).OnDismiss(dialog);
             }
-
-           
         }
         
 
@@ -184,7 +182,8 @@ namespace Graduate.Droid.Fragments
         }
 
         private void saveClassActivity() {
-            Console.WriteLine("Save Activity Here");
+            Console.WriteLine("Save Activity Here");            
+            planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
         }
 
         private void saveEntry(int type)
