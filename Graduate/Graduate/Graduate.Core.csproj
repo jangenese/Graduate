@@ -60,7 +60,7 @@
     <Compile Include="Repository\GradeRepository.cs" />
     <Compile Include="Repository\SchoolYearRepository.cs" />
     <Compile Include="Repository\SemesterRepository.cs" />
-    <Compile Include="View\Manager\ActivityViewManager.cs" />
+    <Compile Include="View\Manager\ClassActivityViewManager.cs" />
     <Compile Include="View\Manager\ClassViewManager.cs" />
     <Compile Include="View\Manager\SchoolYearViewManager.cs" />
     <Compile Include="View\Manager\SemesterViewManager.cs" />
@@ -89,7 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

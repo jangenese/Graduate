@@ -49,7 +49,7 @@ namespace Graduate.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.layout1);
+            SetContentView(Resource.Layout.EntityDetail);
 
             planner = GraduateApp.Current.planner;
 
@@ -122,22 +122,26 @@ namespace Graduate.Droid
         private void Fab_Click(object sender, EventArgs e)
         {
             showEntryForm();
-
+           
 
         }
 
+        
+
         private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            //  var entity = classs[e.Position];
 
-            childrenPosition = e.Position;
 
-            var intent = new Intent();
-            intent.SetClass(this, typeof(EntityDetail));
-            intent.PutExtra("type", childrenType);
-            intent.PutExtra("selectedEntityID", entity.Id);
+            if (childrenType != 4) {
+                childrenPosition = e.Position;
 
-            StartActivityForResult(intent, 100);
+                var intent = new Intent();
+                intent.SetClass(this, typeof(EntityDetail));
+                intent.PutExtra("type", childrenType);
+                intent.PutExtra("selectedEntityID", entity.Id);
+
+                StartActivityForResult(intent, 100);
+            }            
         }
 
         private void populateSemesterDetail(int id) {
@@ -207,8 +211,9 @@ namespace Graduate.Droid
 
             childrenList.Adapter = childAdapter;
 
-        
             childrenType = 4;
+            /*
+
             try
             {
                 entity = children[childrenPosition];
@@ -217,6 +222,7 @@ namespace Graduate.Droid
             {
 
             }
+            */
         }
 
         private void showEntryForm()

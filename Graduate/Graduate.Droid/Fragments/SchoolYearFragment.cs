@@ -24,6 +24,10 @@ namespace Graduate.Droid.Fragments
         protected IList<SchoolYear> schoolYears;
         protected FloatingActionButton fab;
 
+        protected TextView label;
+        protected TextView status;
+        protected TextView grade;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);         
@@ -58,6 +62,7 @@ namespace Graduate.Droid.Fragments
             base.OnActivityCreated(savedInstanceState);
 
             FindViews();
+            label.Text = "SchoolYear";
             HandleEvents();
             populateListView();
             
@@ -115,6 +120,9 @@ namespace Graduate.Droid.Fragments
         {
             fab = this.View.FindViewById<FloatingActionButton>(Resource.Id.fab);
             listView = this.View.FindViewById<ListView>(Resource.Id.listViewGraduateEntities);
+            label = this.View.FindViewById<TextView>(Resource.Id.textViewLabel);
+            status = this.View.FindViewById<TextView>(Resource.Id.textViewStatus);
+            grade = this.View.FindViewById<TextView>(Resource.Id.textViewGrade);
         }
 
         protected void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

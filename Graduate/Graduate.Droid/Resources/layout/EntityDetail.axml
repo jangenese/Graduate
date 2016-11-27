@@ -4,82 +4,95 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:weightSum="100"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp">
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/linearLayoutRoot"
-        android:layout_marginBottom="0.0dp">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_height="match_parent"
-            android:id="@+id/linearLayoutNameContainerHeader"
-            android:layout_width="225dp">
-            <TextView
-                android:text="Winter 2015"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/textViewLabel"
-                android:textSize="30dp" />
-            <TextView
-                android:text="2014-2015"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:id="@+id/textViewParentLabel"
-                android:textSize="15dp" />
-        </LinearLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutHeader"
+        android:layout_weight="5"
+        android:layout_marginBottom="20dp">
         <LinearLayout
             android:orientation="horizontal"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/linearLayoutStatsHeader">
+            android:id="@+id/linearLayout1"
+            android:weightSum="100">
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="55dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/linearLayoutCreditsContainer">
+                android:id="@+id/linearLayout2"
+                android:layout_weight="60"
+                android:weightSum="100">
                 <TextView
-                    android:text="Credits"
+                    android:text="COMP 1501"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:id="@+id/textViewCreditsLabel"
-                    android:gravity="center" />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewLabel"
+                    android:layout_weight="60"
+                    android:gravity="center_vertical"
+                    android:textSize="40dp" />
                 <TextView
-                    android:text="12"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/textViewCredits"
-                    android:textSize="30dp"
-                    android:gravity="center" />
+                    android:text="Fall 2012"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewParentLabel"
+                    android:layout_weight="40"
+                    android:gravity="center"
+                    android:textSize="20dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/linearLayoutGradeContainer">
+                android:id="@+id/linearLayout3"
+                android:layout_weight="20"
+                android:weightSum="100">
                 <TextView
-                    android:text="Completed"
+                    android:text="Credits"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"
+                    android:layout_weight="60"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+                <TextView
+                    android:text="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewCredits"
+                    android:layout_weight="40"
+                    android:gravity="center"
+                    android:textSize="25dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout4"
+                android:layout_weight="20"
+                android:weightSum="100">
+                <TextView
+                    android:text="Grade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/textViewStatusLabel"
-                    android:gravity="center" />
+                    android:layout_weight="60"
+                    android:gravity="center"
+                    android:textSize="20dp" />
                 <TextView
                     android:text="B+"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/textViewGrade"
-                    android:textSize="30dp"
-                    android:gravity="center" />
+                    android:layout_weight="40"
+                    android:gravity="center"
+                    android:textSize="25dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -88,16 +101,28 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/linearLayoutListViewContainer">
-        <ListView
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutBody"
+        android:layout_weight="80"
+        android:weightSum="100"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <FrameLayout
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listViewChildItems"
-            android:layout_marginTop="10dp" />
-      <com.refractored.fab.FloatingActionButton
+            android:id="@+id/frameLayout1"
+            android:layout_weight="80">
+            <ListView
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listViewChildItems" />
+            <com.refractored.fab.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,19 +132,20 @@
                 fab:fab_colorNormal="#E64A19"
                 fab:fab_colorPressed="#BF360C"
                 fab:fab_colorRipple="#FF80AB" />
+        </FrameLayout>
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/linearLayout1">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutFooter"
+        android:layout_weight="15">
         <TextView
-            android:text="Other Stuff"
+            android:text="footerCrap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewOtherStuff"
-            android:textSize="30dp" />
+            android:id="@+id/textView7" />
     </LinearLayout>
 </LinearLayout>

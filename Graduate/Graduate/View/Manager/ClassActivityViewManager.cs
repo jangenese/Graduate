@@ -42,12 +42,22 @@ namespace Graduate.Core.View.Manager
             activityView.id = activity.Id;
             activityView.label = activity.label;
             activityView.weight = activity.weight.ToString();
-            activityView.grade = Math.Round(activity.grade, 2).ToString();            
+            activityView.grade = Math.Round(activity.grade, 2).ToString();
+            activityView.status = getStatus(activity.completed);          
             return activityView;
-        }       
+        }
 
-       
 
-      
+        private String getStatus(Boolean b)
+        {
+            String status = "Completed";
+
+            if (!b)
+            {
+                status = "InProgress";
+            }
+            return status;
+        }
+
     }
 }

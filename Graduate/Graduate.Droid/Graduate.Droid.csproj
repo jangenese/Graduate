@@ -179,7 +179,7 @@
     <AndroidResource Include="Resources\layout\GPASchemaEdit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\layout1.axml">
+    <AndroidResource Include="Resources\layout\PlannerListViewRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
