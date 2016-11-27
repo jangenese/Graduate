@@ -34,6 +34,11 @@ namespace Graduate.Droid
         private int selectedID;
         private Planner planner;
 
+        private TextView headerlabel;
+        private TextView headerstatus;
+        private TextView headergrade;
+
+
 
         private FloatingActionButton fab;
 
@@ -112,6 +117,9 @@ namespace Graduate.Droid
             grade = FindViewById<TextView>(Resource.Id.textViewGrade);
             childrenList = FindViewById<ListView>(Resource.Id.listViewChildItems);
             fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            headerlabel = FindViewById<TextView>(Resource.Id.textViewListViewHeaderLabel);
+            headerstatus = FindViewById<TextView>(Resource.Id.textViewListViewHeaderStatus);
+            headergrade = FindViewById<TextView>(Resource.Id.textViewListViewHeaderGrade);
         }
 
         private void handleEvents() {
@@ -145,6 +153,11 @@ namespace Graduate.Droid
         }
 
         private void populateSemesterDetail(int id) {
+            headerlabel.Text = "Class";
+
+
+
+
             SemesterView semester = planner.getSemester(id.ToString());
             label.Text = semester.label;
             parentLabel.Text = semester.parentLabel;
@@ -168,6 +181,10 @@ namespace Graduate.Droid
         }
 
         private void populateSchoolYearDetail(int id) {
+            headerlabel.Text = "Semester";
+
+
+
             SchoolYearView sy = planner.getSchoolYear(id.ToString());
 
             label.Text = sy.label;
@@ -196,6 +213,9 @@ namespace Graduate.Droid
 
         private void populateClassDetail(int id)
         {
+
+            headerlabel.Text = "Actvities";
+            headerstatus.Text = "Weight";
             ClassView c = planner.getClass(id.ToString());
 
             label.Text = c.label;
