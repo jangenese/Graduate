@@ -294,6 +294,11 @@ namespace Graduate.Droid.Fragments
         private void modifyClassActivityForm() {
             hideParentEntry();
 
+
+            var gradeEntryOptions = planner.getAllPercentGrades();
+            ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
+            gradeEntry.Adapter = gradeEntryAdapter;
+
             title.Text = "New Entry: Activity";
             entryType.Text = "Activity";
             entry.Hint = "Quiz 1";
