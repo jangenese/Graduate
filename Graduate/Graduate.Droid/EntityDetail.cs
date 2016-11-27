@@ -41,15 +41,7 @@ namespace Graduate.Droid
         private int childrenPosition;
         private int childrenType = 0;
 
-
-        void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
-        {
-            Console.WriteLine("Dialog Was Dismissed");
-            Console.WriteLine("Dialog Was Dismissed");
-            Console.WriteLine("Dialog Was Dismissed");
-            populatePage();
-        }
-
+        
 
 
 
@@ -71,6 +63,23 @@ namespace Graduate.Droid
             populatePage();
 
         }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            if (resultCode == Result.Ok) {
+                Console.WriteLine("Hello");
+            }
+            Console.WriteLine("On Result is being exceuted"); 
+        }
+
+        
+
+        void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
+        {
+            populatePage(); 
+}
 
 
         private void populatePage() {
@@ -107,12 +116,14 @@ namespace Graduate.Droid
 
         private void handleEvents() {
             childrenList.ItemClick += ChildrenList_ItemClick;
-            fab.Click += Fab_Click;
+            fab.Click += Fab_Click;            
         }
 
         private void Fab_Click(object sender, EventArgs e)
         {
             showEntryForm();
+
+
         }
 
         private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -140,6 +151,7 @@ namespace Graduate.Droid
             IList<Class> children = semester.children;            
 
             ClassListAdapter childAdapter = new ClassListAdapter(this, children);
+          
 
             childrenList.Adapter = childAdapter;
             childrenType = 3;
@@ -194,6 +206,8 @@ namespace Graduate.Droid
             ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, children);
 
             childrenList.Adapter = childAdapter;
+
+        
             childrenType = 4;
             try
             {
@@ -217,20 +231,17 @@ namespace Graduate.Droid
 
             ft.AddToBackStack(null);
 
-            Intent intent = new Intent();
-
-            // Create and show the dialog.
+           // Create and show the dialog.
             NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
             dialogFrag.parentId = selectedID;
             //dialogFrag.SetTargetFragment(this, 1);
-
            
-            Console.WriteLine("Passing Type Now");
-            Console.WriteLine(childrenType.ToString());
-            dialogFrag.type = childrenType;
+
+            
+           dialogFrag.type = childrenType;
             dialogFrag.fromParent = true;
             dialogFrag.Show(ft, "dialog");
-
+          
         }
 
 
