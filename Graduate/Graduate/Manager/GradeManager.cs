@@ -82,5 +82,42 @@ namespace Graduate.Core.Manager
         {
             return new Grade();
         }
+
+
+        public List<String> getLetterGrades()
+        {
+            List<String> labels = new List<String>();
+            IEnumerable<Grade> grades = getAllGrades();
+
+            foreach (Grade g in grades)
+            {
+                labels.Add(g.Letter);
+            }
+            return labels;
+        }
+
+        public List<String> getPercentGrades()
+        {
+            List<String> labels = new List<String>();
+            IEnumerable<Grade> grades = getAllGrades();
+
+            foreach (Grade g in grades)
+            {
+                labels.Add(g.Percent.ToString());
+            }
+            return labels;
+        }
+
+        public List<String> getGPAs()
+        {
+            List<String> labels = new List<String>();
+            IEnumerable<Grade> grades = getAllGrades();
+
+            foreach (Grade g in grades)
+            {
+                labels.Add(g.GPA.ToString());
+            }
+            return labels;
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Graduate.Droid.Fragments
         private TextView entryType;
         private EditText entry;
         private TextView grade;
-        private EditText gradeEntry;
+        private AutoCompleteTextView gradeEntry;
         private TextView credits;
         private EditText creditsEntry;
         private CheckBox checkbox;
@@ -281,9 +281,14 @@ namespace Graduate.Droid.Fragments
                 parentType.Text = "Semester";                
             }
 
+            var gradeEntryOptions = planner.getAllLetterGrades();
+            ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
+            gradeEntry.Adapter = gradeEntryAdapter;
+
             title.Text = "New Entry: Class";
             entryType.Text = "Class";
             entry.Hint = "ABCD - 1234";
+            gradeEntry.Hint = "B+";
         }
 
         private void modifyClassActivityForm() {

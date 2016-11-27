@@ -19,6 +19,7 @@ namespace Graduate.Core
         SemesterManager semesterManager;
         ClassManager classManager;
         ClassActivityManager classActivityManager;
+        GradeManager gradeManager;
 
         SchoolYearViewManager schoolYearViewManager;
         SemesterViewManager semesterViewManager;
@@ -30,6 +31,7 @@ namespace Graduate.Core
             semesterManager = new SemesterManager(conn);
             classManager = new ClassManager(conn);
             classActivityManager = new ClassActivityManager(conn);
+            gradeManager = new GradeManager(conn);
 
             schoolYearViewManager = new SchoolYearViewManager(schoolYearManager, semesterManager, classManager);
             semesterViewManager = new SemesterViewManager(schoolYearManager, semesterManager, classManager);
@@ -97,6 +99,22 @@ namespace Graduate.Core
         public List<String> getAllSemesterLabels() {
             return semesterManager.getSemesterLabels();
         }
+
+        public List<String> getAllLetterGrades() {
+            return gradeManager.getLetterGrades();
+        }
+
+        public List<String> getAllPercentGrades()
+        {
+            return gradeManager.getPercentGrades();
+        }
+
+        public List<String> getAllGPAGrades()
+        {
+            return gradeManager.getGPAs();
+        }
+
+
 
 
 
