@@ -2193,8 +2193,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06006e
 			public const int buttonAdd = 2131099758;
 			
-			// aapt resource value: 0x7f0600be
-			public const int buttonCalculator = 2131099838;
+			// aapt resource value: 0x7f0600ba
+			public const int buttonCalculator = 2131099834;
 			
 			// aapt resource value: 0x7f0600b8
 			public const int buttonCancel = 2131099832;
@@ -2202,8 +2202,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060047
 			public const int buttonPanel = 2131099719;
 			
-			// aapt resource value: 0x7f0600bf
-			public const int buttonPlanner = 2131099839;
+			// aapt resource value: 0x7f0600bb
+			public const int buttonPlanner = 2131099835;
 			
 			// aapt resource value: 0x7f0600b7
 			public const int buttonSave = 2131099831;
@@ -2367,8 +2367,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060042
 			public const int image = 2131099714;
 			
-			// aapt resource value: 0x7f0600bd
-			public const int imageView1 = 2131099837;
+			// aapt resource value: 0x7f0600b9
+			public const int imageView1 = 2131099833;
 			
 			// aapt resource value: 0x7f0600dd
 			public const int info = 2131099869;
@@ -2490,8 +2490,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600c2
 			public const int linearLayoutParentRow = 2131099842;
 			
-			// aapt resource value: 0x7f0600b9
-			public const int linearLayoutRow = 2131099833;
+			// aapt resource value: 0x7f0600bc
+			public const int linearLayoutRow = 2131099836;
 			
 			// aapt resource value: 0x7f060074
 			public const int linearLayoutRow1 = 2131099764;
@@ -2694,8 +2694,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060096
 			public const int textViewCredits = 2131099798;
 			
-			// aapt resource value: 0x7f0600ba
-			public const int textViewEntry = 2131099834;
+			// aapt resource value: 0x7f0600bd
+			public const int textViewEntry = 2131099837;
 			
 			// aapt resource value: 0x7f060078
 			public const int textViewEntryRow1 = 2131099768;
@@ -2706,8 +2706,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060080
 			public const int textViewGrade = 2131099776;
 			
-			// aapt resource value: 0x7f0600bc
-			public const int textViewGradeEntry = 2131099836;
+			// aapt resource value: 0x7f0600bf
+			public const int textViewGradeEntry = 2131099839;
 			
 			// aapt resource value: 0x7f06007c
 			public const int textViewLabel = 2131099772;
@@ -2730,8 +2730,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06007e
 			public const int textViewStatus = 2131099774;
 			
-			// aapt resource value: 0x7f0600bb
-			public const int textViewStatusEntry = 2131099835;
+			// aapt resource value: 0x7f0600be
+			public const int textViewStatusEntry = 2131099838;
 			
 			// aapt resource value: 0x7f060097
 			public const int textViewStatusLabel = 2131099799;
@@ -2961,61 +2961,64 @@ namespace Graduate.Droid
 			public const int GraduateEntityEntryActivity = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int ListViewPlanner = 2130903086;
+			public const int layout1 = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int MainActivity = 2130903087;
+			public const int ListViewPlanner = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int NewEntryDialogFragment = 2130903088;
+			public const int MainActivity = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_media_action = 2130903089;
+			public const int NewEntryDialogFragment = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_media_cancel_action = 2130903090;
+			public const int notification_media_action = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_template_big_media = 2130903091;
+			public const int notification_media_cancel_action = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_big_media_narrow = 2130903092;
+			public const int notification_template_big_media = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_lines = 2130903093;
+			public const int notification_template_big_media_narrow = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_media = 2130903094;
+			public const int notification_template_lines = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_part_chronometer = 2130903095;
+			public const int notification_template_media = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_part_time = 2130903096;
+			public const int notification_template_part_chronometer = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int PlannerActivity_Main = 2130903097;
+			public const int notification_template_part_time = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int PlannerListViewRow = 2130903098;
+			public const int PlannerActivity_Main = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int SchoolYearFragment = 2130903099;
+			public const int PlannerListViewRow = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int select_dialog_item_material = 2130903100;
+			public const int SchoolYearFragment = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_multichoice_material = 2130903101;
+			public const int select_dialog_item_material = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int select_dialog_singlechoice_material = 2130903102;
+			public const int select_dialog_multichoice_material = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int SemesterFragment = 2130903103;
+			public const int select_dialog_singlechoice_material = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int support_simple_spinner_dropdown_item = 2130903104;
+			public const int SemesterFragment = 2130903104;
+			
+			// aapt resource value: 0x7f030041
+			public const int support_simple_spinner_dropdown_item = 2130903105;
 			
 			static Layout()
 			{
