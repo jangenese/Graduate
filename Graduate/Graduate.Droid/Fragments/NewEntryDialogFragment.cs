@@ -70,16 +70,16 @@ namespace Graduate.Droid.Fragments
             return fragmentView;
         }
 
-        
+
         public override void OnDismiss(IDialogInterface dialog)
         {
             base.OnDismiss(dialog);
-            if (fromParent == true) {                
+            if (fromParent == true) {
                 Activity activity = this.Activity;
                 ((IDialogInterfaceOnDismissListener)activity).OnDismiss(dialog);
             }
         }
-        
+
 
 
         private void findViews()
@@ -147,7 +147,7 @@ namespace Graduate.Droid.Fragments
                 this.TargetFragment.OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
             }
 
-           
+
 
             Dismiss();
             Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
@@ -167,7 +167,7 @@ namespace Graduate.Droid.Fragments
                 planner.saveSemester(fid, entry.Text.ToString());
             }
 
-            
+
         }
 
         private void saveClass() {
@@ -178,12 +178,11 @@ namespace Graduate.Droid.Fragments
                 planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
             }
 
-            
+
         }
 
         private void saveClassActivity() {
-            Console.WriteLine("Save Activity Here");            
-            planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+                        planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
         }
 
         private void saveEntry(int type)
@@ -201,10 +200,10 @@ namespace Graduate.Droid.Fragments
 
                     break;
                 case 3:
-                    
+
                     saveClass();
                     break;
-                case 4:                    
+                case 4:
                     saveClassActivity();
                     break;
                 default:
@@ -227,7 +226,7 @@ namespace Graduate.Droid.Fragments
 
                     break;
                 case 3:
-                    
+
                     modifyClassForm();
                     break;
                 case 4:
@@ -240,7 +239,7 @@ namespace Graduate.Droid.Fragments
             }
         }
 
-       
+
 
         private void modifySchoolYearForm() {
             title.Text = "New Entry: SchoolYear";
@@ -251,15 +250,15 @@ namespace Graduate.Droid.Fragments
             checkBoxRow.Visibility = ViewStates.Gone;
         }
 
-        private void modifySemesterForm() { 
+        private void modifySemesterForm() {
             if (fromParent) {
                 hideParentEntry();
 
             } else {
                 var parentEntryOptions = planner.getAllSchoolYearLabels();
                 ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
-                parentEntry.Adapter = parentEntryAdapter;               
-                parentType.Text = "School Year";               
+                parentEntry.Adapter = parentEntryAdapter;
+                parentType.Text = "School Year";
             }
             title.Text = "New Entry: Semester";
             entryType.Text = "Semester";
@@ -277,8 +276,8 @@ namespace Graduate.Droid.Fragments
             } else {
                 var parentEntryOptions = planner.getAllSemesterLabels();
                 ArrayAdapter parentEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, parentEntryOptions);
-                parentEntry.Adapter = parentEntryAdapter;                
-                parentType.Text = "Semester";                
+                parentEntry.Adapter = parentEntryAdapter;
+                parentType.Text = "Semester";
             }
 
             var gradeEntryOptions = planner.getAllLetterGrades();
@@ -288,7 +287,8 @@ namespace Graduate.Droid.Fragments
             title.Text = "New Entry: Class";
             entryType.Text = "Class";
             entry.Hint = "ABCD - 1234";
-            gradeEntry.Hint = "B+";
+            
+            
         }
 
         private void modifyClassActivityForm() {
@@ -303,6 +303,7 @@ namespace Graduate.Droid.Fragments
             entryType.Text = "Activity";
             entry.Hint = "Quiz 1";
             credits.Text = "Weight";
+            gradeEntry.Text = "100";
         }
 
         private String getParentPosition() {
@@ -341,6 +342,29 @@ namespace Graduate.Droid.Fragments
 
         private void hideParentEntry() {
             parentRow.Visibility = ViewStates.Gone;
+        }
+
+
+        private void gradeEntryIsValid(String entry) {
+            //make sure letter grade is within the schema table
+        }
+
+        private void weightEntryIsValid(String entry) {
+            //make sure entry is within remaining weight
+        }
+                
+
+        private void displayError(String message) {
+            //set alert for executing the task
+            AlertDialog.Builder alert = new AlertDialog.Builder(this.Context);
+            alert.SetTitle("Entry Form Error");
+            alert.SetMessage(message);            
+
+            alert.SetNegativeButton("Dismissed", (senderAlert, args) => {
+                Toast.MakeText(this.Context, "Dismissed", ToastLength.Short).Show();
+            });
+            Dialog dialog = alert.Create();
+            dialog.Show();
         }
 
 
