@@ -96,7 +96,7 @@ namespace Graduate.Core.View.Manager
 
         private String getStatus(String fid)
         {
-            String status = "Completed";
+            String status = "InProgress";
 
 
             IList<Class> children = getChildrensChildren(fid);

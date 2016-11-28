@@ -31,11 +31,13 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\DataAccessLayer\ClassActivityDataAccess.cs" />
     <Compile Include="Data\DataAccessLayer\ClassDataAccess.cs" />
     <Compile Include="Data\DataAccessLayer\GradeDataAccess.cs" />
     <Compile Include="Data\DataAccessLayer\GraduateDatabase.cs" />
     <Compile Include="Data\DataAccessLayer\SchoolYearDataAccess.cs" />
     <Compile Include="Data\DataAccessLayer\SemesterDataAccess.cs" />
+    <Compile Include="Data\Models\ClassActivity.cs" />
     <Compile Include="Data\Models\Class.cs" />
     <Compile Include="Data\Models\Grade.cs" />
     <Compile Include="Data\Models\GraduateEntityBase.cs" />
@@ -44,6 +46,7 @@
     <Compile Include="Data\Models\Semester.cs" />
     <Compile Include="GradeConverter.cs" />
     <Compile Include="GraduateCore.cs" />
+    <Compile Include="Manager\ClassActivityManager.cs" />
     <Compile Include="Manager\ClassManager.cs" />
     <Compile Include="Manager\GradeManager.cs" />
     <Compile Include="Manager\SchoolYearManager.cs" />
@@ -52,13 +55,16 @@
     <Compile Include="MiscTools\GraduateEntityList.cs" />
     <Compile Include="Planner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ClassActivityRepository.cs" />
     <Compile Include="Repository\ClassRepository.cs" />
     <Compile Include="Repository\GradeRepository.cs" />
     <Compile Include="Repository\SchoolYearRepository.cs" />
     <Compile Include="Repository\SemesterRepository.cs" />
+    <Compile Include="View\Manager\ClassActivityViewManager.cs" />
     <Compile Include="View\Manager\ClassViewManager.cs" />
     <Compile Include="View\Manager\SchoolYearViewManager.cs" />
     <Compile Include="View\Manager\SemesterViewManager.cs" />
+    <Compile Include="View\Model\ClassActivityView.cs" />
     <Compile Include="View\Model\ClassView.cs" />
     <Compile Include="View\Model\SchoolYearView.cs" />
     <Compile Include="View\Model\SemesterView.cs" />
@@ -83,7 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

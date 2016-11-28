@@ -10,42 +10,47 @@ using Graduate.Core.Data.Models;
 
 namespace Graduate.Core.Manager
 {
-    public class ClassManager
+   public class ClassActivityManager
     {
-        ClassRepository repo;
-        GradeRepository gradeRepo;
-        public ClassManager(SQLiteConnection conn) {
-            repo = new ClassRepository(conn);
-            gradeRepo = new GradeRepository(conn);
+
+        ClassActivityRepository repo;
+        public ClassActivityManager(SQLiteConnection conn)
+        {
+            repo = new ClassActivityRepository(conn);
         }
 
-        public void SaveItem(String fid, String label, String grade, String credit, Boolean completed) { 
-            Class c = new Class();
-            c.FId = stringToInt(fid);
-            c.label = label;
-            c.goalGrade = 4.00;
-            c.grade = getGradeFromSchema(grade);
-            c.credits = stringToInt(credit);
-            c.completed = completed;
-            repo.saveItem(c);
+        public void SaveItem(String fid, String label, String grade, String weight, Boolean completed)
+        {
+            ClassActivity activity = new ClassActivity();
+            activity.FId = stringToInt(fid);
+            activity.label = label;
+            activity.goalGrade = 4.00;
+            activity.grade = stringToDouble(grade);
+            activity.weight = stringToInt(weight);
+            activity.completed = completed;
+            repo.saveItem(activity);
         }
 
-        public Class getClassByID(String id) {
+        public ClassActivity getClassActivityByID(String id)
+        {
             int i = stringToInt(id);
-            Class c = repo.getItem(i);
+            ClassActivity c = repo.getItem(i);
 
-            if (isNull(c)) {
+            if (isNull(c))
+            {
                 c = returnNullEntity();
             }
 
             return c;
         }
 
-        public IEnumerable<Class> getClasses() {
+        public IEnumerable<ClassActivity> getClassActivities()
+        {
             return repo.getItems();
         }
 
-        public IEnumerable<Class> getClasssByFID(String fid) {
+        public IEnumerable<ClassActivity> getClassActivitiesByFID(String fid)
+        {
             int i = stringToInt(fid);
             return repo.getItemsByFID(i);
         }
@@ -77,15 +82,7 @@ namespace Graduate.Core.Manager
             return i;
         }
 
-        private double getGradeFromSchema(String letter) {
-            
-
-            Grade g = gradeRepo.getItemByLetter(letter);
-
-            return g.GPA;          
-        }
-
-        private Boolean isNull(Class entity)
+        private Boolean isNull(ClassActivity entity)
         {
             Boolean b = false;
 
@@ -97,9 +94,9 @@ namespace Graduate.Core.Manager
             return b;
         }
 
-        private Class returnNullEntity()
+        private ClassActivity returnNullEntity()
         {
-            return new Class();
+            return new ClassActivity();
         }
     }
 }

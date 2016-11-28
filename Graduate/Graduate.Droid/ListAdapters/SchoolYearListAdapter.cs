@@ -47,23 +47,30 @@ namespace Graduate.Droid.ListAdapters
 
             if (row == null)
             {
-                row = this.context.LayoutInflater.Inflate(Resource.Layout.ListViewPlanner, parent, false);
+                row = this.context.LayoutInflater.Inflate(Resource.Layout.PlannerListViewRow, parent, false);
             }
-
+            /*
             TextView label = row.FindViewById<TextView>(Resource.Id.textViewLabel);
             TextView entry = row.FindViewById<TextView>(Resource.Id.textViewEntry);
             TextView status = row.FindViewById<TextView>(Resource.Id.textViewStatus);
             TextView statusEntry = row.FindViewById<TextView>(Resource.Id.textViewStatusEntry);
             TextView grade = row.FindViewById<TextView>(Resource.Id.textViewGrade);
             TextView gradeEntry = row.FindViewById<TextView>(Resource.Id.textViewGradeEntry);
+            */
 
 
+            TextView entry = row.FindViewById<TextView>(Resource.Id.textViewLabel);
 
-            label.Text = "SchoolYear";
+            TextView statusEntry = row.FindViewById<TextView>(Resource.Id.textViewStatus);
+
+            TextView gradeEntry = row.FindViewById<TextView>(Resource.Id.textViewGrade);
+
+
+            
             entry.Text = sy.label;
-            status.Text = "Status";
+            
             statusEntry.Text = sy.status;
-            grade.Text = "Grade";
+         
             gradeEntry.Text = sy.grade;
 
     

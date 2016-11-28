@@ -15,13 +15,15 @@ using Graduate.Core.Data.Models;
 using Graduate.Droid.ListAdapters;
 using Graduate.Core.MiscTools;
 using Graduate.Core.View.Model;
+using com.refractored.fab;
+using Graduate.Droid.Fragments;
 
 
 
 namespace Graduate.Droid
 {
     [Activity(Label = "EntityDetail")]
-    public class EntityDetail : Activity
+    public class EntityDetail : Activity, IDialogInterfaceOnDismissListener
     {
         private TextView label;
         private TextView parentLabel;
@@ -30,14 +32,22 @@ namespace Graduate.Droid
         private TextView grade;
         private ListView childrenList;
         private int selectedID;
-        private Planner planner;       
-       
+        private Planner planner;
+
+        private TextView headerlabel;
+        private TextView headerstatus;
+        private TextView headergrade;
+
+
+
+        private FloatingActionButton fab;
+
         private GraduateEntityBase entity = null;
         private int childrenPosition;
         private int childrenType = 0;
 
-       
         
+
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -51,12 +61,34 @@ namespace Graduate.Droid
             selectedID = Intent.Extras.GetInt("selectedEntityID");
 
             findViews();
+            fab.AttachToListView(childrenList);
             handleEvents();
 
-            label.Text = selectedID.ToString();
+            label.Text = selectedID.ToString();            
+            populatePage();
 
-            int enityType = Intent.Extras.GetInt("type");
-            switch (enityType)
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            if (resultCode == Result.Ok) {
+                Console.WriteLine("Hello");
+            }
+            Console.WriteLine("On Result is being exceuted"); 
+        }
+
+        
+
+        void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
+        {
+            populatePage(); 
+}
+
+
+        private void populatePage() {
+            switch (Intent.Extras.GetInt("type"))
             {
                 case 1:
                     Console.WriteLine("SchoolYear Recieved");
@@ -76,6 +108,7 @@ namespace Graduate.Droid
             }
         }
 
+    
         private void findViews() {
             label = FindViewById<TextView>(Resource.Id.textViewLabel);
             parentLabel = FindViewById<TextView>(Resource.Id.textViewParentLabel);
@@ -83,27 +116,48 @@ namespace Graduate.Droid
             status = FindViewById<TextView>(Resource.Id.textViewStatusLabel);
             grade = FindViewById<TextView>(Resource.Id.textViewGrade);
             childrenList = FindViewById<ListView>(Resource.Id.listViewChildItems);
+            fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            headerlabel = FindViewById<TextView>(Resource.Id.textViewListViewHeaderLabel);
+            headerstatus = FindViewById<TextView>(Resource.Id.textViewListViewHeaderStatus);
+            headergrade = FindViewById<TextView>(Resource.Id.textViewListViewHeaderGrade);
         }
 
         private void handleEvents() {
             childrenList.ItemClick += ChildrenList_ItemClick;
+            fab.Click += Fab_Click;            
         }
+
+        private void Fab_Click(object sender, EventArgs e)
+        {
+            showEntryForm();
+           
+
+        }
+
+        
 
         private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            //  var entity = classs[e.Position];
 
-            childrenPosition = e.Position;
 
-            var intent = new Intent();
-            intent.SetClass(this, typeof(EntityDetail));
-            intent.PutExtra("type", childrenType);
-            intent.PutExtra("selectedEntityID", entity.Id);
+            if (childrenType != 4) {
+                childrenPosition = e.Position;
 
-            StartActivityForResult(intent, 100);
+                var intent = new Intent();
+                intent.SetClass(this, typeof(EntityDetail));
+                intent.PutExtra("type", childrenType);
+                intent.PutExtra("selectedEntityID", entity.Id);
+
+                StartActivityForResult(intent, 100);
+            }            
         }
 
         private void populateSemesterDetail(int id) {
+            headerlabel.Text = "Class";
+
+
+
+
             SemesterView semester = planner.getSemester(id.ToString());
             label.Text = semester.label;
             parentLabel.Text = semester.parentLabel;
@@ -111,10 +165,10 @@ namespace Graduate.Droid
             status.Text = semester.status;
             grade.Text = semester.grade;
 
-            IList<Class> children = semester.children;
-            
+            IList<Class> children = semester.children;            
 
             ClassListAdapter childAdapter = new ClassListAdapter(this, children);
+          
 
             childrenList.Adapter = childAdapter;
             childrenType = 3;
@@ -127,6 +181,10 @@ namespace Graduate.Droid
         }
 
         private void populateSchoolYearDetail(int id) {
+            headerlabel.Text = "Semester";
+
+
+
             SchoolYearView sy = planner.getSchoolYear(id.ToString());
 
             label.Text = sy.label;
@@ -155,6 +213,9 @@ namespace Graduate.Droid
 
         private void populateClassDetail(int id)
         {
+
+            headerlabel.Text = "Actvities";
+            headerstatus.Text = "Weight";
             ClassView c = planner.getClass(id.ToString());
 
             label.Text = c.label;
@@ -163,6 +224,54 @@ namespace Graduate.Droid
             parentLabel.Text = c.parentLabel;
             status.Text = c.status;
             grade.Text = c.grade;
+
+            IList<ClassActivity> children = c.children;
+
+            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, children);
+
+            childrenList.Adapter = childAdapter;
+
+            childrenType = 4;
+            /*
+
+            try
+            {
+                entity = children[childrenPosition];
+            }
+            catch
+            {
+
+            }
+            */
         }
+
+        private void showEntryForm()
+        {
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            //Remove fragment else it will crash as it is already added to backstack
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+
+            ft.AddToBackStack(null);
+
+           // Create and show the dialog.
+            NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
+            dialogFrag.parentId = selectedID;
+            //dialogFrag.SetTargetFragment(this, 1);
+           
+
+            
+           dialogFrag.type = childrenType;
+            dialogFrag.fromParent = true;
+            dialogFrag.Show(ft, "dialog");
+          
+        }
+
+
     }
-}
+
+       
+    }

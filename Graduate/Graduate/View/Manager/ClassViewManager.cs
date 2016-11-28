@@ -15,11 +15,13 @@ namespace Graduate.Core.View.Manager
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
-        public ClassViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager)
+        ClassActivityManager cActivityManager;
+        public ClassViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager, ClassActivityManager cActivityManager)
         {
             this.schoolYearManager = schoolYearManager;
             this.semesterManager = semesterManager;
             this.classManager = classManager;
+            this.cActivityManager = cActivityManager;
         }
 
         public ClassView getClassView(String id)
@@ -29,9 +31,9 @@ namespace Graduate.Core.View.Manager
             return populateClassView(c);
         }
 
-        private IList<Class> getChildren(String fid)
+        private IList<ClassActivity> getChildren(String fid)
         {
-            return classManager.getClasssByFID(fid).ToList<Class>();
+            return cActivityManager.getClassActivitiesByFID(fid).ToList<ClassActivity>();
         }
 
         private ClassView populateClassView(Class c)
@@ -43,23 +45,10 @@ namespace Graduate.Core.View.Manager
             classView.grade = Math.Round(c.grade, 2).ToString();
             classView.parentLabel = getParentLabel(c.FId.ToString());
             classView.status = getStatus(c.completed);
+            classView.children = getChildren(c.Id.ToString());
             return classView;
         }
-
-        private int getCreditsFromChildren(String fid)
-        {
-            int i = 0;
-
-            IList<Class> children = getChildren(fid);
-
-            foreach (Class c in children)
-            {
-                i += c.credits;
-            }
-
-            return i;
-        }
-
+               
         private String getParentLabel(String fid)
         {
             Semester sem = semesterManager.getSemesterByID(fid);

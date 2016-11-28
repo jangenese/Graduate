@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="100"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:minWidth="25px"
+    android:minHeight="25px">
     <LinearLayout
         android:orientation="vertical"
         android:minWidth="25px"
-        android:minHeight="25px"
+        android:minHeight="50px"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:id="@+id/linearLayout1"
-        android:layout_weight="5">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -24,76 +23,50 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
-                android:minHeight="25px"
+                android:minHeight="50px"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/linearLayout3"
                 android:layout_weight="50">
                 <TextView
-                    android:text="Label"
+                    android:text="Text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/textViewLabel"
-                    android:gravity="center_vertical"
-                    android:textSize="15dp" />
+                    android:textSize="25dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
-                android:minHeight="25px"
+                android:minHeight="50px"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/linearLayout4"
                 android:layout_weight="25">
                 <TextView
-                    android:text="Status"
+                    android:text="Text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/textViewStatus"
                     android:gravity="center"
-                    android:textSize="15dp" />
+                    android:textSize="20dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
-                android:minHeight="25px"
+                android:minHeight="50px"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/linearLayout5"
-                android:layout_weight="25"
-                android:gravity="center">
+                android:layout_weight="25">
                 <TextView
-                    android:text="Grade"
+                    android:text="Text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/textViewGrade"
                     android:gravity="center"
-                    android:textSize="15dp" />
+                    android:textSize="25dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <FrameLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/frameLayout1"
-        android:layout_weight="95">
-        <ListView
-            android:id="@+id/listViewGraduateEntities"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:cacheColorHint="@android:color/transparent"
-            android:headerDividersEnabled="false" />
-        <com.refractored.fab.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:src="@drawable/add_white"
-            fab:fab_colorNormal="#E64A19"
-            fab:fab_colorPressed="#BF360C"
-            fab:fab_colorRipple="#FF80AB" />
-    </FrameLayout>
 </LinearLayout>

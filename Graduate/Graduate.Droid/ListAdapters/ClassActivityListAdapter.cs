@@ -9,22 +9,22 @@ using Graduate.Core.View.Model;
 namespace Graduate.Droid.ListAdapters
 {
     /// <summary>
-    /// Adapter that presents Classes in a row-view
+    /// Adapter that presents ClassActivityes in a row-view
     /// </summary>
-    public class ClassListAdapter : BaseAdapter<Class>
+    public class ClassActivityListAdapter : BaseAdapter<ClassActivity>
     {
         Activity context = null;
-        IList<Class> classes = new List<Class>();
+        IList<ClassActivity> classActivities = new List<ClassActivity>();
 
-        public ClassListAdapter(Activity context, IList<Class> classes) : base()
+        public ClassActivityListAdapter(Activity context, IList<ClassActivity> classActivities) : base()
         {
             this.context = context;
-            this.classes = classes;
+            this.classActivities = classActivities;
         }
 
-        public override Class this[int position]
+        public override ClassActivity this[int position]
         {
-            get { return classes[position]; }
+            get { return classActivities[position]; }
         }
 
         public override long GetItemId(int position)
@@ -34,14 +34,14 @@ namespace Graduate.Droid.ListAdapters
 
         public override int Count
         {
-            get { return classes.Count; }
+            get { return classActivities.Count; }
         }
 
         public override Android.Views.View GetView(int position, Android.Views.View convertView, Android.Views.ViewGroup parent)
-        {          
-            var item = classes[position];
+        {
+            var item = classActivities[position];
 
-            ClassView c = GraduateApp.Current.planner.getClass(item.Id.ToString());
+            ClassActivityView cActivity = GraduateApp.Current.planner.getClassActivity(item.Id.ToString());
 
             var row = convertView;
 
@@ -58,6 +58,7 @@ namespace Graduate.Droid.ListAdapters
             TextView gradeEntry = row.FindViewById<TextView>(Resource.Id.textViewGradeEntry);
             */
 
+
             
             TextView entry = row.FindViewById<TextView>(Resource.Id.textViewLabel);
             
@@ -66,13 +67,13 @@ namespace Graduate.Droid.ListAdapters
             TextView gradeEntry = row.FindViewById<TextView>(Resource.Id.textViewGrade);
 
 
-           // label.Text = "Class";
-            entry.Text = c.label;
-          //  status.Text = "Status";
-            statusEntry.Text = c.status;
-          //  grade.Text = "Grade";
-            gradeEntry.Text = c.grade;
            
+            entry.Text = cActivity.label;
+           
+            statusEntry.Text = cActivity.status;
+           
+            gradeEntry.Text = cActivity.grade;
+
             return row;
         }
     }

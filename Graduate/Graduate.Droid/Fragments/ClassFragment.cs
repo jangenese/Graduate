@@ -23,12 +23,13 @@ namespace Graduate.Droid.Fragments
         protected FloatingActionButton fab;
         protected Planner planner;
         protected IList<Class> classs;
+        protected TextView label;
+        protected TextView status;
+        protected TextView grade;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-
             planner = GraduateApp.Current.planner;
 
 
@@ -62,8 +63,8 @@ namespace Graduate.Droid.Fragments
             base.OnActivityCreated(savedInstanceState);
 
             FindViews();
+            label.Text = "Class";
             HandleEvents();
-
             populateListView();
 
         }
@@ -133,7 +134,10 @@ namespace Graduate.Droid.Fragments
         {
             listView = this.View.FindViewById<ListView>(Resource.Id.listViewGraduateEntities);
             fab = this.View.FindViewById<FloatingActionButton>(Resource.Id.fab);
-                
+            label = this.View.FindViewById<TextView>(Resource.Id.textViewLabel);
+            status = this.View.FindViewById<TextView>(Resource.Id.textViewStatus);
+            grade = this.View.FindViewById<TextView>(Resource.Id.textViewGrade);
+
         }
 
         protected void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
