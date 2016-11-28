@@ -130,7 +130,8 @@
                         android:layout_width="match_parent"
                         android:gravity="center"
                         android:textSize="20dp"
-                        android:completionThreshold="1" />
+                        android:completionThreshold="1"
+                        android:text="B+" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
