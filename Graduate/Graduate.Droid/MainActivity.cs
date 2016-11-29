@@ -42,8 +42,19 @@ namespace Graduate.Droid
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            //Toast.MakeText(this, "Action selected: " + item.TitleFormatted,ToastLength.Short).Show();
+        {   
+            switch (item.ItemId)
+            {
+                
+                case Resource.Id.menu_preferences:
+                    var preferenceIntent = new Intent(this, typeof(PreferencesActivity));
+                    StartActivity(preferenceIntent);
+                    break;                   
+                case Resource.Id.menu_about:
+                    var aboutIntent = new Intent(this, typeof(AboutActivity));
+                    StartActivity(aboutIntent);
+                    break;                  
+            }
             return base.OnOptionsItemSelected(item);
         }
 

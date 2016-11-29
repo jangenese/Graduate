@@ -1,6 +1,6 @@
 
 using Android.App;
-
+using Android.Content;
 using Android.OS;
 
 using Android.Views;
@@ -25,6 +25,29 @@ namespace Graduate.Droid
             AddTab("SchoolYear", new SchoolYearFragment());
             AddTab("Semester", new SemesterFragment());
             AddTab("Class", new ClassFragment());
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.main_menu, menu);
+            return base.OnPrepareOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {            
+            switch (item.ItemId)
+            {
+
+                case Resource.Id.menu_preferences:
+                    var preferenceIntent = new Intent(this, typeof(PreferencesActivity));
+                    StartActivity(preferenceIntent);
+                    break;
+                case Resource.Id.menu_about:
+                    var aboutIntent = new Intent(this, typeof(AboutActivity));
+                    StartActivity(aboutIntent);
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
         }
 
         private void AddTab(string tabText, Fragment view)
