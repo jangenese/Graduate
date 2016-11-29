@@ -2076,19 +2076,25 @@ namespace Graduate.Droid
 			public const int fab_shadow_mini = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int Icon = 2130837594;
+			public const int ic_delete = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int Logo = 2130837595;
+			public const int ic_edit = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int navigation_empty_icon = 2130837596;
-			
-			// aapt resource value: 0x7f02005e
-			public const int notification_template_icon_bg = 2130837598;
+			public const int Icon = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int splash_screen = 2130837597;
+			public const int Logo = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int navigation_empty_icon = 2130837598;
+			
+			// aapt resource value: 0x7f020060
+			public const int notification_template_icon_bg = 2130837600;
+			
+			// aapt resource value: 0x7f02005f
+			public const int splash_screen = 2130837599;
 			
 			static Drawable()
 			{
@@ -2253,6 +2259,9 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060043
 			public const int default_activity_button = 2131099715;
 			
+			// aapt resource value: 0x7f0600e5
+			public const int delete = 2131099877;
+			
 			// aapt resource value: 0x7f06008b
 			public const int design_bottom_sheet = 2131099787;
 			
@@ -2270,6 +2279,9 @@ namespace Graduate.Droid
 			
 			// aapt resource value: 0x7f06000e
 			public const int disableHome = 2131099662;
+			
+			// aapt resource value: 0x7f0600e4
+			public const int edit = 2131099876;
 			
 			// aapt resource value: 0x7f0600b5
 			public const int editText1 = 2131099829;
@@ -2517,11 +2529,11 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600d9
 			public const int media_actions = 2131099865;
 			
-			// aapt resource value: 0x7f0600e5
-			public const int menu_about = 2131099877;
+			// aapt resource value: 0x7f0600e7
+			public const int menu_about = 2131099879;
 			
-			// aapt resource value: 0x7f0600e4
-			public const int menu_preferences = 2131099876;
+			// aapt resource value: 0x7f0600e6
+			public const int menu_preferences = 2131099878;
 			
 			// aapt resource value: 0x7f06001e
 			public const int middle = 2131099678;
@@ -3055,7 +3067,10 @@ namespace Graduate.Droid
 		{
 			
 			// aapt resource value: 0x7f0c0000
-			public const int main_menu = 2131492864;
+			public const int detail_menu = 2131492864;
+			
+			// aapt resource value: 0x7f0c0001
+			public const int main_menu = 2131492865;
 			
 			static Menu()
 			{

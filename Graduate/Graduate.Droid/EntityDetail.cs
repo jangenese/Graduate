@@ -88,7 +88,7 @@ namespace Graduate.Droid
         */
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.main_menu, menu);
+            MenuInflater.Inflate(Resource.Menu.detail_menu, menu);
             return base.OnPrepareOptionsMenu(menu);
         }
 
