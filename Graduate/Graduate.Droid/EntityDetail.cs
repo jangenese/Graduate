@@ -39,16 +39,16 @@ namespace Graduate.Droid
         private TextView headergrade;
         //******Android Views
 
-        private Planner planner;  
-         
+        private Planner planner;
+
         private int selectedID;                                 //selectedID From Fragment List
         private IList<GraduateEntityBase> children = null;      //list of children in base form
-       
-        
+
+
         private int childrenType = 0;                           //children type set by populator
 
         private String activityTitle = "";                      //Action Bar Title
-        
+
 
 
 
@@ -60,11 +60,11 @@ namespace Graduate.Droid
             planner = GraduateApp.Current.planner;
 
             selectedID = Intent.Extras.GetInt("selectedEntityID");
-           
+
             findViews();
             fab.AttachToListView(childrenList);
             handleEvents();
-                              
+
             populatePage();
         }
 
@@ -78,10 +78,11 @@ namespace Graduate.Droid
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            if (resultCode == Result.Ok) {
+            if (resultCode == Result.Ok)
+            {
                 Console.WriteLine("Hello");
             }
-            Console.WriteLine("On Result is being exceuted"); 
+            Console.WriteLine("On Result is being exceuted");
         }
         /*
         Creates the overflow button on actionbar
@@ -124,18 +125,19 @@ namespace Graduate.Droid
         /*
         Populates the page by calling the appropriate method based on the object type passed in
        */
-        private void populatePage() {
+        private void populatePage()
+        {
             switch (Intent.Extras.GetInt("type"))
             {
-                case 1:                   
-                    activityTitle = "SchoolYear Details";                   
+                case 1:
+                    activityTitle = "SchoolYear Details";
                     populateSchoolYearDetail(selectedID);
                     break;
-                case 2:                    
+                case 2:
                     activityTitle = "Semester Details";
                     populateSemesterDetail(selectedID);
                     break;
-                case 3:                   
+                case 3:
                     activityTitle = "Class Details";
                     populateClassDetail(selectedID);
                     break;
@@ -148,7 +150,8 @@ namespace Graduate.Droid
         /*
         Finds the AndroidViews
         */
-        private void findViews() {
+        private void findViews()
+        {
             label = FindViewById<TextView>(Resource.Id.textViewLabel);
             parentLabel = FindViewById<TextView>(Resource.Id.textViewParentLabel);
             credits = FindViewById<TextView>(Resource.Id.textViewCreditsEntry);
@@ -164,9 +167,10 @@ namespace Graduate.Droid
         /*
         Event Listeners defined
        */
-        private void handleEvents() {
+        private void handleEvents()
+        {
             childrenList.ItemClick += ChildrenList_ItemClick;
-            fab.Click += Fab_Click;            
+            fab.Click += Fab_Click;
         }
 
         /*
@@ -174,7 +178,7 @@ namespace Graduate.Droid
        */
         private void Fab_Click(object sender, EventArgs e)
         {
-            showEntryForm();   
+            showEntryForm();
         }
 
 
@@ -183,7 +187,8 @@ namespace Graduate.Droid
        */
         private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            if (childrenType != 4) {                //checks if the children is of type activitiy which is not clickable                
+            if (childrenType != 4)
+            {                //checks if the children is of type activitiy which is not clickable                
 
                 var entity = children[e.Position]; //takes base child enitity with the clicked position from the children list
 
@@ -193,16 +198,17 @@ namespace Graduate.Droid
                 intent.PutExtra("selectedEntityID", entity.Id);
 
                 StartActivityForResult(intent, 100);
-            }            
+            }
         }
 
         /*
         Populates the Detail Page for a Semester
         Parameter id is the entity ID
        */
-        private void populateSemesterDetail(int id) {
+        private void populateSemesterDetail(int id)
+        {
             this.Title = activityTitle;                         //sets page title
-                      
+
             //Main Header Info *******
             SemesterView semester = planner.getSemester(id.ToString());
             label.Text = semester.label;
@@ -213,7 +219,7 @@ namespace Graduate.Droid
             //******** Main Header Info
 
             //Body Info (Children) ****** 
-            headerlabel.Text = "Class";            
+            headerlabel.Text = "Class";
 
             children = semester.children.ToList<GraduateEntityBase>();
 
@@ -221,7 +227,7 @@ namespace Graduate.Droid
             childrenList.Adapter = childAdapter;
 
             childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
-            
+
         }
 
 
@@ -229,7 +235,8 @@ namespace Graduate.Droid
         Populate page for entity type SchoolYear 
         Params id is the entity ID
         */
-        private void populateSchoolYearDetail(int id) {
+        private void populateSchoolYearDetail(int id)
+        {
             this.Title = activityTitle;
             SchoolYearView sy = planner.getSchoolYear(id.ToString());
 
@@ -286,7 +293,7 @@ namespace Graduate.Droid
         */
         private void showEntryForm()
         {
-            FragmentTransaction ft = FragmentManager.BeginTransaction();           
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
             Fragment prev = FragmentManager.FindFragmentByTag("dialog");
             if (prev != null)
             {
@@ -295,17 +302,17 @@ namespace Graduate.Droid
 
             ft.AddToBackStack(null);
 
-           // Create and show the dialog.
+            // Create and show the dialog.
             NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
             dialogFrag.parentId = selectedID;
             dialogFrag.type = childrenType;
             dialogFrag.fromParent = true;
             dialogFrag.Show(ft, "dialog");
-          
+
         }
 
 
     }
 
-       
-    }
+
+}
