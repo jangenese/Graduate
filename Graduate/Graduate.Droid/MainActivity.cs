@@ -11,7 +11,7 @@ using Android.OS;
 
 
 using System.IO;
-
+using Android.Views;
 
 namespace Graduate.Droid
 {
@@ -35,6 +35,17 @@ namespace Graduate.Droid
             handleEvents();
         }
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.main_menu, menu);
+            return base.OnPrepareOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            //Toast.MakeText(this, "Action selected: " + item.TitleFormatted,ToastLength.Short).Show();
+            return base.OnOptionsItemSelected(item);
+        }
 
         private void findViews()
         {

@@ -2517,6 +2517,9 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600d9
 			public const int media_actions = 2131099865;
 			
+			// aapt resource value: 0x7f0600e4
+			public const int menu_preferences = 2131099876;
+			
 			// aapt resource value: 0x7f06001e
 			public const int middle = 2131099678;
 			
@@ -2973,64 +2976,61 @@ namespace Graduate.Droid
 			public const int GraduateEntityEntryActivity = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int layout1 = 2130903086;
+			public const int ListViewPlanner = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int ListViewPlanner = 2130903087;
+			public const int MainActivity = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int MainActivity = 2130903088;
+			public const int NewEntryDialogFragment = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int NewEntryDialogFragment = 2130903089;
+			public const int notification_media_action = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_media_action = 2130903090;
+			public const int notification_media_cancel_action = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_media_cancel_action = 2130903091;
+			public const int notification_template_big_media = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_big_media = 2130903092;
+			public const int notification_template_big_media_narrow = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_big_media_narrow = 2130903093;
+			public const int notification_template_lines = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_lines = 2130903094;
+			public const int notification_template_media = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_media = 2130903095;
+			public const int notification_template_part_chronometer = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_part_chronometer = 2130903096;
+			public const int notification_template_part_time = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int notification_template_part_time = 2130903097;
+			public const int PlannerActivity_Main = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int PlannerActivity_Main = 2130903098;
+			public const int PlannerListViewRow = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int PlannerListViewRow = 2130903099;
+			public const int SchoolYearFragment = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int SchoolYearFragment = 2130903100;
+			public const int select_dialog_item_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_item_material = 2130903101;
+			public const int select_dialog_multichoice_material = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int select_dialog_multichoice_material = 2130903102;
+			public const int select_dialog_singlechoice_material = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int select_dialog_singlechoice_material = 2130903103;
+			public const int SemesterFragment = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int SemesterFragment = 2130903104;
-			
-			// aapt resource value: 0x7f030041
-			public const int support_simple_spinner_dropdown_item = 2130903105;
+			public const int support_simple_spinner_dropdown_item = 2130903104;
 			
 			static Layout()
 			{
@@ -3038,6 +3038,22 @@ namespace Graduate.Droid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int main_menu = 2131492864;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}
