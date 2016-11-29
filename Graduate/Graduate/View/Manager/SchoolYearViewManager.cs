@@ -67,10 +67,13 @@ namespace Graduate.Core.View.Manager
 
             IList<Class> children = getChildrensChildren(fid);
 
-            foreach (Class c in children)
-            {
-                i += c.credits;
+            if (children.Count > 0) {
+                foreach (Class c in children)
+                {
+                    i += c.credits;
+                }
             }
+                      
 
             return i;
         }
@@ -81,22 +84,30 @@ namespace Graduate.Core.View.Manager
             int count = 0;
 
             IList<Class> children = getChildrensChildren(fid);
+            
 
-            foreach (Class c in children)
+            if (children.Count > 0)
             {
-                grade += c.grade;
-                count++;
+                foreach (Class c in children)
+                {
+                    grade += c.grade;
+                    count++;
+                }
+
+                grade = Math.Round((grade / count), 2);
             }
 
 
-            return Math.Round((grade / count), 2);
+            return grade;
+
+
         }
 
        
 
         private String getStatus(String fid)
         {
-            String status = "InProgress";
+            String status = "C";
 
 
             IList<Class> children = getChildrensChildren(fid);
@@ -105,7 +116,7 @@ namespace Graduate.Core.View.Manager
             {
                 if (!c.completed)
                 {
-                    status = "InProgress";
+                    status = "INP";
                 }
             }
 

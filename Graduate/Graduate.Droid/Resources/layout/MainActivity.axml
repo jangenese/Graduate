@@ -3,32 +3,79 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
-    <ImageView
-        android:src="@drawable/Logo"
-        android:layout_width="fill_parent"
-        android:layout_height="400dp"
-        android:id="@+id/imageView1"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" />
+    android:weightSum="100"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/linearLayout1">
-        <Button
-            android:text="Calculator"
-            android:id="@+id/buttonCalculator"
-            android:gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="40dp" />
-        <Button
-            android:text="Planner"
-            android:id="@+id/buttonPlanner"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center" />
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout1"
+        android:layout_weight="70">
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView1"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout2"
+        android:layout_weight="30"
+        android:weightSum="100">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout3"
+            android:layout_weight="40">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout4"
+                android:weightSum="100">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearLayout5"
+                    android:layout_weight="50">
+                    <Button
+                        android:text="Calculator"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/buttonCalculator" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearLayout6"
+                    android:layout_weight="50">
+                    <Button
+                        android:text="Planner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/buttonPlanner" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
