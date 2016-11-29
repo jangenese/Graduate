@@ -46,6 +46,7 @@ namespace Graduate.Droid
         private int childrenPosition;
         private int childrenType = 0;
 
+        private String activityTitle = "";
         
 
 
@@ -53,12 +54,13 @@ namespace Graduate.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.EntityDetail);
 
             planner = GraduateApp.Current.planner;
 
             selectedID = Intent.Extras.GetInt("selectedEntityID");
+
+            
 
             findViews();
             fab.AttachToListView(childrenList);
@@ -114,14 +116,17 @@ namespace Graduate.Droid
             {
                 case 1:
                     Console.WriteLine("SchoolYear Recieved");
+                    activityTitle = "SchoolYear Details";                   
                     populateSchoolYearDetail(selectedID);
                     break;
                 case 2:
                     Console.WriteLine("Semester Recieved");
+                    activityTitle = "Semester Details";
                     populateSemesterDetail(selectedID);
                     break;
                 case 3:
                     Console.WriteLine("Class Recieved");
+                    activityTitle = "Class Details";
                     populateClassDetail(selectedID);
                     break;
                 default:
@@ -175,6 +180,8 @@ namespace Graduate.Droid
         }
 
         private void populateSemesterDetail(int id) {
+            this.Title = activityTitle;
+
             headerlabel.Text = "Class";
 
 
@@ -203,6 +210,9 @@ namespace Graduate.Droid
         }
 
         private void populateSchoolYearDetail(int id) {
+
+            this.Title = activityTitle;
+
             headerlabel.Text = "Semester";
 
 
@@ -235,6 +245,8 @@ namespace Graduate.Droid
 
         private void populateClassDetail(int id)
         {
+
+            this.Title = activityTitle;
 
             headerlabel.Text = "Actvities";
             headerstatus.Text = "Weight";
