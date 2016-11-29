@@ -41,13 +41,13 @@ namespace Graduate.Droid
 
         private Planner planner;  
          
-        private int selectedID;                     //selectedID From Fragment List
-        private IList<GraduateEntityBase> children = null;
+        private int selectedID;                                 //selectedID From Fragment List
+        private IList<GraduateEntityBase> children = null;      //list of children in base form
        
-        private int childrenPosition;               //clicked children position
-        private int childrenType = 0;               //children type set by populator
+        
+        private int childrenType = 0;                           //children type set by populator
 
-        private String activityTitle = "";          //Action Bar Title
+        private String activityTitle = "";                      //Action Bar Title
         
 
 
@@ -60,14 +60,17 @@ namespace Graduate.Droid
             planner = GraduateApp.Current.planner;
 
             selectedID = Intent.Extras.GetInt("selectedEntityID");
-
-            Console.WriteLine("Selected ID");
-            Console.WriteLine(selectedID.ToString());
-
+           
             findViews();
             fab.AttachToListView(childrenList);
             handleEvents();
                               
+            populatePage();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
             populatePage();
         }
 
@@ -124,18 +127,15 @@ namespace Graduate.Droid
         private void populatePage() {
             switch (Intent.Extras.GetInt("type"))
             {
-                case 1:
-                    Console.WriteLine("SchoolYear Recieved");
+                case 1:                   
                     activityTitle = "SchoolYear Details";                   
                     populateSchoolYearDetail(selectedID);
                     break;
-                case 2:
-                    Console.WriteLine("Semester Recieved");
+                case 2:                    
                     activityTitle = "Semester Details";
                     populateSemesterDetail(selectedID);
                     break;
-                case 3:
-                    Console.WriteLine("Class Recieved");
+                case 3:                   
                     activityTitle = "Class Details";
                     populateClassDetail(selectedID);
                     break;
@@ -183,11 +183,9 @@ namespace Graduate.Droid
        */
         private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            if (childrenType != 4) {                //checks if the children is of type activitiy which is not clickable
-                
+            if (childrenType != 4) {                //checks if the children is of type activitiy which is not clickable                
 
-                var entity = children[e.Position];
-
+                var entity = children[e.Position]; //takes base child enitity with the clicked position from the children list
 
                 var intent = new Intent();
                 intent.SetClass(this, typeof(EntityDetail));
@@ -215,9 +213,7 @@ namespace Graduate.Droid
             //******** Main Header Info
 
             //Body Info (Children) ****** 
-            headerlabel.Text = "Class";
-
-            //  IList<Class> children = semester.children; 
+            headerlabel.Text = "Class";            
 
             children = semester.children.ToList<GraduateEntityBase>();
 
@@ -225,102 +221,72 @@ namespace Graduate.Droid
             childrenList.Adapter = childAdapter;
 
             childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
-
-          /*  
-            try {                    
-                entity = children[childrenPosition];
-                Console.WriteLine("Hello world **************** \n\n\n\n\n\n\n\n Printing selected child");
-                Console.WriteLine(entity.ToString());
-            }catch {
-
-            }
-            */
             
-
         }
 
 
         /*
         Populate page for entity type SchoolYear 
-        Params is id is the entity ID
+        Params id is the entity ID
         */
         private void populateSchoolYearDetail(int id) {
-
             this.Title = activityTitle;
-
-            headerlabel.Text = "Semester";
-
-
-
             SchoolYearView sy = planner.getSchoolYear(id.ToString());
 
+            //Populate Main Info (Header) ******
             label.Text = sy.label;
             parentLabel.Text = sy.parentLabel;
             credits.Text = sy.credits;
             status.Text = sy.status;
             grade.Text = sy.grade;
+            //******Populate Main Info
 
-
+            //Populate Body Info (Children List)******
+            headerlabel.Text = "Semester";
             children = sy.children.ToList<GraduateEntityBase>();
-
-            Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, sy.children);
-
+            SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, sy.children);
             childrenList.Adapter = childAdapter;
-            childrenType = 2;
-
-            /*
-
-            try
-            {
-                entity = children[childrenPosition];
-                Console.WriteLine(entity.ToString());
-            }
-            catch {
-
-            }
-            */
+            childrenType = 2;                               //Sets childrentype to 2 for Semesters
+            //******Populate Body Info (Children List)
         }
 
+
+        /*
+            Populate page for entity type Class
+            Param id is entityID
+        */
         private void populateClassDetail(int id)
         {
-
             this.Title = activityTitle;
-
-            headerlabel.Text = "Actvities";
-            headerstatus.Text = "Weight";
             ClassView c = planner.getClass(id.ToString());
-
+            //Populate Main Info (Header) ******
             label.Text = c.label;
             parentLabel.Text = c.parentLabel;
             credits.Text = c.credits;
             parentLabel.Text = c.parentLabel;
             status.Text = c.status;
             grade.Text = c.grade;
+            //******Populate Main Info
 
-            IList<ClassActivity> children = c.children;
 
-            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, children);
 
+            //Populate Body Info (Children List)******
+            headerlabel.Text = "Actvities";
+            headerstatus.Text = "Weight";
+            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, c.children);
             childrenList.Adapter = childAdapter;
-
-            childrenType = 4;
-            /*
-
-            try
-            {
-                entity = children[childrenPosition];
-            }
-            catch
-            {
-
-            }
-            */
+            childrenType = 4;                           //Sets childrentype to 4 for ClassActivities
+            //******Populate Body Info (Children List)
         }
 
+
+
+        /*
+        Shows the new Entry form by calling a dialog fragment 
+        */
         private void showEntryForm()
         {
-            FragmentTransaction ft = FragmentManager.BeginTransaction();
-            //Remove fragment else it will crash as it is already added to backstack
+            FragmentTransaction ft = FragmentManager.BeginTransaction();           
             Fragment prev = FragmentManager.FindFragmentByTag("dialog");
             if (prev != null)
             {
@@ -332,11 +298,7 @@ namespace Graduate.Droid
            // Create and show the dialog.
             NewEntryDialogFragment dialogFrag = NewEntryDialogFragment.NewInstance(null);
             dialogFrag.parentId = selectedID;
-            //dialogFrag.SetTargetFragment(this, 1);
-           
-
-            
-           dialogFrag.type = childrenType;
+            dialogFrag.type = childrenType;
             dialogFrag.fromParent = true;
             dialogFrag.Show(ft, "dialog");
           
