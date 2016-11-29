@@ -79,9 +79,7 @@ namespace Graduate.Core.View.Manager
                 grade = Math.Round((grade / count), 2);
             }
 
-
-
-
+            
             return grade;
         }
 

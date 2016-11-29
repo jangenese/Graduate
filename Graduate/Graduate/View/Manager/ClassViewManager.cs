@@ -57,11 +57,11 @@ namespace Graduate.Core.View.Manager
 
         private String getStatus(Boolean b)
         {
-            String status = "Completed";
+            String status = "C";
                        
                 if (!b)
                 {
-                    status = "InProgress";
+                    status = "INP";
                 }  
             return status;
         }

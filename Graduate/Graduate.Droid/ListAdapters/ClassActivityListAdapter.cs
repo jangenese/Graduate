@@ -70,7 +70,7 @@ namespace Graduate.Droid.ListAdapters
            
             entry.Text = cActivity.label;
            
-            statusEntry.Text = cActivity.status;
+            statusEntry.Text = cActivity.weight;
            
             gradeEntry.Text = cActivity.grade;
 

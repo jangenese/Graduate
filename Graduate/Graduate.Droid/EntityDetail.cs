@@ -112,14 +112,14 @@ namespace Graduate.Droid
         private void findViews() {
             label = FindViewById<TextView>(Resource.Id.textViewLabel);
             parentLabel = FindViewById<TextView>(Resource.Id.textViewParentLabel);
-            credits = FindViewById<TextView>(Resource.Id.textViewCredits);
-            status = FindViewById<TextView>(Resource.Id.textViewStatusLabel);
-            grade = FindViewById<TextView>(Resource.Id.textViewGrade);
+            credits = FindViewById<TextView>(Resource.Id.textViewCreditsEntry);
+            status = FindViewById<TextView>(Resource.Id.textViewStatusEntry);
+            grade = FindViewById<TextView>(Resource.Id.textViewGradeEntry);
             childrenList = FindViewById<ListView>(Resource.Id.listViewChildItems);
             fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            headerlabel = FindViewById<TextView>(Resource.Id.textViewListViewHeaderLabel);
-            headerstatus = FindViewById<TextView>(Resource.Id.textViewListViewHeaderStatus);
-            headergrade = FindViewById<TextView>(Resource.Id.textViewListViewHeaderGrade);
+            headerlabel = FindViewById<TextView>(Resource.Id.textViewHeaderLabel);
+            headerstatus = FindViewById<TextView>(Resource.Id.textViewHeaderStatus);
+            headergrade = FindViewById<TextView>(Resource.Id.textViewHeaderGrade);
         }
 
         private void handleEvents() {
