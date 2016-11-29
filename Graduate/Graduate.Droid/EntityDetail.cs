@@ -25,28 +25,29 @@ namespace Graduate.Droid
     [Activity(Label = "EntityDetail")]
     public class EntityDetail : Activity, IDialogInterfaceOnDismissListener
     {
+        //Android Views ******
         private TextView label;
         private TextView parentLabel;
         private TextView credits;
         private TextView status;
         private TextView grade;
         private ListView childrenList;
-        private int selectedID;
-        private Planner planner;
+        private FloatingActionButton fab;
 
         private TextView headerlabel;
         private TextView headerstatus;
         private TextView headergrade;
+        //******Android Views
 
+        private Planner planner;  
+         
+        private int selectedID;                     //selectedID From Fragment List
+        private IList<GraduateEntityBase> children = null;
+       
+        private int childrenPosition;               //clicked children position
+        private int childrenType = 0;               //children type set by populator
 
-
-        private FloatingActionButton fab;
-
-        private GraduateEntityBase entity = null;
-        private int childrenPosition;
-        private int childrenType = 0;
-
-        private String activityTitle = "";
+        private String activityTitle = "";          //Action Bar Title
         
 
 
@@ -60,15 +61,14 @@ namespace Graduate.Droid
 
             selectedID = Intent.Extras.GetInt("selectedEntityID");
 
-            
+            Console.WriteLine("Selected ID");
+            Console.WriteLine(selectedID.ToString());
 
             findViews();
             fab.AttachToListView(childrenList);
             handleEvents();
-
-            label.Text = selectedID.ToString();            
+                              
             populatePage();
-
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -80,13 +80,18 @@ namespace Graduate.Droid
             }
             Console.WriteLine("On Result is being exceuted"); 
         }
-
+        /*
+        Creates the overflow button on actionbar
+        */
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.main_menu, menu);
             return base.OnPrepareOptionsMenu(menu);
         }
 
+        /*
+        Handler for the selected item from the overflow menu
+        */
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
@@ -104,13 +109,18 @@ namespace Graduate.Droid
             return base.OnOptionsItemSelected(item);
         }
 
-
+        /*
+        Checks if children new entry dialog has been dismissed and repopulates the page
+        */
         void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
         {
-            populatePage(); 
-}
+            populatePage();
+        }
 
 
+        /*
+        Populates the page by calling the appropriate method based on the object type passed in
+       */
         private void populatePage() {
             switch (Intent.Extras.GetInt("type"))
             {
@@ -135,7 +145,9 @@ namespace Graduate.Droid
             }
         }
 
-    
+        /*
+        Finds the AndroidViews
+        */
         private void findViews() {
             label = FindViewById<TextView>(Resource.Id.textViewLabel);
             parentLabel = FindViewById<TextView>(Resource.Id.textViewParentLabel);
@@ -149,26 +161,33 @@ namespace Graduate.Droid
             headergrade = FindViewById<TextView>(Resource.Id.textViewHeaderGrade);
         }
 
+        /*
+        Event Listeners defined
+       */
         private void handleEvents() {
             childrenList.ItemClick += ChildrenList_ItemClick;
             fab.Click += Fab_Click;            
         }
 
+        /*
+        Calls method showEntryForm when FAB Button is clicked
+       */
         private void Fab_Click(object sender, EventArgs e)
         {
-            showEntryForm();
-           
-
+            showEntryForm();   
         }
 
-        
 
+        /*
+        Event handler for when a children item is clicked in the chilredn list
+       */
         private void ChildrenList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            if (childrenType != 4) {                //checks if the children is of type activitiy which is not clickable
+                
 
+                var entity = children[e.Position];
 
-            if (childrenType != 4) {
-                childrenPosition = e.Position;
 
                 var intent = new Intent();
                 intent.SetClass(this, typeof(EntityDetail));
@@ -179,36 +198,52 @@ namespace Graduate.Droid
             }            
         }
 
+        /*
+        Populates the Detail Page for a Semester
+        Parameter id is the entity ID
+       */
         private void populateSemesterDetail(int id) {
-            this.Title = activityTitle;
-
-            headerlabel.Text = "Class";
-
-
-
-
+            this.Title = activityTitle;                         //sets page title
+                      
+            //Main Header Info *******
             SemesterView semester = planner.getSemester(id.ToString());
             label.Text = semester.label;
             parentLabel.Text = semester.parentLabel;
             credits.Text = semester.credits;
             status.Text = semester.status;
             grade.Text = semester.grade;
+            //******** Main Header Info
 
-            IList<Class> children = semester.children;            
+            //Body Info (Children) ****** 
+            headerlabel.Text = "Class";
 
-            ClassListAdapter childAdapter = new ClassListAdapter(this, children);
-          
+            //  IList<Class> children = semester.children; 
 
+            children = semester.children.ToList<GraduateEntityBase>();
+
+            ClassListAdapter childAdapter = new ClassListAdapter(this, semester.children);
             childrenList.Adapter = childAdapter;
-            childrenType = 3;
-            try{
+
+            childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
+
+          /*  
+            try {                    
                 entity = children[childrenPosition];
+                Console.WriteLine("Hello world **************** \n\n\n\n\n\n\n\n Printing selected child");
+                Console.WriteLine(entity.ToString());
             }catch {
 
             }
+            */
+            
 
         }
 
+
+        /*
+        Populate page for entity type SchoolYear 
+        Params is id is the entity ID
+        */
         private void populateSchoolYearDetail(int id) {
 
             this.Title = activityTitle;
@@ -226,21 +261,24 @@ namespace Graduate.Droid
             grade.Text = sy.grade;
 
 
-            IList<Semester> children = sy.children;
+            children = sy.children.ToList<GraduateEntityBase>();
 
-            Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, children);
+            Graduate.Droid.ListAdapters.SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, sy.children);
 
             childrenList.Adapter = childAdapter;
             childrenType = 2;
 
+            /*
 
             try
             {
                 entity = children[childrenPosition];
+                Console.WriteLine(entity.ToString());
             }
             catch {
 
             }
+            */
         }
 
         private void populateClassDetail(int id)
