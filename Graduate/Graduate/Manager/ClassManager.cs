@@ -30,6 +30,18 @@ namespace Graduate.Core.Manager
             repo.saveItem(c);
         }
 
+        public void UpdateItem(String id, String fid, String label, String grade, String credit, Boolean completed) {
+            Class c = new Class();
+            c.Id = stringToInt(id);
+            c.FId = stringToInt(fid);
+            c.label = label;
+            c.goalGrade = 4.00;
+            c.grade = getGradeFromSchema(grade);
+            c.credits = stringToInt(credit);
+            c.completed = completed;
+            repo.saveItem(c);
+        }
+
         public Class getClassByID(String id) {
             int i = stringToInt(id);
             Class c = repo.getItem(i);

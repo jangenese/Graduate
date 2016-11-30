@@ -13,7 +13,7 @@ using Graduate.Core.Data.Models;
 
 namespace Graduate.Core
 {
- public   class Planner
+    public class Planner
     {
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
@@ -40,7 +40,7 @@ namespace Graduate.Core
         }
 
         public SemesterView getSemester(String id) {
-           return semesterViewManager.getSemesterView(id);
+            return semesterViewManager.getSemesterView(id);
 
         }
 
@@ -54,7 +54,7 @@ namespace Graduate.Core
 
         public ClassActivityView getClassActivity(String id) {
             return classActivityViewManager.getClassActivityView(id);
-        } 
+        }
 
         public void saveSemester(String fid, String label) {
             semesterManager.SaveItem(fid, label);
@@ -93,7 +93,7 @@ namespace Graduate.Core
         }
 
         public List<String> getAllSchoolYearLabels() {
-           return schoolYearManager.getSchoolYearLabels();
+            return schoolYearManager.getSchoolYearLabels();
         }
 
         public List<String> getAllSemesterLabels() {
@@ -126,9 +126,21 @@ namespace Graduate.Core
             schoolYearManager.deleteSchoolYear(id);
         }
 
+        public void editClass(String id, String fid, String label, String grade, String credits, Boolean completed) {
+            classManager.UpdateItem(id, fid, label, grade, credits, completed);
+        }
 
+        public void editSemester(String id, String fid, String label) {
+            semesterManager.UpdateItem(id, fid, label);
+        }
 
+        public void editSchoolyear(String id, String label) {
+            schoolYearManager.UpdateItem(id, label);
+        }
 
-
+        public void editClassActivity(String id, String fid, String label, String grade, String weight, Boolean completed) {
+            classActivityManager.UpdateItem(id, fid, label, grade, weight, completed);
+        }
+        
     }
 }

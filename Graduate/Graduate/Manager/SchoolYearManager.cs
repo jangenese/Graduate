@@ -23,6 +23,13 @@ namespace Graduate.Core.Manager
             sy.label = label;   
             repo.saveItem(sy);
         }
+
+        public void UpdateItem(String id, String label) {
+            SchoolYear sy = new SchoolYear();
+            sy.Id = stringToInt(id);
+            sy.label = label;
+            repo.saveItem(sy);
+        }
         public IEnumerable<SchoolYear> getSchoolYears()
         {
             return repo.getItems();

@@ -101,7 +101,7 @@ namespace Graduate.Droid
             switch (item.ItemId)
             {
                 case Resource.Id.edit:
-                    
+                    editThisItem();
                     break;
                 case Resource.Id.delete:
                     displayDeleteAlert();
@@ -322,7 +322,7 @@ namespace Graduate.Droid
             //set alert for executing the task
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetTitle("Confirm delete");
-            alert.SetMessage("Lorem ipsum dolor sit amet, consectetuer adipiscing elit.");
+            alert.SetMessage("Are you sure you want to delete this item?");
             alert.SetPositiveButton("Delete", (senderAlert, args) => {
                 deleteThisItem();                                           //Calls Delete Handler
                 Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
@@ -372,6 +372,23 @@ namespace Graduate.Droid
             planner.deleteSchoolYear(id);
         }
 
+        private void editThisItem() {
+            //set alert for executing the task
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Edit");
+            alert.SetMessage("Are you sure you want to Edit this item?");
+            alert.SetPositiveButton("Yes", (senderAlert, args) => {                
+                Toast.MakeText(this, "Edited!", ToastLength.Short).Show();
+                Finish();
+            });
+
+            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                Toast.MakeText(this, "Cancelled!", ToastLength.Short).Show();
+            });
+
+            Dialog dialog = alert.Create();
+            dialog.Show();
+        }
 
     }
 
