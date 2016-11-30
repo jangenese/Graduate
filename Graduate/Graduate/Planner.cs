@@ -114,6 +114,18 @@ namespace Graduate.Core
             return gradeManager.getGPAs();
         }
 
+        public void deleteClass(String id) {
+            classManager.deleteClass(id);
+        }
+
+        public void deleteSemester(String id) {
+
+        }
+
+        public void deleteSchoolYear(String id) {
+
+        }
+
 
 
 

@@ -100,7 +100,12 @@ namespace Graduate.Droid
         {
             switch (item.ItemId)
             {
-
+                case Resource.Id.edit:
+                    
+                    break;
+                case Resource.Id.delete:
+                    displayDeleteAlert();
+                    break;
                 case Resource.Id.menu_preferences:
                     var preferenceIntent = new Intent(this, typeof(PreferencesActivity));
                     StartActivity(preferenceIntent);
@@ -309,6 +314,56 @@ namespace Graduate.Droid
             dialogFrag.fromParent = true;
             dialogFrag.Show(ft, "dialog");
 
+        }
+
+        private void displayDeleteAlert() {
+            //set alert for executing the task
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Confirm delete");
+            alert.SetMessage("Lorem ipsum dolor sit amet, consectetuer adipiscing elit.");
+            alert.SetPositiveButton("Delete", (senderAlert, args) => {
+                deleteThisItem();
+                Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
+                Finish();
+            });
+
+            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                Toast.MakeText(this, "Cancelled!", ToastLength.Short).Show();
+            });
+
+            Dialog dialog = alert.Create();
+            dialog.Show();
+        }
+
+        private void deleteThisItem() {
+            string id = selectedID.ToString();
+            switch (Intent.Extras.GetInt("type"))
+            {
+                case 1:
+                    deleteThisSchoolYear(id);
+                    break;
+                case 2:
+                    deleteThisSemester(id);
+                    break;
+                case 3:
+                    deleteThisClass(id);
+                    break;
+                default:
+                    Console.WriteLine("Unknown Recieved");
+                    break;
+            }
+        }
+
+        private void deleteThisClass(String id) {
+            planner.deleteClass(id);
+        }
+
+        private void deleteThisSemester(String id) {
+            planner.deleteSemester(id);
+        }
+
+        private void deleteThisSchoolYear(String id) {
+            planner.deleteSchoolYear(id);
         }
 
 
