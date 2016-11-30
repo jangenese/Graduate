@@ -54,6 +54,13 @@ namespace Graduate.Core.Manager
             int i = stringToInt(fid);
             return repo.getItemsByFID(i);
         }
+
+        public void deleteClassActivity(String id)
+        {
+            ClassActivity cActivity = repo.getItem(stringToInt(id));
+            repo.deleteItem(cActivity);
+        }
+
         private int stringToInt(String str)
         {
             int i = 0;

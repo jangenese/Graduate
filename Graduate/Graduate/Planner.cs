@@ -119,11 +119,11 @@ namespace Graduate.Core
         }
 
         public void deleteSemester(String id) {
-
+            semesterManager.deleteSemester(id);
         }
 
         public void deleteSchoolYear(String id) {
-
+            schoolYearManager.deleteSchoolYear(id);
         }
 
 

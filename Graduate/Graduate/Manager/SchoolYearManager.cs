@@ -39,7 +39,14 @@ namespace Graduate.Core.Manager
 
             return sy;
         }
-       
+
+
+        public void deleteSchoolYear(String id)
+        {
+            SchoolYear sy = repo.getItem(stringToInt(id));
+            repo.deleteItem(sy);
+        }
+
         private int stringToInt(String str)
         {
             int i = 0;

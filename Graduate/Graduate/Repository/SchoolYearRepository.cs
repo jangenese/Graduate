@@ -30,6 +30,11 @@ namespace Graduate.Core.Repository
         public IEnumerable<SchoolYear> getItems()
         {
             return dataAccess.GetItems<SchoolYear>();
-        }        
+        }
+
+        public void deleteItem(SchoolYear sy)
+        {
+            dataAccess.DeleteItem<SchoolYear>(sy);
+        }
     }
 }
