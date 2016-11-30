@@ -140,6 +140,7 @@ namespace Graduate.Droid.Fragments
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            editEntry(type);
             Dismiss();
             Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
         }
