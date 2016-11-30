@@ -373,21 +373,24 @@ namespace Graduate.Droid
         }
 
         private void editThisItem() {
-            //set alert for executing the task
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetTitle("Edit");
-            alert.SetMessage("Are you sure you want to Edit this item?");
-            alert.SetPositiveButton("Yes", (senderAlert, args) => {                
-                Toast.MakeText(this, "Edited!", ToastLength.Short).Show();
-                Finish();
-            });
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
 
-            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-                Toast.MakeText(this, "Cancelled!", ToastLength.Short).Show();
-            });
+            ft.AddToBackStack(null);
 
-            Dialog dialog = alert.Create();
-            dialog.Show();
+            // Create and show the dialog.
+
+            EditDialogFragment editDialogFrag = EditDialogFragment.NewInstance(null);
+
+
+            editDialogFrag.parentId = selectedID;
+            editDialogFrag.type = Intent.Extras.GetInt("type");
+            editDialogFrag.entityID = selectedID;           
+            editDialogFrag.Show(ft, "dialog");
         }
 
     }

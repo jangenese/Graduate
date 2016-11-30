@@ -10,6 +10,8 @@ namespace Graduate.Core.View.Model
    public class ClassView : ViewBase
     {
         public IList<ClassActivity> children;
+
+        public Boolean completed;
         public ClassView() { }
 
     }

@@ -134,7 +134,7 @@ namespace Graduate.Core
             semesterManager.UpdateItem(id, fid, label);
         }
 
-        public void editSchoolyear(String id, String label) {
+        public void editSchoolYear(String id, String label) {
             schoolYearManager.UpdateItem(id, label);
         }
 
