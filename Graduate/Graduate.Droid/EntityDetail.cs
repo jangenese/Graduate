@@ -315,14 +315,16 @@ namespace Graduate.Droid
             dialogFrag.Show(ft, "dialog");
 
         }
-
+        /*
+            Displays Delete Alert 
+        */
         private void displayDeleteAlert() {
             //set alert for executing the task
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetTitle("Confirm delete");
             alert.SetMessage("Lorem ipsum dolor sit amet, consectetuer adipiscing elit.");
             alert.SetPositiveButton("Delete", (senderAlert, args) => {
-                deleteThisItem();
+                deleteThisItem();                                           //Calls Delete Handler
                 Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
                 Finish();
             });
@@ -335,6 +337,10 @@ namespace Graduate.Droid
             dialog.Show();
         }
 
+
+        /*
+                Checks what kind of item is being deleted and calls apropriate function 
+        */
         private void deleteThisItem() {
             string id = selectedID.ToString();
             switch (Intent.Extras.GetInt("type"))
