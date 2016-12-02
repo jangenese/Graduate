@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="Graduate.Droid">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="Graduate.Droid" android:versionCode="1" android:versionName="FinalProject">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="24" />
-	<application android:label="Graduate" android:icon="@drawable/Icon" android:theme="@android:style/Theme.Material.Light"></application>
+	<application android:label="Graduate" android:icon="@drawable/GraduateV2_icon" android:theme="@android:style/Theme.Material.Light"></application>
 </manifest>

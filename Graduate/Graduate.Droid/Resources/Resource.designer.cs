@@ -2076,25 +2076,37 @@ namespace Graduate.Droid
 			public const int fab_shadow_mini = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int ic_delete = 2130837594;
+			public const int GraduateV1_logo = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_edit = 2130837595;
+			public const int GraduateV2_icon = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int Icon = 2130837596;
+			public const int GraduateV2_logo = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int Logo = 2130837597;
+			public const int GraduateV2_splash = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int navigation_empty_icon = 2130837598;
-			
-			// aapt resource value: 0x7f020060
-			public const int notification_template_icon_bg = 2130837600;
+			public const int ic_delete = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int splash_screen = 2130837599;
+			public const int ic_edit = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int Icon = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int Logo = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public const int navigation_empty_icon = 2130837602;
+			
+			// aapt resource value: 0x7f020064
+			public const int notification_template_icon_bg = 2130837604;
+			
+			// aapt resource value: 0x7f020063
+			public const int splash_screen = 2130837603;
 			
 			static Drawable()
 			{
