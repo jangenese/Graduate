@@ -100,7 +100,12 @@ namespace Graduate.Droid
         {
             switch (item.ItemId)
             {
-
+                case Resource.Id.edit:
+                    editThisItem();
+                    break;
+                case Resource.Id.delete:
+                    displayDeleteAlert();
+                    break;
                 case Resource.Id.menu_preferences:
                     var preferenceIntent = new Intent(this, typeof(PreferencesActivity));
                     StartActivity(preferenceIntent);
@@ -310,7 +315,83 @@ namespace Graduate.Droid
             dialogFrag.Show(ft, "dialog");
 
         }
+        /*
+            Displays Delete Alert 
+        */
+        private void displayDeleteAlert() {
+            //set alert for executing the task
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Confirm delete");
+            alert.SetMessage("Are you sure you want to delete this item?");
+            alert.SetPositiveButton("Delete", (senderAlert, args) => {
+                deleteThisItem();                                           //Calls Delete Handler
+                Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
+                Finish();
+            });
 
+            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                Toast.MakeText(this, "Cancelled!", ToastLength.Short).Show();
+            });
+
+            Dialog dialog = alert.Create();
+            dialog.Show();
+        }
+
+
+        /*
+                Checks what kind of item is being deleted and calls apropriate function 
+        */
+        private void deleteThisItem() {
+            string id = selectedID.ToString();
+            switch (Intent.Extras.GetInt("type"))
+            {
+                case 1:
+                    deleteThisSchoolYear(id);
+                    break;
+                case 2:
+                    deleteThisSemester(id);
+                    break;
+                case 3:
+                    deleteThisClass(id);
+                    break;
+                default:
+                    Console.WriteLine("Unknown Recieved");
+                    break;
+            }
+        }
+
+        private void deleteThisClass(String id) {
+            planner.deleteClass(id);
+        }
+
+        private void deleteThisSemester(String id) {
+            planner.deleteSemester(id);
+        }
+
+        private void deleteThisSchoolYear(String id) {
+            planner.deleteSchoolYear(id);
+        }
+
+        private void editThisItem() {
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+
+            ft.AddToBackStack(null);
+
+            // Create and show the dialog.
+
+            EditDialogFragment editDialogFrag = EditDialogFragment.NewInstance(null);
+
+
+            editDialogFrag.parentId = selectedID;
+            editDialogFrag.type = Intent.Extras.GetInt("type");
+            editDialogFrag.entityID = selectedID;           
+            editDialogFrag.Show(ft, "dialog");
+        }
 
     }
 

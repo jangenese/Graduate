@@ -5,8 +5,7 @@
   </item>
   <item>
     <bitmap
-        android:src="@drawable/Logo"
-        android:layout_height="300dp"
+        android:src="@drawable/graduatev2_splash"
         android:tileMode="disabled"
         android:gravity="center"/>
   </item>

@@ -23,6 +23,13 @@ namespace Graduate.Core.Manager
             sy.label = label;   
             repo.saveItem(sy);
         }
+
+        public void UpdateItem(String id, String label) {
+            SchoolYear sy = new SchoolYear();
+            sy.Id = stringToInt(id);
+            sy.label = label;
+            repo.saveItem(sy);
+        }
         public IEnumerable<SchoolYear> getSchoolYears()
         {
             return repo.getItems();
@@ -39,7 +46,14 @@ namespace Graduate.Core.Manager
 
             return sy;
         }
-       
+
+
+        public void deleteSchoolYear(String id)
+        {
+            SchoolYear sy = repo.getItem(stringToInt(id));
+            repo.deleteItem(sy);
+        }
+
         private int stringToInt(String str)
         {
             int i = 0;

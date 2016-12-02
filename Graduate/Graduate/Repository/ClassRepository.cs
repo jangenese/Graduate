@@ -31,5 +31,11 @@ namespace Graduate.Core.Repository
         public IEnumerable<Class> getItemsByFID(int fid) {
             return dataAccess.getItemsByFID(fid);
         }
+
+        public void deleteItem(Class c) {
+            dataAccess.DeleteItem<Class>(c);
+        }
+
+       
     }
 }

@@ -31,6 +31,18 @@ namespace Graduate.Core.Manager
             repo.saveItem(activity);
         }
 
+        public void UpdateItem(String id, String fid, String label, String grade, String weight, Boolean completed) {
+            ClassActivity activity = new ClassActivity();
+            activity.Id = stringToInt(id);
+            activity.FId = stringToInt(fid);
+            activity.label = label;
+            activity.goalGrade = 4.00;
+            activity.grade = stringToDouble(grade);
+            activity.weight = stringToInt(weight);
+            activity.completed = completed;
+            repo.saveItem(activity);
+        }
+
         public ClassActivity getClassActivityByID(String id)
         {
             int i = stringToInt(id);
@@ -54,6 +66,13 @@ namespace Graduate.Core.Manager
             int i = stringToInt(fid);
             return repo.getItemsByFID(i);
         }
+
+        public void deleteClassActivity(String id)
+        {
+            ClassActivity cActivity = repo.getItem(stringToInt(id));
+            repo.deleteItem(cActivity);
+        }
+
         private int stringToInt(String str)
         {
             int i = 0;

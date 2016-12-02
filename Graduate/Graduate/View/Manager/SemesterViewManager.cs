@@ -43,7 +43,7 @@ namespace Graduate.Core.View.Manager
             semesterView.children = getChildren(sem.Id.ToString());
             semesterView.credits = getCreditsFromChildren(sem.Id.ToString()).ToString() ;
             semesterView.grade = getGradeFromChildren(sem.Id.ToString()).ToString();
-            semesterView.parentLabel = getParentLabel(sem.Id.ToString());
+            semesterView.parentLabel = getParentLabel(sem.FId.ToString());
             semesterView.status = getStatus(sem.Id.ToString());
             return semesterView;
         }

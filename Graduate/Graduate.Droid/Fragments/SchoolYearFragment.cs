@@ -68,6 +68,12 @@ namespace Graduate.Droid.Fragments
             
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+            populateListView();
+        }
+
         private void populateListView() {
 
             schoolYears = planner.getAllSchoolYears();

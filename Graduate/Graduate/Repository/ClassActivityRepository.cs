@@ -37,5 +37,10 @@ namespace Graduate.Core.Repository
             return dataAccess.getItemsByFID(fid);
         }
 
+
+        public void deleteItem(ClassActivity cActivity)
+        {
+            dataAccess.DeleteItem<ClassActivity>(cActivity);
+        }
     }
 }

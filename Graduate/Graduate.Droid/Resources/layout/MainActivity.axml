@@ -15,7 +15,7 @@
         android:id="@+id/linearLayout1"
         android:layout_weight="70">
         <ImageView
-            android:src="@drawable/logo"
+            android:src="@drawable/graduatev2_logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/imageView1"

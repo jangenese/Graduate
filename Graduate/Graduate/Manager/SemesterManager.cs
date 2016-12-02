@@ -28,6 +28,15 @@ namespace Graduate.Core.Manager
             repo.saveItem(sem);
         }
 
+        public void UpdateItem(String id, String fid, String label) {
+            Semester sem = new Semester();
+            sem.Id = stringToInt(id);
+            sem.FId = stringToInt(fid);
+            sem.label = label;
+
+            repo.saveItem(sem);
+        }
+
         public IEnumerable<Semester> getSemesters()
         {
             return repo.getItems();
@@ -51,6 +60,12 @@ namespace Graduate.Core.Manager
             int i = stringToInt(fid);
             return repo.getItemsByFID(i);
         }
+        public void deleteSemester(String id)
+        {
+            Semester sem = repo.getItem(stringToInt(id));
+            repo.deleteItem(sem);
+        }
+
         private int stringToInt(String str)
         {
             int i = 0;

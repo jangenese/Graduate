@@ -46,6 +46,7 @@ namespace Graduate.Core.View.Manager
             classView.parentLabel = getParentLabel(c.FId.ToString());
             classView.status = getStatus(c.completed);
             classView.children = getChildren(c.Id.ToString());
+            classView.completed = c.completed;
             return classView;
         }
                
