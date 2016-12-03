@@ -315,7 +315,12 @@ namespace Graduate.Droid
 
             insertMyFooter(Resource.Layout.ClassFooterFragment);
 
-
+            TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
+            TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
+            TextView neededGrade = FindViewById<TextView>(Resource.Id.textViewFooterNeedeGrade);
+            goalGrade.Text = "A+";
+            inpWeight.Text = "30%";
+            neededGrade.Text = "76%";
 
 
 
