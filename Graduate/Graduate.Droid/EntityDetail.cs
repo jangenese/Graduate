@@ -47,6 +47,8 @@ namespace Graduate.Droid
 
         private String activityTitle = "";                      //Action Bar Title
 
+        private IList<ClassActivity> classChildrenList = null;
+
 
 
 
@@ -179,9 +181,29 @@ namespace Graduate.Droid
 
         private void ChildrenList_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
-            var dialog = new AlertDialog.Builder(this);
-            dialog.SetTitle("Wassup");
-            dialog.Show();
+
+            var entity = classChildrenList[e.Position];
+            Console.WriteLine(entity.ToString());
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Activity Action");            
+            alert.SetPositiveButton("Delete", (senderAlert, args) => {
+               
+                Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
+                Finish();
+            });
+
+            alert.SetNegativeButton("Edit", (senderAlert, args) => {
+                Toast.MakeText(this, "Edit!", ToastLength.Short).Show();
+            });
+
+            alert.SetNeutralButton("Cancel", (senderAlert, args) => {
+                Toast.MakeText(this, "Cancel", ToastLength.Short).Show();
+            });
+
+            alert.Show();
+
+
         }
 
         /*
@@ -299,7 +321,9 @@ namespace Graduate.Droid
             //Populate Body Info (Children List)******
             headerlabel.Text = "Actvities";
             headerstatus.Text = "Weight";
-            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, c.children);
+            classChildrenList = c.children;
+
+            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, classChildrenList);
             childrenList.Adapter = childAdapter;
             childrenType = 4;                           //Sets childrentype to 4 for ClassActivities
                                                         //******Populate Body Info (Children List)
