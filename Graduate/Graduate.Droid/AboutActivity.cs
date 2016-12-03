@@ -15,11 +15,19 @@ namespace Graduate.Droid
     [Activity(Label = "AboutActivity")]
     public class AboutActivity : Activity
     {
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.AboutActivity);
+
+            TextView t = (TextView)FindViewById(Resource.Id.textView2);
+            t.Text = "App Version 1.00 \n\nDeveloped By Tough Cookie Team\nTerm Project For COMP3504 - MRU"
+                + "\nTough Cookie Team Members Consist of: \nJan Genese - Lead Programmer/Developer, \nDaniel Truong - Design/Marketing\n\n"+
+                "For any questions or concerns please contact Tough Cookie at ToughCookie@gmail.com";
+                
+
         }
     }
 }
