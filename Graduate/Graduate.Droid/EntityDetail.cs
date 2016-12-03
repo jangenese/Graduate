@@ -13,12 +13,10 @@ using Android.Widget;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
 using Graduate.Droid.ListAdapters;
-using Graduate.Core.MiscTools;
+
 using Graduate.Core.View.Model;
 using com.refractored.fab;
 using Graduate.Droid.Fragments;
-
-
 
 namespace Graduate.Droid
 {
@@ -48,6 +46,8 @@ namespace Graduate.Droid
         private int childrenType = 0;                           //children type set by populator
 
         private String activityTitle = "";                      //Action Bar Title
+
+        private IList<ClassActivity> classChildrenList = null;
 
 
 
@@ -101,10 +101,10 @@ namespace Graduate.Droid
             switch (item.ItemId)
             {
                 case Resource.Id.edit:
-                    editThisItem();
+                    editThisItem(Intent.Extras.GetInt("type"), Intent.Extras.GetInt("selectedEntityID"));
                     break;
                 case Resource.Id.delete:
-                    displayDeleteAlert();
+                    displayDeleteAlert(Intent.Extras.GetInt("type"), selectedID);
                     break;
                 case Resource.Id.menu_preferences:
                     var preferenceIntent = new Intent(this, typeof(PreferencesActivity));
@@ -175,7 +175,33 @@ namespace Graduate.Droid
         private void handleEvents()
         {
             childrenList.ItemClick += ChildrenList_ItemClick;
+            childrenList.ItemLongClick += ChildrenList_ItemLongClick;
             fab.Click += Fab_Click;
+        }
+
+        private void ChildrenList_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+
+            var entity = classChildrenList[e.Position];
+            Console.WriteLine(entity.ToString());
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle(entity.label);            
+            alert.SetPositiveButton("Delete", (senderAlert, args) => { 
+                displayDeleteAlert(4, entity.Id);
+            });
+
+            alert.SetNegativeButton("Edit", (senderAlert, args) => {
+                editThisItem(4, entity.Id);
+            });
+            
+            alert.SetNeutralButton("Cancel", (senderAlert, args) => {
+                Toast.MakeText(this, "Cancelled", ToastLength.Short).Show();
+            });
+
+            alert.Show();
+
+
         }
 
         /*
@@ -233,6 +259,10 @@ namespace Graduate.Droid
 
             childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
 
+            //insertFooter();
+
+            Console.WriteLine("Footer Added");
+
         }
 
 
@@ -259,7 +289,11 @@ namespace Graduate.Droid
             SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, sy.children);
             childrenList.Adapter = childAdapter;
             childrenType = 2;                               //Sets childrentype to 2 for Semesters
-            //******Populate Body Info (Children List)
+                                                            //******Populate Body Info (Children List)
+
+            //insertFooter();
+
+            Console.WriteLine("Footer Added");
         }
 
 
@@ -285,10 +319,34 @@ namespace Graduate.Droid
             //Populate Body Info (Children List)******
             headerlabel.Text = "Actvities";
             headerstatus.Text = "Weight";
-            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, c.children);
+            classChildrenList = c.children;
+
+            ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, classChildrenList);
             childrenList.Adapter = childAdapter;
             childrenType = 4;                           //Sets childrentype to 4 for ClassActivities
-            //******Populate Body Info (Children List)
+                                                        //******Populate Body Info (Children List)
+
+
+
+
+
+            //LinearLayout footerLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
+            //LinearLayout mainLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutDetailMain);
+            //View fragmentView = LayoutInflater.Inflate(Resource.Layout.ClassFooterFragment, footerLayout, false);
+            //footerLayout.AddView(fragmentView);
+
+            insertMyFooter(Resource.Layout.ClassFooterFragment);
+
+            TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
+            TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
+            TextView neededGrade = FindViewById<TextView>(Resource.Id.textViewFooterNeedeGrade);
+            goalGrade.Text = "A+";
+            inpWeight.Text = "30%";
+            neededGrade.Text = "76%";
+
+
+
+            Console.WriteLine("Footer Added");
         }
 
 
@@ -318,15 +376,23 @@ namespace Graduate.Droid
         /*
             Displays Delete Alert 
         */
-        private void displayDeleteAlert() {
+        private void displayDeleteAlert(int type, int id) {
             //set alert for executing the task
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetTitle("Confirm delete");
             alert.SetMessage("Are you sure you want to delete this item?");
             alert.SetPositiveButton("Delete", (senderAlert, args) => {
-                deleteThisItem();                                           //Calls Delete Handler
+                deleteThisItem(type, id);                                           //Calls Delete Handler
                 Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
-                Finish();
+
+                if (type != 4)
+                {
+                    Finish();
+                }
+                else {
+                    populatePage();
+                }
+                
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {
@@ -341,9 +407,9 @@ namespace Graduate.Droid
         /*
                 Checks what kind of item is being deleted and calls apropriate function 
         */
-        private void deleteThisItem() {
-            string id = selectedID.ToString();
-            switch (Intent.Extras.GetInt("type"))
+        private void deleteThisItem(int type, int itemId) {
+            String id = itemId.ToString();          
+            switch (type)
             {
                 case 1:
                     deleteThisSchoolYear(id);
@@ -353,6 +419,10 @@ namespace Graduate.Droid
                     break;
                 case 3:
                     deleteThisClass(id);
+                    break;
+                case 4:
+                    Console.WriteLine("Have to delete an Actitivty");
+                    deleteThisActivity(id);
                     break;
                 default:
                     Console.WriteLine("Unknown Recieved");
@@ -372,7 +442,11 @@ namespace Graduate.Droid
             planner.deleteSchoolYear(id);
         }
 
-        private void editThisItem() {
+        private void deleteThisActivity(String id) {
+            planner.deleteClassActivity(id);
+        }
+
+        private void editThisItem(int type, int ID) {
             FragmentTransaction ft = FragmentManager.BeginTransaction();
             Fragment prev = FragmentManager.FindFragmentByTag("dialog");
             if (prev != null)
@@ -388,9 +462,41 @@ namespace Graduate.Droid
 
 
             editDialogFrag.parentId = selectedID;
-            editDialogFrag.type = Intent.Extras.GetInt("type");
-            editDialogFrag.entityID = selectedID;           
+            editDialogFrag.type = type;
+            editDialogFrag.entityID = ID;           
             editDialogFrag.Show(ft, "dialog");
+        }
+
+/*
+        private void insertFooter()
+        {
+            View newView;
+            newView = getNewRowView(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null);
+            addNewRow(newView);
+        }
+
+        private View getNewRowView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            View rowView = inflater.Inflate(Resource.Layout.ClassFooterFragment, container, false);
+            return rowView;
+        }
+
+        private void addNewRow(View newView)
+        {           
+            LinearLayout mainLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);           
+            mainLayout.AddView(newView);
+        }
+        */
+
+        private void insertMyFooter(int layout) {
+            View footerView = getNewViewFromLayout(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null, layout);
+            LinearLayout footerContainerLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
+            footerContainerLayout.AddView(footerView);
+        }
+
+        private View getNewViewFromLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState, int layout) {
+            View footerView = inflater.Inflate(layout, container, false);
+            return footerView;
         }
 
     }

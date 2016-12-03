@@ -21,5 +21,10 @@ namespace Graduate.Core.Data.Models
         public ClassActivity(int fid, String label, int weight, int mark, Boolean completed) {
 
         }
+
+        public override string ToString()
+        {
+            return string.Format("[ClassActivity: ID={0}, Label={1}], GoalGrade={2}, Grade={3}, Completed={4}, Weight={5}]", Id, label, goalGrade, grade, completed, weight);
+        }
     }
 }

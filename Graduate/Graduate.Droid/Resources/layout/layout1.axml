@@ -4,7 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/linearLayoutDetailMain"
     android:weightSum="100"
     android:paddingLeft="5dp"
     android:paddingRight="5dp">
@@ -253,5 +252,32 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/linearLayoutFooter"
-        android:layout_weight="10" />
+        android:layout_weight="10">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout13"
+            android:weightSum="100">
+            <TextView
+                android:text="Excellent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView1"
+                android:layout_weight="30"
+                android:textStyle="bold" />
+            <TextView
+                android:text="Superior performance showing comprehensive understanding"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView2"
+                android:layout_weight="50" />
+            <ImageView
+                android:src="@drawable/smiley"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView1"
+                android:layout_weight="20" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

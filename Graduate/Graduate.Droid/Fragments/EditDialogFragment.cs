@@ -282,6 +282,10 @@ namespace Graduate.Droid.Fragments
 
         private void modifyClassActivityForm()
         {
+            
+
+            ClassActivityView classActivity = planner.getClassActivity(entityID.ToString());
+            title.Text = "Edit : Class";
             hideParentEntry();
 
 
@@ -289,11 +293,12 @@ namespace Graduate.Droid.Fragments
             ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
             gradeEntry.Adapter = gradeEntryAdapter;
 
-            title.Text = "New Entry: Activity";
+            title.Text = "Edit: Activity";
             entryType.Text = "Activity";
-            entry.Hint = "Quiz 1";
+            entry.Text = classActivity.label;
             credits.Text = "Weight";
-            gradeEntry.Text = "100";
+            creditsEntry.Text = classActivity.weight;
+            gradeEntry.Text = classActivity.grade;
         }
 
         private String getParentPosition()
