@@ -13,12 +13,10 @@ using Android.Widget;
 using Graduate.Core;
 using Graduate.Core.Data.Models;
 using Graduate.Droid.ListAdapters;
-using Graduate.Core.MiscTools;
+
 using Graduate.Core.View.Model;
 using com.refractored.fab;
 using Graduate.Droid.Fragments;
-
-
 
 namespace Graduate.Droid
 {
@@ -233,6 +231,10 @@ namespace Graduate.Droid
 
             childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
 
+            insertFooter();
+
+            Console.WriteLine("Footer Added");
+
         }
 
 
@@ -259,7 +261,11 @@ namespace Graduate.Droid
             SemesterListAdapter childAdapter = new ListAdapters.SemesterListAdapter(this, sy.children);
             childrenList.Adapter = childAdapter;
             childrenType = 2;                               //Sets childrentype to 2 for Semesters
-            //******Populate Body Info (Children List)
+                                                            //******Populate Body Info (Children List)
+
+            insertFooter();
+
+            Console.WriteLine("Footer Added");
         }
 
 
@@ -288,7 +294,24 @@ namespace Graduate.Droid
             ClassActivityListAdapter childAdapter = new ClassActivityListAdapter(this, c.children);
             childrenList.Adapter = childAdapter;
             childrenType = 4;                           //Sets childrentype to 4 for ClassActivities
-            //******Populate Body Info (Children List)
+                                                        //******Populate Body Info (Children List)
+
+
+
+            
+
+            LinearLayout footerLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
+            LinearLayout mainLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutDetailMain);
+            View fragmentView = LayoutInflater.Inflate(Resource.Layout.ClassFooterFragment, footerLayout, false);
+
+
+            footerLayout.AddView(fragmentView);
+
+
+
+
+
+            Console.WriteLine("Footer Added");
         }
 
 
@@ -391,6 +414,26 @@ namespace Graduate.Droid
             editDialogFrag.type = Intent.Extras.GetInt("type");
             editDialogFrag.entityID = selectedID;           
             editDialogFrag.Show(ft, "dialog");
+        }
+
+
+        private void insertFooter()
+        {
+            View newView;
+            newView = getNewRowView(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null);
+            addNewRow(newView);
+        }
+
+        private View getNewRowView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            View rowView = inflater.Inflate(Resource.Layout.ClassFooterFragment, container, false);
+            return rowView;
+        }
+
+        private void addNewRow(View newView)
+        {           
+            LinearLayout mainLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);           
+            mainLayout.AddView(newView);
         }
 
     }
