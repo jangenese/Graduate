@@ -126,6 +126,10 @@ namespace Graduate.Core
             schoolYearManager.deleteSchoolYear(id);
         }
 
+        public void deleteClassActivity(String id) {
+            classActivityManager.deleteClassActivity(id);
+        }
+
         public void editClass(String id, String fid, String label, String grade, String credits, Boolean completed) {
             classManager.UpdateItem(id, fid, label, grade, credits, completed);
         }

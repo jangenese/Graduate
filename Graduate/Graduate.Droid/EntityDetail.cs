@@ -101,10 +101,10 @@ namespace Graduate.Droid
             switch (item.ItemId)
             {
                 case Resource.Id.edit:
-                    editThisItem();
+                    editThisItem(Intent.Extras.GetInt("type"), Intent.Extras.GetInt("selectedEntityID"));
                     break;
                 case Resource.Id.delete:
-                    displayDeleteAlert();
+                    displayDeleteAlert(Intent.Extras.GetInt("type"), selectedID);
                     break;
                 case Resource.Id.menu_preferences:
                     var preferenceIntent = new Intent(this, typeof(PreferencesActivity));
@@ -186,19 +186,17 @@ namespace Graduate.Droid
             Console.WriteLine(entity.ToString());
 
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetTitle("Activity Action");            
-            alert.SetPositiveButton("Delete", (senderAlert, args) => {
-               
-                Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
-                Finish();
+            alert.SetTitle(entity.label);            
+            alert.SetPositiveButton("Delete", (senderAlert, args) => { 
+                displayDeleteAlert(4, entity.Id);
             });
 
             alert.SetNegativeButton("Edit", (senderAlert, args) => {
-                Toast.MakeText(this, "Edit!", ToastLength.Short).Show();
+                editThisItem(4, entity.Id);
             });
-
+            
             alert.SetNeutralButton("Cancel", (senderAlert, args) => {
-                Toast.MakeText(this, "Cancel", ToastLength.Short).Show();
+                Toast.MakeText(this, "Cancelled", ToastLength.Short).Show();
             });
 
             alert.Show();
@@ -378,15 +376,23 @@ namespace Graduate.Droid
         /*
             Displays Delete Alert 
         */
-        private void displayDeleteAlert() {
+        private void displayDeleteAlert(int type, int id) {
             //set alert for executing the task
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetTitle("Confirm delete");
             alert.SetMessage("Are you sure you want to delete this item?");
             alert.SetPositiveButton("Delete", (senderAlert, args) => {
-                deleteThisItem();                                           //Calls Delete Handler
+                deleteThisItem(type, id);                                           //Calls Delete Handler
                 Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
-                Finish();
+
+                if (type != 4)
+                {
+                    Finish();
+                }
+                else {
+                    populatePage();
+                }
+                
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {
@@ -401,9 +407,9 @@ namespace Graduate.Droid
         /*
                 Checks what kind of item is being deleted and calls apropriate function 
         */
-        private void deleteThisItem() {
-            string id = selectedID.ToString();
-            switch (Intent.Extras.GetInt("type"))
+        private void deleteThisItem(int type, int itemId) {
+            String id = itemId.ToString();          
+            switch (type)
             {
                 case 1:
                     deleteThisSchoolYear(id);
@@ -413,6 +419,10 @@ namespace Graduate.Droid
                     break;
                 case 3:
                     deleteThisClass(id);
+                    break;
+                case 4:
+                    Console.WriteLine("Have to delete an Actitivty");
+                    deleteThisActivity(id);
                     break;
                 default:
                     Console.WriteLine("Unknown Recieved");
@@ -432,7 +442,11 @@ namespace Graduate.Droid
             planner.deleteSchoolYear(id);
         }
 
-        private void editThisItem() {
+        private void deleteThisActivity(String id) {
+            planner.deleteClassActivity(id);
+        }
+
+        private void editThisItem(int type, int ID) {
             FragmentTransaction ft = FragmentManager.BeginTransaction();
             Fragment prev = FragmentManager.FindFragmentByTag("dialog");
             if (prev != null)
@@ -448,8 +462,8 @@ namespace Graduate.Droid
 
 
             editDialogFrag.parentId = selectedID;
-            editDialogFrag.type = Intent.Extras.GetInt("type");
-            editDialogFrag.entityID = selectedID;           
+            editDialogFrag.type = type;
+            editDialogFrag.entityID = ID;           
             editDialogFrag.Show(ft, "dialog");
         }
 
