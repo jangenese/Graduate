@@ -173,7 +173,15 @@ namespace Graduate.Droid
         private void handleEvents()
         {
             childrenList.ItemClick += ChildrenList_ItemClick;
+            childrenList.ItemLongClick += ChildrenList_ItemLongClick;
             fab.Click += Fab_Click;
+        }
+
+        private void ChildrenList_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            var dialog = new AlertDialog.Builder(this);
+            dialog.SetTitle("Wassup");
+            dialog.Show();
         }
 
         /*
