@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout13"
+    android:weightSum="100">
+    <TextView
+        android:text="Excellent"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/textView1"
+        android:layout_weight="30"
+        android:textStyle="bold" />
+    <TextView
+        android:text="Superior performance showing comprehensive understanding"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/textView2"
+        android:layout_weight="50" />
+    <ImageView
+        android:src="@drawable/smiley"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView1"
+        android:layout_weight="20" />
+</LinearLayout>
