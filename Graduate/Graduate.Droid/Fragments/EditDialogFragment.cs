@@ -266,6 +266,7 @@ namespace Graduate.Droid.Fragments
             parentEntry.Text = classView.parentLabel;
             entryType.Text = "Class";
             entry.Text = classView.label;
+            creditsEntry.Text = classView.credits;
             var gradeEntryOptions = planner.getAllLetterGrades();
             ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
             gradeEntry.Adapter = gradeEntryAdapter;            

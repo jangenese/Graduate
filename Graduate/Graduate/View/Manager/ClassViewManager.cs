@@ -44,14 +44,31 @@ namespace Graduate.Core.View.Manager
             classView.credits = c.credits.ToString();
             classView.goalGrade = c.goalGrade.ToString();
             classView.gpaGrade = c.gpaGrade.ToString();
-            classView.percentGrade = c.percentGrade + "%";
+            
             classView.letterGrade = "A+";
             classView.parentLabel = getParentLabel(c.FId.ToString());
             classView.status = getStatus(c.completed);
             classView.children = getChildren(c.Id.ToString());
             classView.completed = c.completed;
             classView.remainingWeight = getRemainingWeight(c.Id.ToString()) + "%";
-            classView.neededGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
+            if (getRemainingWeight(c.Id.ToString()) > 0)
+            {
+                classView.neededGrade = calculateNeededGrade(c.Id.ToString(), c.goalGrade).ToString() + "%";
+            }
+            else {
+                classView.neededGrade = "-";
+            }
+
+            if (c.completed)
+            {
+                classView.percentGrade = c.percentGrade + "%";
+            }
+            else {
+                classView.percentGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
+            }
+            
+
+            
             return classView;
         }
                
@@ -73,25 +90,33 @@ namespace Graduate.Core.View.Manager
             return remainingWeight - completedWeight;
         }
 
-        private int calculateNeededGrade(String fid) {
-            int grade = 0;
-            int completedWeight = 0;
-            int earnedWeight = 0;
+        private double calculateNeededGrade(String fid, int goalGradeByuser) {
+            double goalGrade = goalGradeByuser;
+            double neededGrade = 0;
+            double unearnedWeight = 0;
+            double completedWeight = 0;
+            double earnedWeight = 0;
+            double remainingWeight = getRemainingWeight(fid);
+            double activityGrade = 1;
 
             IList<ClassActivity> children = getChildren(fid);
 
-            foreach (ClassActivity c in children) {
+            foreach (ClassActivity c in children)
+            {
+                activityGrade = c.grade * 0.01;
+
                 completedWeight += c.weight;
-                earnedWeight += (grade / 100) * c.weight;
+                earnedWeight += activityGrade * c.weight;
             }
 
-            try {
-                grade = earnedWeight / completedWeight;
-            }
-            catch (Exception e) {
-            }
+            unearnedWeight = goalGrade - earnedWeight;
+            neededGrade = unearnedWeight / remainingWeight;
+
+            neededGrade = neededGrade * 100;
+            neededGrade = Math.Round(neededGrade, 0);
             
-            return grade;
+            return neededGrade;
+
         }
 
         private int calculatePercentGrade(String fid) {
