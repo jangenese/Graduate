@@ -102,10 +102,12 @@ namespace Graduate.Core.View.Manager
                     grade += c.percentGrade;
                     count++;
                 }
+
+                grade = grade / count;
             }
 
             
-            return grade / count;
+            return grade;
         }
 
 

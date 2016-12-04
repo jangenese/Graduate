@@ -116,7 +116,8 @@ namespace Graduate.Core.View.Manager
                 {
                     grade += c.percentGrade;
                     count++;
-                }               
+                }
+                grade = grade / count;
             }
 
 

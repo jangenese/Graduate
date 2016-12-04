@@ -463,6 +463,8 @@ namespace Graduate.Droid
             editDialogFrag.type = type;
             editDialogFrag.entityID = ID;           
             editDialogFrag.Show(ft, "dialog");
+
+            
         }
 
 
