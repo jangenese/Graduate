@@ -270,7 +270,7 @@ namespace Graduate.Droid.Fragments
             var gradeEntryOptions = planner.getAllLetterGrades();
             ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
             gradeEntry.Adapter = gradeEntryAdapter;            
-            gradeEntry.Text = classView.percentGrade;
+            gradeEntry.Text = classView.goalLetterGrade;
 
 
             if (classView.completed) {

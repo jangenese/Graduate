@@ -13,7 +13,8 @@ namespace Graduate.Core.View.Model
 
         public Boolean completed;
 
-        public String goalGrade;
+        public String goalPercentGrade;
+        public String goalLetterGrade;        
         public String remainingWeight;
         public String neededGrade;
         public ClassView() { }

@@ -311,7 +311,7 @@ namespace Graduate.Droid
             credits.Text = c.credits;
             parentLabel.Text = c.parentLabel;
             status.Text = c.status;
-            grade.Text = c.percentGrade;
+            grade.Text = c.percentGrade +"\t"+ c.letterGrade +"\t"+ c.gpaGrade;
             //******Populate Main Info
 
 
@@ -334,7 +334,7 @@ namespace Graduate.Droid
                 TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
                 TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
                 TextView neededGrade = FindViewById<TextView>(Resource.Id.textViewFooterNeedeGrade);
-                goalGrade.Text = c.goalGrade;
+                goalGrade.Text = c.goalLetterGrade;
                 inpWeight.Text = c.remainingWeight;
                 neededGrade.Text = c.neededGrade;
 

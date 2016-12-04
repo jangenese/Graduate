@@ -26,14 +26,19 @@ namespace Graduate.Core.Manager
             c.credits = stringToInt(credit);
             c.completed = completed;
 
+            //user entered grade is either completed or goal in letter form
+            
             if (completed)
             {
+                c.letterGrade = grade;
                 c.percentGrade = getPercentGradeFromSchema(grade);
                 c.gpaGrade = getGPAGradeFromSchema(grade);
             }
             else
             {
-                c.goalGrade = getPercentGradeFromSchema(grade);
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
             }
 
             repo.saveItem(c);
@@ -47,14 +52,20 @@ namespace Graduate.Core.Manager
             c.credits = stringToInt(credit);
             c.completed = completed;
 
+            //user entered grade is either completed or goal in letter form
+
             if (completed)
             {
+                c.letterGrade = grade;
                 c.percentGrade = getPercentGradeFromSchema(grade);
                 c.gpaGrade = getGPAGradeFromSchema(grade);
             }
-            else {
-                c.goalGrade = getPercentGradeFromSchema(grade);
-            }     
+            else
+            {
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
+            }
 
             repo.saveItem(c);
         }

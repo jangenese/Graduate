@@ -42,29 +42,45 @@ namespace Graduate.Core.View.Manager
             classView.id = c.Id;
             classView.label = c.label;
             classView.credits = c.credits.ToString();
-            classView.goalGrade = c.goalGrade.ToString();
-            classView.gpaGrade = c.gpaGrade.ToString();
-            
-            classView.letterGrade = "A+";
             classView.parentLabel = getParentLabel(c.FId.ToString());
             classView.status = getStatus(c.completed);
             classView.children = getChildren(c.Id.ToString());
             classView.completed = c.completed;
             classView.remainingWeight = getRemainingWeight(c.Id.ToString()) + "%";
+
+
+
+           
+
+            
+
+            
+            
+            //checks if there are remaining weight to calculate 
             if (getRemainingWeight(c.Id.ToString()) > 0)
             {
-                classView.neededGrade = calculateNeededGrade(c.Id.ToString(), c.goalGrade).ToString() + "%";
+                classView.neededGrade = calculateNeededGrade(c.Id.ToString(), c.percentGoalGrade).ToString() + "%";
             }
             else {
                 classView.neededGrade = "-";
             }
 
+
+
+
             if (c.completed)
             {
                 classView.percentGrade = c.percentGrade + "%";
+                classView.gpaGrade = c.gpaGrade.ToString();
+                classView.letterGrade = c.letterGrade;
+
             }
             else {
                 classView.percentGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
+
+                classView.goalPercentGrade = c.percentGoalGrade.ToString();
+                classView.goalLetterGrade = c.letterGoalGrade;
+
             }
             
 
