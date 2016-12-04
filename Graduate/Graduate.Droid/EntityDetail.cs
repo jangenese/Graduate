@@ -246,7 +246,7 @@ namespace Graduate.Droid
             parentLabel.Text = semester.parentLabel;
             credits.Text = semester.credits;
             status.Text = semester.status;
-            grade.Text = semester.grade;
+            grade.Text = semester.percentGrade;
             //******** Main Header Info
 
             //Body Info (Children) ****** 
@@ -280,7 +280,7 @@ namespace Graduate.Droid
             parentLabel.Text = sy.parentLabel;
             credits.Text = sy.credits;
             status.Text = sy.status;
-            grade.Text = sy.grade;
+            grade.Text = sy.percentGrade;
             //******Populate Main Info
 
             //Populate Body Info (Children List)******
@@ -311,7 +311,7 @@ namespace Graduate.Droid
             credits.Text = c.credits;
             parentLabel.Text = c.parentLabel;
             status.Text = c.status;
-            grade.Text = c.grade;
+            grade.Text = c.percentGrade;
             //******Populate Main Info
 
 

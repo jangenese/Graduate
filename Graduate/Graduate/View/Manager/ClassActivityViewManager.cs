@@ -42,7 +42,7 @@ namespace Graduate.Core.View.Manager
             activityView.id = activity.Id;
             activityView.label = activity.label;
             activityView.weight = activity.weight.ToString();
-            activityView.grade = Math.Round(activity.grade, 2).ToString();
+            activityView.percentGrade = activity.grade.ToString();
             activityView.status = getStatus(activity.completed);          
             return activityView;
         }

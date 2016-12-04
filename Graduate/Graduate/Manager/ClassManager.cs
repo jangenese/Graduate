@@ -19,14 +19,23 @@ namespace Graduate.Core.Manager
             gradeRepo = new GradeRepository(conn);
         }
 
-        public void SaveItem(String fid, String label, String grade, String credit, Boolean completed) { 
-            Class c = new Class();
+        public void SaveItem(String fid, String label, String grade, String credit, Boolean completed) {
+            Class c = new Class();           
             c.FId = stringToInt(fid);
             c.label = label;
-            c.goalGrade = 4.00;
-            c.grade = getGradeFromSchema(grade);
             c.credits = stringToInt(credit);
             c.completed = completed;
+
+            if (completed)
+            {
+                c.percentGrade = getPercentGradeFromSchema(grade);
+                c.gpaGrade = getGPAGradeFromSchema(grade);
+            }
+            else
+            {
+                c.goalGrade = getPercentGradeFromSchema(grade);
+            }
+
             repo.saveItem(c);
         }
 
@@ -35,10 +44,18 @@ namespace Graduate.Core.Manager
             c.Id = stringToInt(id);
             c.FId = stringToInt(fid);
             c.label = label;
-            c.goalGrade = 4.00;
-            c.grade = getGradeFromSchema(grade);
             c.credits = stringToInt(credit);
             c.completed = completed;
+
+            if (completed)
+            {
+                c.percentGrade = getPercentGradeFromSchema(grade);
+                c.gpaGrade = getGPAGradeFromSchema(grade);
+            }
+            else {
+                c.goalGrade = getPercentGradeFromSchema(grade);
+            }     
+
             repo.saveItem(c);
         }
 
@@ -95,12 +112,21 @@ namespace Graduate.Core.Manager
             return i;
         }
 
-        private double getGradeFromSchema(String letter) {
+        private int getPercentGradeFromSchema(String letter) {
             
 
             Grade g = gradeRepo.getItemByLetter(letter);
 
-            return g.GPA;          
+            return g.Percent;          
+        }
+
+        private double getGPAGradeFromSchema(String letter)
+        {
+
+
+            Grade g = gradeRepo.getItemByLetter(letter);
+
+            return g.GPA;
         }
 
         private Boolean isNull(Class entity)
@@ -119,5 +145,7 @@ namespace Graduate.Core.Manager
         {
             return new Class();
         }
+
+        
     }
 }

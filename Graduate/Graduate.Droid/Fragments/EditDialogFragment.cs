@@ -269,7 +269,7 @@ namespace Graduate.Droid.Fragments
             var gradeEntryOptions = planner.getAllLetterGrades();
             ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
             gradeEntry.Adapter = gradeEntryAdapter;            
-            gradeEntry.Text = classView.grade;
+            gradeEntry.Text = classView.percentGrade;
 
 
             if (classView.completed) {
@@ -298,7 +298,7 @@ namespace Graduate.Droid.Fragments
             entry.Text = classActivity.label;
             credits.Text = "Weight";
             creditsEntry.Text = classActivity.weight;
-            gradeEntry.Text = classActivity.grade;
+            gradeEntry.Text = classActivity.percentGrade;
         }
 
         private String getParentPosition()

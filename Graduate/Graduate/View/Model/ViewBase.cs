@@ -13,7 +13,9 @@ namespace Graduate.Core.View.Model
         public String label { get; set; }
         public String credits { get; set; }
         public String status { get; set; }
-        public String grade { get; set; }
+        public String percentGrade { get; set; }
+        public String gpaGrade { get; set; }
+        public String letterGrade { get; set; }
         public String parentLabel { get; set; }
 
         public ViewBase() { }

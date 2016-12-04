@@ -67,7 +67,7 @@ namespace Graduate.Droid.ListAdapters
           
             entry.Text = sem.label;            
             statusEntry.Text = sem.status;          
-            gradeEntry.Text = sem.grade;
+            gradeEntry.Text = sem.percentGrade;
 
             return row;
         }

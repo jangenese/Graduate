@@ -42,7 +42,8 @@ namespace Graduate.Core.View.Manager
             semesterView.label = sem.label;
             semesterView.children = getChildren(sem.Id.ToString());
             semesterView.credits = getCreditsFromChildren(sem.Id.ToString()).ToString() ;
-            semesterView.grade = getGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.gpaGrade = getGPAGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.percentGrade = getPercentGradeFromChildren(sem.Id.ToString()).ToString();            
             semesterView.parentLabel = getParentLabel(sem.FId.ToString());
             semesterView.status = getStatus(sem.Id.ToString());
             return semesterView;
@@ -61,27 +62,52 @@ namespace Graduate.Core.View.Manager
             return i;
         }
 
-        private double getGradeFromChildren(String fid)
+
+        private double getGPAGradeFromChildren(String fid)
         {
             double grade = 0;
             int count = 0;
 
             IList<Class> children = getChildren(fid);
 
+
             if (children.Count > 0)
             {
                 foreach (Class c in children)
                 {
-                    grade += c.grade;
+                    grade += c.gpaGrade;
                     count++;
                 }
 
                 grade = Math.Round((grade / count), 2);
             }
 
-            
+
             return grade;
         }
+
+        private int getPercentGradeFromChildren(String fid)
+        {
+
+            int grade = 0;
+            int count = 0;
+
+            IList<Class> children = getChildren(fid);
+
+
+            if (children.Count > 0)
+            {
+                foreach (Class c in children)
+                {
+                    grade += c.percentGrade;
+                    count++;
+                }
+            }
+
+
+            return grade;
+        }
+
 
         private String getParentLabel(String fid) {
             SchoolYear sy = schoolYearManager.getSchoolYearByID(fid);

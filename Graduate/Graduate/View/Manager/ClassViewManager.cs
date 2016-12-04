@@ -42,7 +42,10 @@ namespace Graduate.Core.View.Manager
             classView.id = c.Id;
             classView.label = c.label;
             classView.credits = c.credits.ToString();
-            classView.grade = Math.Round(c.grade, 2).ToString();
+            classView.goalGrade = "A+";
+            classView.gpaGrade = "4.00";
+            classView.percentGrade = c.percentGrade + "%";
+            classView.letterGrade = "A+";
             classView.parentLabel = getParentLabel(c.FId.ToString());
             classView.status = getStatus(c.completed);
             classView.children = getChildren(c.Id.ToString());

@@ -13,8 +13,9 @@ namespace Graduate.Core.Data.Models
 
         public int FId { get; set; }
         public String label { get; set; }
-        public double grade { get; set; }
-        public double goalGrade { get; set; }
+        public double gpaGrade { get; set; }
+        public int percentGrade { get; set; }
+        public int goalGrade { get; set; }
         public Boolean completed { get; set; } = false;
 
         public int credits { get; set; }
@@ -25,7 +26,7 @@ namespace Graduate.Core.Data.Models
 
         public override string ToString()
         {
-            return string.Format("[Class: ID={0}, Label={1}], GoalGrade={2}, Grade={3}, Completed={4}, Credits={5}]", Id, label, goalGrade, grade, completed, credits);
+            return string.Format("[Class: ID={0}, Label={1}], GoalGrade={2}, Grade={3}, Completed={4}, Credits={5}]", Id, label, goalGrade, gpaGrade, completed, credits);
         }
 
 

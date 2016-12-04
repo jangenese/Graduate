@@ -71,7 +71,7 @@ namespace Graduate.Droid.ListAdapters
           //  status.Text = "Status";
             statusEntry.Text = c.status;
           //  grade.Text = "Grade";
-            gradeEntry.Text = c.grade;
+            gradeEntry.Text = c.percentGrade;
            
             return row;
         }

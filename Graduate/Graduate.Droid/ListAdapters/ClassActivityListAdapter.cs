@@ -72,7 +72,7 @@ namespace Graduate.Droid.ListAdapters
            
             statusEntry.Text = cActivity.weight;
            
-            gradeEntry.Text = cActivity.grade;
+            gradeEntry.Text = cActivity.percentGrade;
 
             return row;
         }
