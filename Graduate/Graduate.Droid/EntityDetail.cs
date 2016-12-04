@@ -259,7 +259,7 @@ namespace Graduate.Droid
 
             childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
 
-            //insertFooter();
+            insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
 
             Console.WriteLine("Footer Added");
 
@@ -291,7 +291,7 @@ namespace Graduate.Droid
             childrenType = 2;                               //Sets childrentype to 2 for Semesters
                                                             //******Populate Body Info (Children List)
 
-            //insertFooter();
+            insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
 
             Console.WriteLine("Footer Added");
         }
@@ -335,7 +335,7 @@ namespace Graduate.Droid
             //View fragmentView = LayoutInflater.Inflate(Resource.Layout.ClassFooterFragment, footerLayout, false);
             //footerLayout.AddView(fragmentView);
 
-            insertMyFooter(Resource.Layout.ClassFooterFragment);
+            insertFooter(Resource.Layout.ClassFooterFragment);
 
             TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
             TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
@@ -467,28 +467,8 @@ namespace Graduate.Droid
             editDialogFrag.Show(ft, "dialog");
         }
 
-/*
-        private void insertFooter()
-        {
-            View newView;
-            newView = getNewRowView(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null);
-            addNewRow(newView);
-        }
 
-        private View getNewRowView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            View rowView = inflater.Inflate(Resource.Layout.ClassFooterFragment, container, false);
-            return rowView;
-        }
-
-        private void addNewRow(View newView)
-        {           
-            LinearLayout mainLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);           
-            mainLayout.AddView(newView);
-        }
-        */
-
-        private void insertMyFooter(int layout) {
+        private void insertFooter(int layout) {
             View footerView = getNewViewFromLayout(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null, layout);
             LinearLayout footerContainerLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
             footerContainerLayout.AddView(footerView);
