@@ -2,4 +2,12 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">Graduate</string>
+
+
+  <string-array name="Schools">
+    <item>MRU</item>
+    <item>U of C</item>
+    <item>Sait</item>
+  </string-array>
+
 </resources>
