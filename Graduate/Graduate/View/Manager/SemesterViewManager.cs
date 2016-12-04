@@ -104,8 +104,8 @@ namespace Graduate.Core.View.Manager
                 }
             }
 
-
-            return grade;
+            
+            return grade / count;
         }
 
 

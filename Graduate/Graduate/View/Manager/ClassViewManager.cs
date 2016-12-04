@@ -81,7 +81,12 @@ namespace Graduate.Core.View.Manager
                 classView.goalPercentGrade = c.percentGoalGrade.ToString();
                 classView.goalLetterGrade = c.letterGoalGrade;
 
+                c.percentGrade = calculatePercentGrade(c.Id.ToString());
+
+                classManager.saveItem(c);
             }
+            
+
             
 
             

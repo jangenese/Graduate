@@ -95,6 +95,11 @@ namespace Graduate.Core.Manager
             repo.deleteItem(c);
         }
 
+
+        public void saveItem(Class c) {
+            repo.saveItem(c);
+        }
+
         private int stringToInt(String str)
         {
             int i = 0;
@@ -108,6 +113,8 @@ namespace Graduate.Core.Manager
             }
             return i;
         }
+
+        
 
         private double stringToDouble(String str)
         {
