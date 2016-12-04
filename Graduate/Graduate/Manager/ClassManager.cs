@@ -33,12 +33,18 @@ namespace Graduate.Core.Manager
                 c.letterGrade = grade;
                 c.percentGrade = getPercentGradeFromSchema(grade);
                 c.gpaGrade = getGPAGradeFromSchema(grade);
+
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
             }
             else
             {
                 c.percentGoalGrade = getPercentGradeFromSchema(grade);
                 c.letterGoalGrade = grade;
                 c.gpaGoalGrade = getGPAGradeFromSchema(grade);
+
+                
             }
 
             repo.saveItem(c);
@@ -59,6 +65,10 @@ namespace Graduate.Core.Manager
                 c.letterGrade = grade;
                 c.percentGrade = getPercentGradeFromSchema(grade);
                 c.gpaGrade = getGPAGradeFromSchema(grade);
+
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
             }
             else
             {

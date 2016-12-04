@@ -123,7 +123,8 @@ namespace Graduate.Droid
         */
         void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
         {
-            populatePage();
+            //populatePage();
+            this.Recreate();
         }
 
 
@@ -328,7 +329,8 @@ namespace Graduate.Droid
 
 
 
-            if (!c.completed) {
+            if (!c.completed)
+            {
                 insertFooter(Resource.Layout.ClassFooterFragment);
 
                 TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
@@ -341,6 +343,9 @@ namespace Graduate.Droid
 
 
                 Console.WriteLine("Footer Added");
+            }
+            else {
+                removeFooter(Resource.Layout.ClassFooterFragment);
             }
             
 
@@ -467,6 +472,13 @@ namespace Graduate.Droid
             
         }
 
+
+        private void removeFooter(int layout)
+        {
+            View footerView = getNewViewFromLayout(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null, layout);
+            LinearLayout footerContainerLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
+            footerContainerLayout.RemoveView(footerView);
+        }
 
         private void insertFooter(int layout) {
             View footerView = getNewViewFromLayout(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null, layout);

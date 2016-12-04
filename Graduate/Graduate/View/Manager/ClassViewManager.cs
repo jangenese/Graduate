@@ -74,6 +74,9 @@ namespace Graduate.Core.View.Manager
                 classView.gpaGrade = c.gpaGrade.ToString();
                 classView.letterGrade = c.letterGrade;
 
+                classView.goalPercentGrade = c.percentGoalGrade.ToString();
+                classView.goalLetterGrade = c.letterGoalGrade;
+
             }
             else {
                 classView.percentGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
@@ -81,8 +84,11 @@ namespace Graduate.Core.View.Manager
                 classView.goalPercentGrade = c.percentGoalGrade.ToString();
                 classView.goalLetterGrade = c.letterGoalGrade;
 
-                c.percentGrade = calculatePercentGrade(c.Id.ToString());
 
+
+                c.percentGrade = calculatePercentGrade(c.Id.ToString());
+                c.letterGrade = "A+";
+                c.gpaGrade = 4.00;
                 classManager.saveItem(c);
             }
             
