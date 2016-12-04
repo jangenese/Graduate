@@ -287,8 +287,8 @@ namespace Graduate.Droid.Fragments
             title.Text = "New Entry: Class";
             entryType.Text = "Class";
             entry.Hint = "ABCD - 1234";
-            credits.Text = "3";
-            grade.Hint = "B+";
+            creditsEntry.Text = "3";
+            gradeEntry.Hint = "B+";
             
             
         }

@@ -328,25 +328,23 @@ namespace Graduate.Droid
 
 
 
+            if (!c.completed) {
+                insertFooter(Resource.Layout.ClassFooterFragment);
 
-
-            //LinearLayout footerLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
-            //LinearLayout mainLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutDetailMain);
-            //View fragmentView = LayoutInflater.Inflate(Resource.Layout.ClassFooterFragment, footerLayout, false);
-            //footerLayout.AddView(fragmentView);
-
-            insertFooter(Resource.Layout.ClassFooterFragment);
-
-            TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
-            TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
-            TextView neededGrade = FindViewById<TextView>(Resource.Id.textViewFooterNeedeGrade);
-            goalGrade.Text = "A+";
-            inpWeight.Text = "30%";
-            neededGrade.Text = "76%";
+                TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
+                TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
+                TextView neededGrade = FindViewById<TextView>(Resource.Id.textViewFooterNeedeGrade);
+                goalGrade.Text = c.goalGrade;
+                inpWeight.Text = c.remainingWeight;
+                neededGrade.Text = c.neededGrade;
 
 
 
-            Console.WriteLine("Footer Added");
+                Console.WriteLine("Footer Added");
+            }
+            
+
+           
         }
 
 
