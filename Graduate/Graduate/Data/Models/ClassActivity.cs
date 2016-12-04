@@ -10,8 +10,8 @@ namespace Graduate.Core.Data.Models
     {
         public int FId { get; set; }
         public String label { get; set; }
-        public double grade { get; set; }
-        public double goalGrade { get; set; }
+        public double gpaGrade { get; set; }
+        public int percentGrade { get; set; }        
         public Boolean completed { get; set; } = false;
         public int weight { get; set; }
 

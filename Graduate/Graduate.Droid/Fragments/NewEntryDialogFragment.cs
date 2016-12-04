@@ -182,7 +182,7 @@ namespace Graduate.Droid.Fragments
         }
 
         private void saveClassActivity() {
-                        planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+                        planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
         }
 
         private void saveEntry(int type)
@@ -287,12 +287,15 @@ namespace Graduate.Droid.Fragments
             title.Text = "New Entry: Class";
             entryType.Text = "Class";
             entry.Hint = "ABCD - 1234";
+            credits.Text = "3";
+            grade.Hint = "B+";
             
             
         }
 
         private void modifyClassActivityForm() {
             hideParentEntry();
+            checkBoxRow.Visibility = ViewStates.Gone;
 
 
             var gradeEntryOptions = planner.getAllPercentGrades();
@@ -303,7 +306,9 @@ namespace Graduate.Droid.Fragments
             entryType.Text = "Activity";
             entry.Hint = "Quiz 1";
             credits.Text = "Weight";
-            gradeEntry.Text = "100";
+            creditsEntry.Hint = "10";
+            grade.Text = "Grade";
+            gradeEntry.Hint = "100";
         }
 
         private String getParentPosition() {

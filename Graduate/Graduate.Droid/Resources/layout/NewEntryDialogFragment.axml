@@ -130,8 +130,7 @@
                         android:layout_width="match_parent"
                         android:gravity="center"
                         android:textSize="20dp"
-                        android:completionThreshold="1"
-                        android:text="B+" />
+                        android:completionThreshold="1" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -164,7 +163,6 @@
                         android:id="@+id/editTextCreditsEntry"
                         android:gravity="center"
                         android:textSize="20dp"
-                        android:text="3"
                         android:maxLength="3" />
                 </LinearLayout>
             </LinearLayout>
