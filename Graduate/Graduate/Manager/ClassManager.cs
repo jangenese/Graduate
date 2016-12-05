@@ -106,7 +106,7 @@ namespace Graduate.Core.Manager
         }
 
 
-        public void saveItem(Class c) {
+        public void SaveItem(Class c) {
             repo.saveItem(c);
         }
 
@@ -174,6 +174,11 @@ namespace Graduate.Core.Manager
             return new Class();
         }
 
+
         
+
+        private String getLetterFromSchema(int percent) {
+            return gradeRepo.getItemByPercent(percent).Letter;
+        }   
     }
 }

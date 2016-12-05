@@ -16,12 +16,16 @@ namespace Graduate.Core.View.Manager
         SemesterManager semesterManager;
         ClassManager classManager;
         ClassActivityManager cActivityManager;
-        public ClassViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager, ClassActivityManager cActivityManager)
+
+        GradeManager gradeManager;
+        public ClassViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager, ClassActivityManager cActivityManager, GradeManager gradeManager)
         {
             this.schoolYearManager = schoolYearManager;
             this.semesterManager = semesterManager;
             this.classManager = classManager;
             this.cActivityManager = cActivityManager;
+
+            this.gradeManager = gradeManager;
         }
 
         public ClassView getClassView(String id)
@@ -83,13 +87,16 @@ namespace Graduate.Core.View.Manager
 
                 classView.goalPercentGrade = c.percentGoalGrade.ToString();
                 classView.goalLetterGrade = c.letterGoalGrade;
+                classView.letterGrade = getLetterFromSchema(calculatePercentGrade(c.Id.ToString()));
+                classView.gpaGrade = getGPAGradeFromSchema(classView.letterGrade).ToString();
 
-
-
+                //save updated grade values
                 c.percentGrade = calculatePercentGrade(c.Id.ToString());
-                c.letterGrade = "A+";
-                c.gpaGrade = 4.00;
-                classManager.saveItem(c);
+                c.letterGrade = getLetterFromSchema(calculatePercentGrade(c.Id.ToString()));
+                c.gpaGrade = getGPAGradeFromSchema(classView.letterGrade);
+
+                classManager.SaveItem(c);
+               
             }
             
 
@@ -184,6 +191,45 @@ namespace Graduate.Core.View.Manager
                     status = "INP";
                 }  
             return status;
+        }
+
+        private Class prepareGrades(Class c)
+        {
+
+            Class originalClass = classManager.getClassByID(c.Id.ToString());
+
+            if (c.percentGrade != originalClass.percentGrade)
+            {
+                c.letterGrade = getLetterFromSchema(c.percentGrade);
+                c.gpaGrade = getGPAGradeFromSchema(c.letterGrade);
+            }
+
+
+            return c;
+        }
+
+
+        private int getPercentGradeFromSchema(String letter)
+        {
+
+
+            Grade g = gradeManager.getByLetter(letter);
+
+            return g.Percent;
+        }
+
+        private double getGPAGradeFromSchema(String letter)
+        {
+
+
+            Grade g = gradeManager.getByLetter(letter);
+
+            return g.GPA;
+        }
+
+        private String getLetterFromSchema(int percent)
+        {
+            return gradeManager.getByPercent(percent.ToString()).Letter;
         }
 
     }
