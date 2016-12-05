@@ -123,8 +123,8 @@ namespace Graduate.Droid
         */
         void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
         {
-            //populatePage();
-            this.Recreate();
+            populatePage();
+            //this.Recreate();
         }
 
 
@@ -329,8 +329,19 @@ namespace Graduate.Droid
 
 
 
-            if (!c.completed)
-            {
+
+           
+
+
+
+            if (c.completed)
+            {                
+
+                LinearLayout footer = FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
+                footer.RemoveAllViews();
+
+            }
+            else {
                 insertFooter(Resource.Layout.ClassFooterFragment);
 
                 TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
@@ -339,14 +350,8 @@ namespace Graduate.Droid
                 goalGrade.Text = c.goalLetterGrade;
                 inpWeight.Text = c.remainingWeight;
                 neededGrade.Text = c.neededGrade;
-
-
-
-                Console.WriteLine("Footer Added");
             }
-            else {
-                removeFooter(Resource.Layout.ClassFooterFragment);
-            }
+            
             
 
            
@@ -473,12 +478,7 @@ namespace Graduate.Droid
         }
 
 
-        private void removeFooter(int layout)
-        {
-            View footerView = getNewViewFromLayout(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null, layout);
-            LinearLayout footerContainerLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
-            footerContainerLayout.RemoveView(footerView);
-        }
+      
 
         private void insertFooter(int layout) {
             View footerView = getNewViewFromLayout(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null, layout);
