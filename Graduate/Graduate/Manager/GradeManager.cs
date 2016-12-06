@@ -91,7 +91,10 @@ namespace Graduate.Core.Manager
 
             foreach (Grade g in grades)
             {
-                labels.Add(g.Letter);
+                if (!labels.Contains(g.Letter))
+                {
+                    labels.Add(g.Letter);
+                }
             }
             return labels;
         }
@@ -103,7 +106,9 @@ namespace Graduate.Core.Manager
 
             foreach (Grade g in grades)
             {
-                labels.Add(g.Percent.ToString());
+                if (!labels.Contains(g.Percent.ToString())) {
+                    labels.Add(g.Percent.ToString());
+                }            
             }
             return labels;
         }
@@ -115,7 +120,10 @@ namespace Graduate.Core.Manager
 
             foreach (Grade g in grades)
             {
-                labels.Add(g.GPA.ToString());
+                if (!labels.Contains(g.GPA.ToString()))
+                {
+                    labels.Add(g.GPA.ToString());
+                }
             }
             return labels;
         }
