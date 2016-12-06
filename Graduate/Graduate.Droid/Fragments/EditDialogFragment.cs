@@ -164,7 +164,7 @@ namespace Graduate.Droid.Fragments
 
         private void editClassActivity()
         {
-            planner.editClassActivity(entityID.ToString(), parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+            planner.editClassActivity(entityID.ToString(), parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
         }
 
         private void editEntry(int type)
@@ -284,6 +284,10 @@ namespace Graduate.Droid.Fragments
         private void modifyClassActivityForm()
         {
             gradeEntry.InputType = Android.Text.InputTypes.ClassNumber;
+
+            checkBoxRow.Visibility = ViewStates.Gone;
+
+
 
             ClassActivityView classActivity = planner.getClassActivity(entityID.ToString());
             title.Text = "Edit : Class";
