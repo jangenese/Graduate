@@ -120,12 +120,8 @@ namespace Graduate.Core.View.Manager
 
                     classView.percentGrade = c.percentGrade + "%";
                     classView.gpaGrade = c.gpaGrade.ToString();
-                    classView.letterGrade = c.letterGrade;
-
-                    classView.goalPercentGrade = c.percentGoalGrade.ToString();
-                    classView.goalLetterGrade = c.letterGoalGrade;
-
-                                        
+                    classView.letterGrade = c.letterGrade;                
+                    
 
                     //save updated grade values
                     c.percentGrade = c.percentGoalGrade;
