@@ -13,19 +13,20 @@ namespace Graduate.Core.Data.Models
 
         public int FId { get; set; }
         public String label { get; set; }
-        public double grade { get; set; }
-        public double goalGrade { get; set; }
+        public double gpaGoalGrade { get; set; }
+        public int percentGoalGrade { get; set; }
+        public String letterGoalGrade { get; set;}
+        public int percentGrade { get; set; }
+        public double gpaGrade { get; set; }
+        public string letterGrade { get; set; }       
         public Boolean completed { get; set; } = false;
-
         public int credits { get; set; }
-
-        public Class(String label) {
-            this.label = label;
-        }
+       
 
         public override string ToString()
         {
-            return string.Format("[Class: ID={0}, Label={1}], GoalGrade={2}, Grade={3}, Completed={4}, Credits={5}]", Id, label, goalGrade, grade, completed, credits);
+            return string.Format("[Class: ID={0}, Label={1}], GoalPercentGrade={2},GoalGPAGrade={3}, GoalLetterGrade={4}, PercentGrade={5}, LetterGrade={7}, GPAGrade={6}, Completed={8}, Credits={9}]", 
+                                            Id, label, percentGoalGrade,gpaGoalGrade,letterGoalGrade, percentGrade, letterGrade, gpaGrade, completed, credits);
         }
 
 

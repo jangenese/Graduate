@@ -23,9 +23,8 @@ namespace Graduate.Core.Manager
         {
             ClassActivity activity = new ClassActivity();
             activity.FId = stringToInt(fid);
-            activity.label = label;
-            activity.goalGrade = 4.00;
-            activity.grade = stringToDouble(grade);
+            activity.label = label;            
+            activity.grade = stringToInt(grade);
             activity.weight = stringToInt(weight);
             activity.completed = completed;
             repo.saveItem(activity);
@@ -35,9 +34,8 @@ namespace Graduate.Core.Manager
             ClassActivity activity = new ClassActivity();
             activity.Id = stringToInt(id);
             activity.FId = stringToInt(fid);
-            activity.label = label;
-            activity.goalGrade = 4.00;
-            activity.grade = stringToDouble(grade);
+            activity.label = label;           
+            activity.grade = stringToInt(grade);
             activity.weight = stringToInt(weight);
             activity.completed = completed;
             repo.saveItem(activity);

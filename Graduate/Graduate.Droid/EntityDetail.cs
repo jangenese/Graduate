@@ -124,6 +124,9 @@ namespace Graduate.Droid
         void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
         {
             populatePage();
+
+            Console.WriteLine("Entry Form Dismissed: Should be Refreshed");
+            //this.Recreate();
         }
 
 
@@ -181,25 +184,30 @@ namespace Graduate.Droid
 
         private void ChildrenList_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
+            if (childrenType == 4) {
+                var entity = classChildrenList[e.Position];
+                Console.WriteLine(entity.ToString());
 
-            var entity = classChildrenList[e.Position];
-            Console.WriteLine(entity.ToString());
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle(entity.label);
+                alert.SetPositiveButton("Delete", (senderAlert, args) => {
+                    displayDeleteAlert(4, entity.Id);
+                });
 
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetTitle(entity.label);            
-            alert.SetPositiveButton("Delete", (senderAlert, args) => { 
-                displayDeleteAlert(4, entity.Id);
-            });
+                alert.SetNegativeButton("Edit", (senderAlert, args) => {
+                    editThisItem(4, entity.Id);
+                });
 
-            alert.SetNegativeButton("Edit", (senderAlert, args) => {
-                editThisItem(4, entity.Id);
-            });
+                alert.SetNeutralButton("Cancel", (senderAlert, args) => {
+                    Toast.MakeText(this, "Cancelled", ToastLength.Short).Show();
+                });
+
+                alert.Show();
+
+            }
+
+
             
-            alert.SetNeutralButton("Cancel", (senderAlert, args) => {
-                Toast.MakeText(this, "Cancelled", ToastLength.Short).Show();
-            });
-
-            alert.Show();
 
 
         }
@@ -246,7 +254,7 @@ namespace Graduate.Droid
             parentLabel.Text = semester.parentLabel;
             credits.Text = semester.credits;
             status.Text = semester.status;
-            grade.Text = semester.grade;
+            grade.Text = semester.percentGrade + " | " + semester.letterGrade + " | " + semester.gpaGrade;
             //******** Main Header Info
 
             //Body Info (Children) ****** 
@@ -259,7 +267,7 @@ namespace Graduate.Droid
 
             childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
 
-            //insertFooter();
+           // insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
 
             Console.WriteLine("Footer Added");
 
@@ -280,7 +288,7 @@ namespace Graduate.Droid
             parentLabel.Text = sy.parentLabel;
             credits.Text = sy.credits;
             status.Text = sy.status;
-            grade.Text = sy.grade;
+            grade.Text = sy.percentGrade + " | " + sy.letterGrade + " | " + sy.gpaGrade;
             //******Populate Main Info
 
             //Populate Body Info (Children List)******
@@ -291,7 +299,7 @@ namespace Graduate.Droid
             childrenType = 2;                               //Sets childrentype to 2 for Semesters
                                                             //******Populate Body Info (Children List)
 
-            //insertFooter();
+           // insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
 
             Console.WriteLine("Footer Added");
         }
@@ -311,7 +319,7 @@ namespace Graduate.Droid
             credits.Text = c.credits;
             parentLabel.Text = c.parentLabel;
             status.Text = c.status;
-            grade.Text = c.grade;
+            grade.Text = c.percentGrade +" | "+ c.letterGrade +" | "+ c.gpaGrade;
             //******Populate Main Info
 
 
@@ -329,24 +337,31 @@ namespace Graduate.Droid
 
 
 
-
-            //LinearLayout footerLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
-            //LinearLayout mainLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutDetailMain);
-            //View fragmentView = LayoutInflater.Inflate(Resource.Layout.ClassFooterFragment, footerLayout, false);
-            //footerLayout.AddView(fragmentView);
-
-            insertMyFooter(Resource.Layout.ClassFooterFragment);
-
-            TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
-            TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
-            TextView neededGrade = FindViewById<TextView>(Resource.Id.textViewFooterNeedeGrade);
-            goalGrade.Text = "A+";
-            inpWeight.Text = "30%";
-            neededGrade.Text = "76%";
+           
 
 
 
-            Console.WriteLine("Footer Added");
+            if (c.completed)
+            {                
+
+                LinearLayout footer = FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
+                footer.RemoveAllViews();
+
+            }
+            else {
+                insertFooter(Resource.Layout.ClassFooterFragment);
+
+                TextView goalGrade = FindViewById<TextView>(Resource.Id.textViewFooterGoalGrade);
+                TextView inpWeight = FindViewById<TextView>(Resource.Id.textViewFooterRemainingWeight);
+                TextView neededGrade = FindViewById<TextView>(Resource.Id.textViewFooterNeedeGrade);
+                goalGrade.Text = c.goalLetterGrade;
+                inpWeight.Text = c.remainingWeight;
+                neededGrade.Text = c.neededGrade;
+            }
+            
+            
+
+           
         }
 
 
@@ -465,30 +480,14 @@ namespace Graduate.Droid
             editDialogFrag.type = type;
             editDialogFrag.entityID = ID;           
             editDialogFrag.Show(ft, "dialog");
+
+            
         }
 
-/*
-        private void insertFooter()
-        {
-            View newView;
-            newView = getNewRowView(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null);
-            addNewRow(newView);
-        }
 
-        private View getNewRowView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            View rowView = inflater.Inflate(Resource.Layout.ClassFooterFragment, container, false);
-            return rowView;
-        }
+      
 
-        private void addNewRow(View newView)
-        {           
-            LinearLayout mainLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);           
-            mainLayout.AddView(newView);
-        }
-        */
-
-        private void insertMyFooter(int layout) {
+        private void insertFooter(int layout) {
             View footerView = getNewViewFromLayout(this.LayoutInflater, this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter), null, layout);
             LinearLayout footerContainerLayout = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutFooter);
             footerContainerLayout.AddView(footerView);

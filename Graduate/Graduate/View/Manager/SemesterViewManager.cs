@@ -16,11 +16,15 @@ namespace Graduate.Core.View.Manager
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
-        public SemesterViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager)
+
+        GradeManager gradeManager;
+        public SemesterViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager, GradeManager gradeManager)
         {
             this.schoolYearManager = schoolYearManager;
             this.semesterManager = semesterManager;
             this.classManager = classManager;
+
+            this.gradeManager = gradeManager;
         }
 
         public SemesterView getSemesterView(String id)
@@ -37,12 +41,18 @@ namespace Graduate.Core.View.Manager
 
         private SemesterView populateSemesterView(Semester sem)
         {
+            System.Diagnostics.Debug.WriteLine("Semester Populate Called");
+
+
+
             SemesterView semesterView = new SemesterView();
             semesterView.id = sem.Id;
             semesterView.label = sem.label;
             semesterView.children = getChildren(sem.Id.ToString());
             semesterView.credits = getCreditsFromChildren(sem.Id.ToString()).ToString() ;
-            semesterView.grade = getGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.gpaGrade = getGPAGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.percentGrade = getPercentGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.letterGrade = getLetterFromSchema(getPercentGradeFromChildren(sem.Id.ToString()));      
             semesterView.parentLabel = getParentLabel(sem.FId.ToString());
             semesterView.status = getStatus(sem.Id.ToString());
             return semesterView;
@@ -61,27 +71,54 @@ namespace Graduate.Core.View.Manager
             return i;
         }
 
-        private double getGradeFromChildren(String fid)
+
+        private double getGPAGradeFromChildren(String fid)
         {
             double grade = 0;
             int count = 0;
 
             IList<Class> children = getChildren(fid);
 
+
             if (children.Count > 0)
             {
                 foreach (Class c in children)
                 {
-                    grade += c.grade;
+                    grade += c.gpaGrade;
                     count++;
                 }
 
                 grade = Math.Round((grade / count), 2);
             }
 
+
+            return grade;
+        }
+
+        private int getPercentGradeFromChildren(String fid)
+        {
+
+            int grade = 0;
+            int count = 0;
+
+            IList<Class> children = getChildren(fid);
+
+
+            if (children.Count > 0)
+            {
+                foreach (Class c in children)
+                {
+                    grade += c.percentGrade;
+                    count++;
+                }
+
+                grade = grade / count;
+            }
+
             
             return grade;
         }
+
 
         private String getParentLabel(String fid) {
             SchoolYear sy = schoolYearManager.getSchoolYearByID(fid);
@@ -101,6 +138,11 @@ namespace Graduate.Core.View.Manager
                 }                
             }
             return status;
+        }
+
+        private String getLetterFromSchema(int percent)
+        {
+            return gradeManager.getByPercent(percent.ToString()).Letter;
         }
     }
 }

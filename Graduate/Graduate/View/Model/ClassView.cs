@@ -12,6 +12,11 @@ namespace Graduate.Core.View.Model
         public IList<ClassActivity> children;
 
         public Boolean completed;
+
+        public String goalPercentGrade;
+        public String goalLetterGrade;        
+        public String remainingWeight;
+        public String neededGrade;
         public ClassView() { }
 
     }

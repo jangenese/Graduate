@@ -19,14 +19,34 @@ namespace Graduate.Core.Manager
             gradeRepo = new GradeRepository(conn);
         }
 
-        public void SaveItem(String fid, String label, String grade, String credit, Boolean completed) { 
-            Class c = new Class();
+        public void SaveItem(String fid, String label, String grade, String credit, Boolean completed) {
+            Class c = new Class();           
             c.FId = stringToInt(fid);
             c.label = label;
-            c.goalGrade = 4.00;
-            c.grade = getGradeFromSchema(grade);
             c.credits = stringToInt(credit);
             c.completed = completed;
+
+            //user entered grade is either completed or goal in letter form
+            
+            if (completed)
+            {
+                c.letterGrade = grade;
+                c.percentGrade = getPercentGradeFromSchema(grade);
+                c.gpaGrade = getGPAGradeFromSchema(grade);
+
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
+            }
+            else
+            {
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
+
+                
+            }
+
             repo.saveItem(c);
         }
 
@@ -35,10 +55,28 @@ namespace Graduate.Core.Manager
             c.Id = stringToInt(id);
             c.FId = stringToInt(fid);
             c.label = label;
-            c.goalGrade = 4.00;
-            c.grade = getGradeFromSchema(grade);
             c.credits = stringToInt(credit);
             c.completed = completed;
+
+            //user entered grade is either completed or goal in letter form
+
+            if (completed)
+            {
+                c.letterGrade = grade;
+                c.percentGrade = getPercentGradeFromSchema(grade);
+                c.gpaGrade = getGPAGradeFromSchema(grade);
+
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
+            }
+            else
+            {
+                c.percentGoalGrade = getPercentGradeFromSchema(grade);
+                c.letterGoalGrade = grade;
+                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
+            }
+
             repo.saveItem(c);
         }
 
@@ -67,6 +105,11 @@ namespace Graduate.Core.Manager
             repo.deleteItem(c);
         }
 
+
+        public void SaveItem(Class c) {
+            repo.saveItem(c);
+        }
+
         private int stringToInt(String str)
         {
             int i = 0;
@@ -80,6 +123,8 @@ namespace Graduate.Core.Manager
             }
             return i;
         }
+
+        
 
         private double stringToDouble(String str)
         {
@@ -95,12 +140,21 @@ namespace Graduate.Core.Manager
             return i;
         }
 
-        private double getGradeFromSchema(String letter) {
+        private int getPercentGradeFromSchema(String letter) {
             
 
             Grade g = gradeRepo.getItemByLetter(letter);
 
-            return g.GPA;          
+            return g.Percent;          
+        }
+
+        private double getGPAGradeFromSchema(String letter)
+        {
+
+
+            Grade g = gradeRepo.getItemByLetter(letter);
+
+            return g.GPA;
         }
 
         private Boolean isNull(Class entity)
@@ -119,5 +173,12 @@ namespace Graduate.Core.Manager
         {
             return new Class();
         }
+
+
+        
+
+        private String getLetterFromSchema(int percent) {
+            return gradeRepo.getItemByPercent(percent).Letter;
+        }   
     }
 }

@@ -9,19 +9,19 @@
         android:text="Excellent"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/textView1"
+        android:id="@+id/textViewAchievement"
         android:layout_weight="30"
         android:textStyle="bold" />
     <TextView
         android:text="Superior performance showing comprehensive understanding"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/textView2"
+        android:id="@+id/textViewMessage"
         android:layout_weight="50" />
     <ImageView
         android:src="@drawable/smiley"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/imageView1"
+        android:id="@+id/imageViewIMG"
         android:layout_weight="20" />
 </LinearLayout>

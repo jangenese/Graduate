@@ -18,7 +18,7 @@ namespace Graduate.Core.Data.DataAccessLayer
         {
             this.connection = conn;
 
-
+            
             /*
             connection.DropTable<Grade>();
             connection.DropTable<SchoolYear>();
@@ -26,6 +26,9 @@ namespace Graduate.Core.Data.DataAccessLayer
             connection.DropTable<Class>();
             connection.DropTable<ClassActivity>();
             */
+
+    
+            
 
             connection.CreateTable<Grade>();
             connection.CreateTable<SchoolYear>();
