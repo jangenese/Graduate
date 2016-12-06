@@ -22,21 +22,18 @@ namespace Graduate.Droid
 
             SetContentView(Resource.Layout.PreferencesActivity);
 
-            var dialog = new AlertDialog.Builder(this);
-            var spinner = FindViewById<Spinner>(Resource.Id.spinner1);
-            spinner.ItemSelected +=  (s,e) => {
-                string firstItem = spinner.SelectedItem.ToString();
-                if (firstItem.Equals(spinner.SelectedItem.ToString()))
-                {
-                    dialog.SetTitle("Feature Coming Soon");
-                    dialog.SetMessage("Schema Selection Coming Soon\n\nThank You!");
-                    dialog.Show();
-                }
-                else
-                { /*do something*/ }
+            Button change = FindViewById<Button>(Resource.Id.buttonChange);
 
-            };
+            change.Click += Change_Click;
             
+        }
+
+        private void Change_Click(object sender, EventArgs e)
+        {
+            var dialog = new AlertDialog.Builder(this);
+            dialog.SetTitle("Feature Coming Soon");
+            dialog.SetMessage("Thank You");
+            dialog.Show();
         }
     }
 }
