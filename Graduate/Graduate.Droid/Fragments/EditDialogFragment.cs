@@ -283,7 +283,7 @@ namespace Graduate.Droid.Fragments
 
         private void modifyClassActivityForm()
         {
-            
+            gradeEntry.InputType = Android.Text.InputTypes.ClassNumber;
 
             ClassActivityView classActivity = planner.getClassActivity(entityID.ToString());
             title.Text = "Edit : Class";

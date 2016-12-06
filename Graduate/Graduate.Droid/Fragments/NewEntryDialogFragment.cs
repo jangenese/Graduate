@@ -294,6 +294,8 @@ namespace Graduate.Droid.Fragments
         }
 
         private void modifyClassActivityForm() {
+            gradeEntry.InputType = Android.Text.InputTypes.ClassNumber;
+
             hideParentEntry();
             checkBoxRow.Visibility = ViewStates.Gone;
 
