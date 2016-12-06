@@ -20,6 +20,16 @@ namespace Graduate.Droid
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.PreferencesActivity);
+            Button change = FindViewById<Button>(Resource.Id.buttonChange);
+
+            change.Click += Change_Click;
         }
-    }
+        private void Change_Click(object sender, EventArgs e)
+         {
+             var dialog = new AlertDialog.Builder(this);
+             dialog.SetTitle("Feature Coming Soon");
+            dialog.SetMessage("Thank You");
+            dialog.Show();
+        }
+}
 }

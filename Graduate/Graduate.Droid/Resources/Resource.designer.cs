@@ -2220,6 +2220,9 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600c6
 			public const int buttonCancel = 2131099846;
 			
+			// aapt resource value: 0x7f0600ea
+			public const int buttonChange = 2131099882;
+			
 			// aapt resource value: 0x7f060047
 			public const int buttonPanel = 2131099719;
 			
@@ -2274,8 +2277,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060043
 			public const int default_activity_button = 2131099715;
 			
-			// aapt resource value: 0x7f0600ee
-			public const int delete = 2131099886;
+			// aapt resource value: 0x7f0600ef
+			public const int delete = 2131099887;
 			
 			// aapt resource value: 0x7f060094
 			public const int design_bottom_sheet = 2131099796;
@@ -2295,8 +2298,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06000e
 			public const int disableHome = 2131099662;
 			
-			// aapt resource value: 0x7f0600ed
-			public const int edit = 2131099885;
+			// aapt resource value: 0x7f0600ee
+			public const int edit = 2131099886;
 			
 			// aapt resource value: 0x7f0600bb
 			public const int editText1 = 2131099835;
@@ -2397,8 +2400,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f06006d
 			public const int imageView1 = 2131099757;
 			
-			// aapt resource value: 0x7f0600ec
-			public const int imageViewIMG = 2131099884;
+			// aapt resource value: 0x7f0600ed
+			public const int imageViewIMG = 2131099885;
 			
 			// aapt resource value: 0x7f0600e7
 			public const int info = 2131099879;
@@ -2553,11 +2556,11 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600df
 			public const int media_actions = 2131099871;
 			
-			// aapt resource value: 0x7f0600f0
-			public const int menu_about = 2131099888;
+			// aapt resource value: 0x7f0600f1
+			public const int menu_about = 2131099889;
 			
-			// aapt resource value: 0x7f0600ef
-			public const int menu_preferences = 2131099887;
+			// aapt resource value: 0x7f0600f0
+			public const int menu_preferences = 2131099888;
 			
 			// aapt resource value: 0x7f06001e
 			public const int middle = 2131099678;
@@ -2739,8 +2742,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f0600c8
 			public const int textView6 = 2131099848;
 			
-			// aapt resource value: 0x7f0600ea
-			public const int textViewAchievement = 2131099882;
+			// aapt resource value: 0x7f0600eb
+			public const int textViewAchievement = 2131099883;
 			
 			// aapt resource value: 0x7f0600d7
 			public const int textViewCredits = 2131099863;
@@ -2790,8 +2793,8 @@ namespace Graduate.Droid
 			// aapt resource value: 0x7f060088
 			public const int textViewLabel = 2131099784;
 			
-			// aapt resource value: 0x7f0600eb
-			public const int textViewMessage = 2131099883;
+			// aapt resource value: 0x7f0600ec
+			public const int textViewMessage = 2131099884;
 			
 			// aapt resource value: 0x7f0600d0
 			public const int textViewParent = 2131099856;
