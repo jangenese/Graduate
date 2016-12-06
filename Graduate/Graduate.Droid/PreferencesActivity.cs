@@ -29,7 +29,7 @@ namespace Graduate.Droid
                 if (firstItem.Equals(spinner.SelectedItem.ToString()))
                 {
                     dialog.SetTitle("Feature Coming Soon");
-                    dialog.SetMessage("Schema Selection Coming Soon\n Thank You!");
+                    dialog.SetMessage("Schema Selection Coming Soon\n\nThank You!");
                     dialog.Show();
                 }
                 else
