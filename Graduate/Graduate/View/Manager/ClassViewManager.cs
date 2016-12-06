@@ -70,10 +70,12 @@ namespace Graduate.Core.View.Manager
             }
 
 
-
+            System.Diagnostics.Debug.WriteLine("Checking if Completed");
 
             if (c.completed)
             {
+
+                System.Diagnostics.Debug.WriteLine("Class is completed");
                 classView.percentGrade = c.percentGrade + "%";
                 classView.gpaGrade = c.gpaGrade.ToString();
                 classView.letterGrade = c.letterGrade;
@@ -83,26 +85,73 @@ namespace Graduate.Core.View.Manager
 
             }
             else {
-                classView.percentGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
+
+                System.Diagnostics.Debug.WriteLine("Class is not completed");
 
                 classView.goalPercentGrade = c.percentGoalGrade.ToString();
                 classView.goalLetterGrade = c.letterGoalGrade;
-                classView.letterGrade = getLetterFromSchema(calculatePercentGrade(c.Id.ToString()));
-                classView.gpaGrade = getGPAGradeFromSchema(classView.letterGrade).ToString();
 
-                //save updated grade values
-                c.percentGrade = calculatePercentGrade(c.Id.ToString());
-                c.letterGrade = getLetterFromSchema(calculatePercentGrade(c.Id.ToString()));
-                c.gpaGrade = getGPAGradeFromSchema(classView.letterGrade);
+
+                System.Diagnostics.Debug.WriteLine("Checking if it has activites");
+                if (getChildren(c.Id.ToString()).Count > 0 ) {
+
+                   
+
+                    System.Diagnostics.Debug.WriteLine("It has Activities");
+
+                    classView.percentGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
+                   
+                    classView.letterGrade = getLetterFromSchema(calculatePercentGrade(c.Id.ToString()));
+                    classView.gpaGrade = getGPAGradeFromSchema(classView.letterGrade).ToString();
+
+                    //save updated grade values
+                    c.percentGrade = calculatePercentGrade(c.Id.ToString());
+                    c.letterGrade = getLetterFromSchema(calculatePercentGrade(c.Id.ToString()));
+                    c.gpaGrade = getGPAGradeFromSchema(classView.letterGrade);
+
+                   
+                } else {
+
+                    System.Diagnostics.Debug.WriteLine("It doesnt have activities");
+
+                    c.percentGrade = c.percentGoalGrade;
+                    c.letterGrade = c.letterGoalGrade;
+                    c.gpaGrade = c.gpaGoalGrade;
+
+                    classView.percentGrade = c.percentGrade + "%";
+                    classView.gpaGrade = c.gpaGrade.ToString();
+                    classView.letterGrade = c.letterGrade;
+
+                    classView.goalPercentGrade = c.percentGoalGrade.ToString();
+                    classView.goalLetterGrade = c.letterGoalGrade;
+
+                                        
+
+                    //save updated grade values
+                    c.percentGrade = c.percentGoalGrade;
+                    c.letterGrade = c.letterGoalGrade;
+                    c.gpaGrade = c.gpaGoalGrade;
+
+                    
+                }
+
+                System.Diagnostics.Debug.WriteLine("Saving Calcualeted grades");
 
                 classManager.SaveItem(c);
+
+                
+
+                
                
             }
-            
 
-            
 
-            
+            System.Diagnostics.Debug.WriteLine("Hello World");
+
+
+
+
+
             return classView;
         }
                
@@ -173,7 +222,7 @@ namespace Graduate.Core.View.Manager
                 grade = earnedWeight / completedWeight;
             } 
                 
-
+            
             
 
             return Convert.ToInt32(grade * 100);

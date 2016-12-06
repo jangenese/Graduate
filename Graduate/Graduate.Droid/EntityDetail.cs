@@ -124,6 +124,8 @@ namespace Graduate.Droid
         void IDialogInterfaceOnDismissListener.OnDismiss(IDialogInterface dialog)
         {
             populatePage();
+
+            Console.WriteLine("Entry Form Dismissed: Should be Refreshed");
             //this.Recreate();
         }
 
@@ -182,25 +184,30 @@ namespace Graduate.Droid
 
         private void ChildrenList_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
+            if (childrenType == 4) {
+                var entity = classChildrenList[e.Position];
+                Console.WriteLine(entity.ToString());
 
-            var entity = classChildrenList[e.Position];
-            Console.WriteLine(entity.ToString());
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle(entity.label);
+                alert.SetPositiveButton("Delete", (senderAlert, args) => {
+                    displayDeleteAlert(4, entity.Id);
+                });
 
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetTitle(entity.label);            
-            alert.SetPositiveButton("Delete", (senderAlert, args) => { 
-                displayDeleteAlert(4, entity.Id);
-            });
+                alert.SetNegativeButton("Edit", (senderAlert, args) => {
+                    editThisItem(4, entity.Id);
+                });
 
-            alert.SetNegativeButton("Edit", (senderAlert, args) => {
-                editThisItem(4, entity.Id);
-            });
+                alert.SetNeutralButton("Cancel", (senderAlert, args) => {
+                    Toast.MakeText(this, "Cancelled", ToastLength.Short).Show();
+                });
+
+                alert.Show();
+
+            }
+
+
             
-            alert.SetNeutralButton("Cancel", (senderAlert, args) => {
-                Toast.MakeText(this, "Cancelled", ToastLength.Short).Show();
-            });
-
-            alert.Show();
 
 
         }
@@ -247,7 +254,7 @@ namespace Graduate.Droid
             parentLabel.Text = semester.parentLabel;
             credits.Text = semester.credits;
             status.Text = semester.status;
-            grade.Text = semester.percentGrade;
+            grade.Text = semester.percentGrade + " | " + semester.letterGrade + " | " + semester.gpaGrade;
             //******** Main Header Info
 
             //Body Info (Children) ****** 
@@ -260,7 +267,7 @@ namespace Graduate.Droid
 
             childrenType = 3;                                   //Sets children type to 3 for Class for when clicked
 
-            insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
+           // insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
 
             Console.WriteLine("Footer Added");
 
@@ -281,7 +288,7 @@ namespace Graduate.Droid
             parentLabel.Text = sy.parentLabel;
             credits.Text = sy.credits;
             status.Text = sy.status;
-            grade.Text = sy.percentGrade;
+            grade.Text = sy.percentGrade + " | " + sy.letterGrade + " | " + sy.gpaGrade;
             //******Populate Main Info
 
             //Populate Body Info (Children List)******
@@ -292,7 +299,7 @@ namespace Graduate.Droid
             childrenType = 2;                               //Sets childrentype to 2 for Semesters
                                                             //******Populate Body Info (Children List)
 
-            insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
+           // insertFooter(Resource.Layout.SemesterAndSchoolYearFooterFragment);
 
             Console.WriteLine("Footer Added");
         }

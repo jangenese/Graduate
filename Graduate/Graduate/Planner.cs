@@ -33,8 +33,8 @@ namespace Graduate.Core
             classActivityManager = new ClassActivityManager(conn);
             gradeManager = new GradeManager(conn);
 
-            schoolYearViewManager = new SchoolYearViewManager(schoolYearManager, semesterManager, classManager);
-            semesterViewManager = new SemesterViewManager(schoolYearManager, semesterManager, classManager);
+            schoolYearViewManager = new SchoolYearViewManager(schoolYearManager, semesterManager, classManager, gradeManager);
+            semesterViewManager = new SemesterViewManager(schoolYearManager, semesterManager, classManager, gradeManager);
             classViewManager = new ClassViewManager(schoolYearManager, semesterManager, classManager, classActivityManager, gradeManager);
             classActivityViewManager = new ClassActivityViewManager(schoolYearManager, semesterManager, classManager, classActivityManager);
         }

@@ -16,11 +16,15 @@ namespace Graduate.Core.View.Manager
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
-        public SemesterViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager)
+
+        GradeManager gradeManager;
+        public SemesterViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager, GradeManager gradeManager)
         {
             this.schoolYearManager = schoolYearManager;
             this.semesterManager = semesterManager;
             this.classManager = classManager;
+
+            this.gradeManager = gradeManager;
         }
 
         public SemesterView getSemesterView(String id)
@@ -37,13 +41,18 @@ namespace Graduate.Core.View.Manager
 
         private SemesterView populateSemesterView(Semester sem)
         {
+            System.Diagnostics.Debug.WriteLine("Semester Populate Called");
+
+
+
             SemesterView semesterView = new SemesterView();
             semesterView.id = sem.Id;
             semesterView.label = sem.label;
             semesterView.children = getChildren(sem.Id.ToString());
             semesterView.credits = getCreditsFromChildren(sem.Id.ToString()).ToString() ;
             semesterView.gpaGrade = getGPAGradeFromChildren(sem.Id.ToString()).ToString();
-            semesterView.percentGrade = getPercentGradeFromChildren(sem.Id.ToString()).ToString();            
+            semesterView.percentGrade = getPercentGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.letterGrade = getLetterFromSchema(getPercentGradeFromChildren(sem.Id.ToString()));      
             semesterView.parentLabel = getParentLabel(sem.FId.ToString());
             semesterView.status = getStatus(sem.Id.ToString());
             return semesterView;
@@ -129,6 +138,11 @@ namespace Graduate.Core.View.Manager
                 }                
             }
             return status;
+        }
+
+        private String getLetterFromSchema(int percent)
+        {
+            return gradeManager.getByPercent(percent.ToString()).Letter;
         }
     }
 }

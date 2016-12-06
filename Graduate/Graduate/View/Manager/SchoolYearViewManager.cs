@@ -15,11 +15,15 @@ namespace Graduate.Core.View.Manager
         SchoolYearManager schoolYearManager;
         SemesterManager semesterManager;
         ClassManager classManager;
-        public SchoolYearViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager)
+
+        GradeManager gradeManager;
+        public SchoolYearViewManager(SchoolYearManager schoolYearManager, SemesterManager semesterManager, ClassManager classManager, GradeManager gradeManager)
         {
             this.schoolYearManager = schoolYearManager;
             this.semesterManager = semesterManager;
             this.classManager = classManager;
+
+            this.gradeManager = gradeManager;
         }
 
         public SchoolYearView getSchoolYearView(String id)
@@ -56,7 +60,8 @@ namespace Graduate.Core.View.Manager
             schoolYearView.children = getChildren(sy.Id.ToString());
             schoolYearView.credits = getCreditsFromChildren(sy.Id.ToString()).ToString();
             schoolYearView.gpaGrade = getGPAGradeFromChildren(sy.Id.ToString()).ToString();
-            schoolYearView.percentGrade = getPercentGradeFromChildren(sy.Id.ToString()).ToString();            
+            schoolYearView.percentGrade = getPercentGradeFromChildren(sy.Id.ToString()).ToString();
+            schoolYearView.letterGrade = getLetterFromSchema(getPercentGradeFromChildren(sy.Id.ToString()));        
             schoolYearView.parentLabel = "";
             schoolYearView.status = getStatus(sy.Id.ToString());
             return schoolYearView;
@@ -143,6 +148,11 @@ namespace Graduate.Core.View.Manager
 
 
             return status;
+        }
+
+        private String getLetterFromSchema(int percent)
+        {
+            return gradeManager.getByPercent(percent.ToString()).Letter;
         }
     }
 }
