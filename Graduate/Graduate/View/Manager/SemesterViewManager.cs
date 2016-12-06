@@ -50,9 +50,9 @@ namespace Graduate.Core.View.Manager
             semesterView.label = sem.label;
             semesterView.children = getChildren(sem.Id.ToString());
             semesterView.credits = getCreditsFromChildren(sem.Id.ToString()).ToString() ;
-            semesterView.gpaGrade = getGPAGradeFromChildren(sem.Id.ToString()).ToString();
+            semesterView.gpaGrade = formatGPA(getGPAGradeFromChildren(sem.Id.ToString()));
             semesterView.percentGrade = getPercentGradeFromChildren(sem.Id.ToString()).ToString();
-            semesterView.letterGrade = getLetterFromSchema(getPercentGradeFromChildren(sem.Id.ToString()));      
+            semesterView.letterGrade = formatLetterGrade(getLetterFromSchema(getPercentGradeFromChildren(sem.Id.ToString())));
             semesterView.parentLabel = getParentLabel(sem.FId.ToString());
             semesterView.status = getStatus(sem.Id.ToString());
             return semesterView;
@@ -93,6 +93,26 @@ namespace Graduate.Core.View.Manager
 
 
             return grade;
+        }
+
+        private String formatLetterGrade(String letter)
+        {
+            String str = letter;
+
+            if (str.Length <= 1)
+            {
+                str += " ";
+            }
+
+
+            return str;
+
+        }
+
+        private String formatGPA(double gpa)
+        {
+            return String.Format("{0:0.00}", gpa);
+
         }
 
         private int getPercentGradeFromChildren(String fid)
