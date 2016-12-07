@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Graduate.Core.Data.DataAccessLayer;
 using Graduate.Core.Data.Models;
+using Graduate.Core.MiscTools;
 
 namespace Graduate.Core.Manager
 {
@@ -15,6 +16,17 @@ namespace Graduate.Core.Manager
         GradeDataAccess grades;
         public GradeManager(SQLiteConnection conn) {
             grades = new GradeDataAccess(conn);
+        }
+
+        public void initTable() {
+            grades.initTable();
+
+            GradePopulator gradesPopulator = new GradePopulator();
+            IList<Grade> gradesRecords = gradesPopulator.getTableContents();
+            foreach (Grade gradeEntry in gradesRecords)
+            {
+                grades.SaveItem(gradeEntry);
+            }
         }
 
         private int stringToInt(String str) {
@@ -91,7 +103,10 @@ namespace Graduate.Core.Manager
 
             foreach (Grade g in grades)
             {
-                labels.Add(g.Letter);
+                if (!labels.Contains(g.Letter))
+                {
+                    labels.Add(g.Letter);
+                }
             }
             return labels;
         }
@@ -103,7 +118,9 @@ namespace Graduate.Core.Manager
 
             foreach (Grade g in grades)
             {
-                labels.Add(g.Percent.ToString());
+                if (!labels.Contains(g.Percent.ToString())) {
+                    labels.Add(g.Percent.ToString());
+                }            
             }
             return labels;
         }
@@ -115,7 +132,10 @@ namespace Graduate.Core.Manager
 
             foreach (Grade g in grades)
             {
-                labels.Add(g.GPA.ToString());
+                if (!labels.Contains(g.GPA.ToString()))
+                {
+                    labels.Add(g.GPA.ToString());
+                }
             }
             return labels;
         }

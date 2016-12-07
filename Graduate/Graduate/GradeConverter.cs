@@ -16,6 +16,9 @@ namespace Graduate.Core
             gradeManager = new GradeManager(conn);
         }
 
+        public void initGradeSchema() {
+            gradeManager.initTable();
+        }
 
         public Grade convertPercent(String percent) {
            return gradeManager.getByPercent(percent);

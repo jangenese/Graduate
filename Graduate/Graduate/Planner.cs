@@ -145,6 +145,8 @@ namespace Graduate.Core
         public void editClassActivity(String id, String fid, String label, String grade, String weight, Boolean completed) {
             classActivityManager.UpdateItem(id, fid, label, grade, weight, completed);
         }
-        
+
+
+      
     }
 }

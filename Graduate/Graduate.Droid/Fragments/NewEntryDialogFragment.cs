@@ -12,6 +12,7 @@ using Android.Widget;
 
 using Graduate.Core.Data.Models;
 using Graduate.Core;
+using Graduate.Core.View.Model;
 using Graduate.Droid.ListAdapters;
 
 
@@ -47,6 +48,10 @@ namespace Graduate.Droid.Fragments
         private View fragmentView;
         public int type { get; set; } = 0;
         public Boolean fromParent { get; set; } = false;
+        public int entityID { get; set; } = 0;
+
+        private String inputMessage = "";
+
         public static NewEntryDialogFragment NewInstance(Bundle bundle)
         {
             NewEntryDialogFragment fragment = new NewEntryDialogFragment();
@@ -138,8 +143,7 @@ namespace Graduate.Droid.Fragments
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-
-            saveEntry(type);
+            Boolean successful = saveEntry(type);
 
             if (fromParent) {
                 OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
@@ -148,17 +152,26 @@ namespace Graduate.Droid.Fragments
             }
 
 
+            if (successful)
+            {
+                Dismiss();
+                Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
+            }
+            else {
+                Toast.MakeText(Activity, inputMessage, ToastLength.Short).Show();
+            }
 
-            Dismiss();
-            Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
+            
         }
 
-        private void saveSchoolYear() {
+        private Boolean saveSchoolYear() {
 
             planner.saveSchoolYear(entry.Text.ToString());
+
+            return true;
         }
 
-        private void saveSemester() {
+        private Boolean saveSemester() {
 
             if (fromParent) {
                 planner.saveSemester(parentId.ToString(), entry.Text.ToString());
@@ -167,49 +180,72 @@ namespace Graduate.Droid.Fragments
                 planner.saveSemester(fid, entry.Text.ToString());
             }
 
-
+            return true;
         }
 
-        private void saveClass() {
-            if (fromParent) {
-                planner.saveClass(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
-            } else {
-                String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
-                planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+        private Boolean saveClass() {
+            Boolean successful = true;
+
+            if (isInputValidForClassSave(gradeEntry.Text, creditsEntry.Text))
+            {
+                if (fromParent)
+                {
+                    planner.saveClass(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+                }
+                else
+                {
+                    String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
+                    planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+                }
+            }
+            else{
+                successful = false;
             }
 
-
+            return successful;
         }
 
-        private void saveClassActivity() {
-                        planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
+        private Boolean saveClassActivity() {
+            Boolean successful = true;
+
+            if (isInputValidForActivitySave(gradeEntry.Text, creditsEntry.Text))
+            {
+                planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
+            }
+            else {
+                successful = false;
+            }
+           
+            return successful;
         }
 
-        private void saveEntry(int type)
+        private Boolean saveEntry(int type)
         {
+            Boolean successful = true;
             switch (type)
             {
                 case 1:
 
-                    saveSchoolYear();
+                    successful = saveSchoolYear();
 
                     break;
                 case 2:
 
-                    saveSemester();
+                    successful = saveSemester();
 
                     break;
                 case 3:
 
-                    saveClass();
+                    successful = saveClass();
                     break;
                 case 4:
-                    saveClassActivity();
+                    successful = saveClassActivity();
                     break;
                 default:
 
                     break;
             }
+            return successful;
         }
 
         private void checkFormType(int type) {
@@ -294,6 +330,8 @@ namespace Graduate.Droid.Fragments
         }
 
         private void modifyClassActivityForm() {
+            gradeEntry.InputType = Android.Text.InputTypes.ClassNumber;
+
             hideParentEntry();
             checkBoxRow.Visibility = ViewStates.Gone;
 
@@ -350,14 +388,7 @@ namespace Graduate.Droid.Fragments
         }
 
 
-        private void gradeEntryIsValid(String entry) {
-            //make sure letter grade is within the schema table
-        }
-
-        private void weightEntryIsValid(String entry) {
-            //make sure entry is within remaining weight
-        }
-                
+        
 
         private void displayError(String message) {
             //set alert for executing the task
@@ -372,6 +403,74 @@ namespace Graduate.Droid.Fragments
             dialog.Show();
         }
 
+        private Boolean isInputValidForClassSave(String letterGrade, String credits)
+        {
+            Boolean isValid = true;
+            IList<String> letterGrades = planner.getAllLetterGrades();
+            try
+            {
+                Convert.ToInt32(credits);                
+            }
+            catch
+            {
+                inputMessage = "Credit input must be a number";
+                isValid = false;
+            }
+
+            if (!letterGrades.Contains(letterGrade))
+            {
+                inputMessage = "Letter grade not found";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private Boolean isInputValidForActivitySave(String percentGrade, String weight)
+        {
+           
+
+            Boolean isValid = true;
+            int inputWeight = 200;
+
+            IList<String> percentGrades = planner.getAllPercentGrades();
+            try
+            {
+                inputWeight = Convert.ToInt32(weight);
+                          
+            }
+            catch
+            {
+                inputMessage = "Weight input must be a number";
+                isValid = false;
+            }
+
+            
+
+            if (inputWeight > getRemainingWeight() && inputWeight != 0)
+            {
+                inputMessage = "Weight entry invalid! " +  getRemainingWeight().ToString() + " Max weight";
+                isValid = false;
+            }
+
+           
+
+            if (!percentGrades.Contains(percentGrade))
+            {
+                inputMessage = "Percent grade not found";
+                isValid = false;
+            }
+
+            return isValid;
+
+        }
+
+        private int getRemainingWeight() {
+            ClassView c = planner.getClass(entityID.ToString());
+            return Convert.ToInt32(c.remainingWeight);
+        }
+
+       
 
     }
     }

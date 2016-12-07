@@ -3,15 +3,17 @@ using System.IO;
 using SQLite;
 using Android.App;
 using Graduate.Core;
-
+using Android.Content;
 
 namespace Graduate.Droid
 {
     [Application]
     public class GraduateApp : Application
     {
+        private Boolean firstRun;
+        ISharedPreferences prefs = null;
         public static GraduateApp Current { get; private set; }
-        
+
         public Planner planner { get; set; }
         public GradeConverter converter { get; set; }
         SQLiteConnection conn;
@@ -25,19 +27,36 @@ namespace Graduate.Droid
         {
             base.OnCreate();
 
+            prefs = Application.Context.GetSharedPreferences("Graduate.Droid", FileCreationMode.Private);
+
             var sqliteFilename = "Graduate.db3";
             string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var path = Path.Combine(libraryPath, sqliteFilename);
             conn = new SQLiteConnection(path);
 
 
-          //  calculator = new Calculator(conn);
+            //  calculator = new Calculator(conn);
             planner = new Planner(conn);
 
             converter = new GradeConverter(conn);
+            firstRun = prefs.GetBoolean("firstRun", true);
+
             
 
+            if (firstRun)
+            {    
+                ISharedPreferencesEditor editor = prefs.Edit();
+                editor.PutBoolean("firstRun", false);
+                editor.Apply();
+
+                converter.initGradeSchema();
+            }
+
+            
+
+
         }
+
     }
 }
 

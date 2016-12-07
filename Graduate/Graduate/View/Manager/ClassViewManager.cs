@@ -48,9 +48,10 @@ namespace Graduate.Core.View.Manager
             classView.credits = c.credits.ToString();
             classView.parentLabel = getParentLabel(c.FId.ToString());
             classView.status = getStatus(c.completed);
+            classView.statusLong = getLongStatus(c.completed);
             classView.children = getChildren(c.Id.ToString());
             classView.completed = c.completed;
-            classView.remainingWeight = getRemainingWeight(c.Id.ToString()) + "%";
+            classView.remainingWeight = getRemainingWeight(c.Id.ToString()).ToString();
 
 
 
@@ -77,11 +78,12 @@ namespace Graduate.Core.View.Manager
 
                 System.Diagnostics.Debug.WriteLine("Class is completed");
                 classView.percentGrade = c.percentGrade + "%";
-                classView.gpaGrade = c.gpaGrade.ToString();
-                classView.letterGrade = c.letterGrade;
+                classView.gpaGrade = formatGPA(c.gpaGrade).ToString();                   
+                classView.letterGrade = formatLetterGrade(c.letterGrade);
+                    
 
                 classView.goalPercentGrade = c.percentGoalGrade.ToString();
-                classView.goalLetterGrade = c.letterGoalGrade;
+                classView.goalLetterGrade = formatLetterGrade(c.letterGoalGrade);
 
             }
             else {
@@ -89,7 +91,7 @@ namespace Graduate.Core.View.Manager
                 System.Diagnostics.Debug.WriteLine("Class is not completed");
 
                 classView.goalPercentGrade = c.percentGoalGrade.ToString();
-                classView.goalLetterGrade = c.letterGoalGrade;
+                classView.goalLetterGrade = formatLetterGrade(c.letterGoalGrade);
 
 
                 System.Diagnostics.Debug.WriteLine("Checking if it has activites");
@@ -101,8 +103,8 @@ namespace Graduate.Core.View.Manager
 
                     classView.percentGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
                    
-                    classView.letterGrade = getLetterFromSchema(calculatePercentGrade(c.Id.ToString()));
-                    classView.gpaGrade = getGPAGradeFromSchema(classView.letterGrade).ToString();
+                    classView.letterGrade = formatLetterGrade(getLetterFromSchema(calculatePercentGrade(c.Id.ToString())));
+                    classView.gpaGrade = formatGPA(getGPAGradeFromSchema(classView.letterGrade)).ToString();
 
                     //save updated grade values
                     c.percentGrade = calculatePercentGrade(c.Id.ToString());
@@ -119,20 +121,10 @@ namespace Graduate.Core.View.Manager
                     c.gpaGrade = c.gpaGoalGrade;
 
                     classView.percentGrade = c.percentGrade + "%";
-                    classView.gpaGrade = c.gpaGrade.ToString();
-                    classView.letterGrade = c.letterGrade;                
-                    
-
-                    //save updated grade values
-                    c.percentGrade = c.percentGoalGrade;
-                    c.letterGrade = c.letterGoalGrade;
-                    c.gpaGrade = c.gpaGoalGrade;
-
-                    
+                    classView.gpaGrade = formatGPA(c.gpaGrade).ToString();                       
+                    classView.letterGrade = formatLetterGrade(c.letterGrade);   
+                   
                 }
-
-                System.Diagnostics.Debug.WriteLine("Saving Calcualeted grades");
-
                 classManager.SaveItem(c);
 
                 
@@ -149,6 +141,18 @@ namespace Graduate.Core.View.Manager
 
 
             return classView;
+        }
+
+        private String formatLetterGrade(String letter) {
+            String str = letter;
+
+            if (str.Length <= 1) {
+                str += " ";
+            }
+
+
+            return str;
+            
         }
                
         private String getParentLabel(String fid)
@@ -225,6 +229,10 @@ namespace Graduate.Core.View.Manager
                
         }
 
+        private String formatGPA(double gpa) {
+            return String.Format("{0:0.00}", gpa);
+
+        }
         
 
         private String getStatus(Boolean b)
@@ -235,6 +243,17 @@ namespace Graduate.Core.View.Manager
                 {
                     status = "INP";
                 }  
+            return status;
+        }
+
+        private String getLongStatus(Boolean b)
+        {
+            String status = "Complete";
+
+            if (!b)
+            {
+                status = "InProgress";
+            }
             return status;
         }
 

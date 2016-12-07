@@ -59,11 +59,12 @@ namespace Graduate.Core.View.Manager
             schoolYearView.label = sy.label;
             schoolYearView.children = getChildren(sy.Id.ToString());
             schoolYearView.credits = getCreditsFromChildren(sy.Id.ToString()).ToString();
-            schoolYearView.gpaGrade = getGPAGradeFromChildren(sy.Id.ToString()).ToString();
+            schoolYearView.gpaGrade = formatGPA(getGPAGradeFromChildren(sy.Id.ToString()));             
             schoolYearView.percentGrade = getPercentGradeFromChildren(sy.Id.ToString()).ToString();
-            schoolYearView.letterGrade = getLetterFromSchema(getPercentGradeFromChildren(sy.Id.ToString()));        
+            schoolYearView.letterGrade = formatLetterGrade(getLetterFromSchema(getPercentGradeFromChildren(sy.Id.ToString())));        
             schoolYearView.parentLabel = "";
             schoolYearView.status = getStatus(sy.Id.ToString());
+            schoolYearView.statusLong = getLongStatus(sy.Id.ToString());
             return schoolYearView;
         }
 
@@ -83,6 +84,8 @@ namespace Graduate.Core.View.Manager
 
             return i;
         }
+
+       
 
         private double getGPAGradeFromChildren(String fid)
         {
@@ -128,8 +131,27 @@ namespace Graduate.Core.View.Manager
 
             return grade;
         }
-           
-       
+
+        private String formatLetterGrade(String letter)
+        {
+            String str = letter;
+
+            if (str.Length <= 1)
+            {
+                str += " ";
+            }
+
+
+            return str;
+
+        }
+
+        private String formatGPA(double gpa)
+        {
+            return String.Format("{0:0.00}", gpa);
+
+        }
+
 
         private String getStatus(String fid)
         {
@@ -143,6 +165,25 @@ namespace Graduate.Core.View.Manager
                 if (!c.completed)
                 {
                     status = "INP";
+                }
+            }
+
+
+            return status;
+        }
+
+        private String getLongStatus(String fid)
+        {
+            String status = "Completed";
+
+
+            IList<Class> children = getChildrensChildren(fid);
+
+            foreach (Class c in children)
+            {
+                if (!c.completed)
+                {
+                    status = "InProgress";
                 }
             }
 
