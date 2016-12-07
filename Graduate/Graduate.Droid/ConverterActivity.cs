@@ -50,8 +50,7 @@ namespace Graduate.Droid
         private void handleEvents() {    
 
             percent.AfterTextChanged += Percent_AfterTextChanged;
-            letter.ItemClick += Letter_ItemClick;
-            letter.ItemSelected += Letter_ItemSelected;            
+            letter.ItemClick += Letter_ItemClick;                     
             percent.Click += Percent_Click;
             letter.Click += Letter_Click;
         
@@ -62,26 +61,10 @@ namespace Graduate.Droid
             String letterEntry = letter.Text;
 
             Grade grade = gradeConverter.convertLetter(letterEntry);
-
-            Console.WriteLine("Printing Returned Grade");
-            Console.WriteLine(grade.ToString());
-
             percent.Text = grade.Percent.ToString();
-            gpa.Text = grade.GPA.ToString();
+            gpa.Text = formatGPA(grade.GPA);
         }
-
-        private void Letter_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            String letterEntry = letter.Text;
-
-            Grade grade = gradeConverter.convertLetter(letterEntry);
-
-            Console.WriteLine("Printing Returned Grade");
-            Console.WriteLine(grade.ToString());
-
-            percent.Text = grade.Percent.ToString();
-            gpa.Text = grade.GPA.ToString();
-        }
+       
 
         private void Letter_Click(object sender, EventArgs e)
         {
@@ -105,13 +88,16 @@ namespace Graduate.Droid
         {
             String percentEntry = percent.Text;
 
-            Grade grade = gradeConverter.convertPercent(percentEntry);
-
-            Console.WriteLine("Printing Returned Grade");
-            Console.WriteLine(grade.ToString());
+            Grade grade = gradeConverter.convertPercent(percentEntry);           
 
             letter.Text = grade.Letter;
-            gpa.Text = grade.GPA.ToString();
+            gpa.Text = formatGPA(grade.GPA);
+        }
+
+        private String formatGPA(double gpa)
+        {
+            return String.Format("{0:0.00}", gpa);
+
         }
     }
 }

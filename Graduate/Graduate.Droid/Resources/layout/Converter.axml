@@ -9,70 +9,85 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/linearLayout1"
-        android:layout_gravity="center">
-        <TextView
-            android:text="Percent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView1"
-            android:gravity="center" />
-        <EditText
-            android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout4"
+        android:weightSum="100"
+        android:layout_weight="25">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/editTextConverterPercenr"
-            android:textSize="40dp"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="3"
-            android:numeric="integer"
-            android:focusable="false"
-            android:focusableInTouchMode="false" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/linearLayout2"
-        android:layout_gravity="center">
-        <TextView
-            android:text="Letter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:gravity="center" />
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout1"
+            android:layout_gravity="center"
+            android:layout_weight="33.33">
+            <TextView
+                android:text="Percent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:gravity="center"
+                android:textSize="20dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/editTextConverterPercenr"
+                android:textSize="40dp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                android:numeric="integer"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="100" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/autoCompleteTextViewConverterLetter"
-            android:textSize="40dp"
-            android:gravity="center"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:completionThreshold="1" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/linearLayout3"
-        android:layout_gravity="center"
-        android:background="@color/bright_foreground_disabled_material_light">
-        <TextView
-            android:text="GPA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:gravity="center" />
-        <TextView
-            android:text="4.00"
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout2"
+            android:layout_gravity="center"
+            android:layout_weight="33.33">
+            <TextView
+                android:text="Letter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:gravity="center"
+                android:textSize="20dp" />
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/autoCompleteTextViewConverterLetter"
+                android:textSize="40dp"
+                android:gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="A+" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/textViewConverterGPA"
-            android:textSize="40dp"
-            android:gravity="center" />
+            android:id="@+id/linearLayout3"
+            android:layout_gravity="center"
+            android:layout_weight="33.33">
+            <TextView
+                android:text="GPA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:gravity="center"
+                android:textSize="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="40dp"
+                android:gravity="center"
+                android:id="@+id/textViewConverterGPA"
+                android:hint="4.00"
+                android:textColor="@color/abc_input_method_navigation_guard" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
