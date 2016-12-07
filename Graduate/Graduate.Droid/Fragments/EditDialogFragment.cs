@@ -53,6 +53,7 @@ namespace Graduate.Droid.Fragments
 
         private int originalWeight = 0;
 
+        private String inputMessage = "";
 
         public static EditDialogFragment NewInstance(Bundle bundle)
         {
@@ -152,7 +153,7 @@ namespace Graduate.Droid.Fragments
             }
             else
             {
-                Toast.MakeText(Activity, "Please Enter A valid Input", ToastLength.Short).Show();
+                Toast.MakeText(Activity, inputMessage, ToastLength.Short).Show();
             }
 
 
@@ -410,11 +411,13 @@ namespace Graduate.Droid.Fragments
             }
             catch
             {
+                inputMessage = "Credit input must be a number";
                 isValid = false;
             }
 
             if (!letterGrades.Contains(letterGrade))
             {
+                inputMessage = "Letter grade not found";
                 isValid = false;
             }
 
@@ -436,13 +439,15 @@ namespace Graduate.Droid.Fragments
             }
             catch
             {
+                inputMessage = "Weight input must be a number";
                 isValid = false;
             }
 
+            int remainingWeight = getRemainingWeight() + originalWeight;
 
-
-            if (inputWeight > (getRemainingWeight() + originalWeight) && inputWeight != 0)
+            if (inputWeight > remainingWeight && inputWeight != 0)
             {
+                inputMessage = "Weight entry invalid! " + remainingWeight.ToString() + " Max weight";
                 isValid = false;
             }
 
@@ -450,6 +455,7 @@ namespace Graduate.Droid.Fragments
 
             if (!percentGrades.Contains(percentGrade))
             {
+                inputMessage = "Percent grade not found";
                 isValid = false;
             }
 

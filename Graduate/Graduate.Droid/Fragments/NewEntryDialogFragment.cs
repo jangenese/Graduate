@@ -50,7 +50,8 @@ namespace Graduate.Droid.Fragments
         public Boolean fromParent { get; set; } = false;
         public int entityID { get; set; } = 0;
 
-        public int remainingWeight { get; set; }
+        private String inputMessage = "";
+
         public static NewEntryDialogFragment NewInstance(Bundle bundle)
         {
             NewEntryDialogFragment fragment = new NewEntryDialogFragment();
@@ -157,7 +158,7 @@ namespace Graduate.Droid.Fragments
                 Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
             }
             else {
-                Toast.MakeText(Activity, "Please Enter A valid Input", ToastLength.Short).Show();
+                Toast.MakeText(Activity, inputMessage, ToastLength.Short).Show();
             }
 
             
@@ -408,15 +409,17 @@ namespace Graduate.Droid.Fragments
             IList<String> letterGrades = planner.getAllLetterGrades();
             try
             {
-                Convert.ToInt32(credits);
+                Convert.ToInt32(credits);                
             }
             catch
             {
+                inputMessage = "Credit input must be a number";
                 isValid = false;
             }
 
             if (!letterGrades.Contains(letterGrade))
             {
+                inputMessage = "Letter grade not found";
                 isValid = false;
             }
 
@@ -438,13 +441,15 @@ namespace Graduate.Droid.Fragments
             }
             catch
             {
+                inputMessage = "Weight input must be a number";
                 isValid = false;
             }
 
             
 
             if (inputWeight > getRemainingWeight() && inputWeight != 0)
-            {                
+            {
+                inputMessage = "Weight entry invalid! " +  getRemainingWeight().ToString() + " Max weight";
                 isValid = false;
             }
 
@@ -452,6 +457,7 @@ namespace Graduate.Droid.Fragments
 
             if (!percentGrades.Contains(percentGrade))
             {
+                inputMessage = "Percent grade not found";
                 isValid = false;
             }
 
