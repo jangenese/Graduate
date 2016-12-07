@@ -12,6 +12,7 @@ using Android.Widget;
 
 using Graduate.Core;
 using Graduate.Core.Data.Models;
+
 using Android.Views.InputMethods;
 
 namespace Graduate.Droid
@@ -21,7 +22,7 @@ namespace Graduate.Droid
     {
         GradeConverter gradeConverter;
         EditText percent;
-        EditText letter;
+        AutoCompleteTextView letter;
         TextView gpa;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -33,33 +34,73 @@ namespace Graduate.Droid
             findViews();
             handleEvents();
 
+            var gradeEntryOptions = GraduateApp.Current.planner.getAllLetterGrades();            
+            ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
+            letter.Adapter = gradeEntryAdapter;
 
-            Console.WriteLine("Printing Grades");
-            Console.WriteLine("Printing Grades");
-            Console.WriteLine("Printing Grades");
-            Console.WriteLine("Printing Grades");
-            Console.WriteLine("Printing Grades");
-            Console.WriteLine("Printing Grades");
-            Console.WriteLine("Printing Grades");
-            Console.WriteLine("Printing Grades");
 
-            Console.WriteLine(gradeConverter.ToStringGrades());
-            
         }
 
         private void findViews() {
-            percent = FindViewById<EditText>(Resource.Id.editTextPercent);
-            letter = FindViewById<EditText>(Resource.Id.editTextLetter);
-            gpa = FindViewById<TextView>(Resource.Id.textViewGPA);
+            percent = FindViewById<EditText>(Resource.Id.editTextConverterPercenr);
+            letter = FindViewById<AutoCompleteTextView>(Resource.Id.autoCompleteTextViewConverterLetter);
+            gpa = FindViewById<TextView>(Resource.Id.textViewConverterGPA);
         }
 
         private void handleEvents() {    
 
             percent.AfterTextChanged += Percent_AfterTextChanged;
+            letter.ItemClick += Letter_ItemClick;
+            letter.ItemSelected += Letter_ItemSelected;            
+            percent.Click += Percent_Click;
+            letter.Click += Letter_Click;
         
-        }        
-       
-       
+        }
+
+        private void Letter_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            String letterEntry = letter.Text;
+
+            Grade grade = gradeConverter.convertLetter(letterEntry);
+
+            Console.WriteLine("Printing Returned Grade");
+            Console.WriteLine(grade.ToString());
+
+            percent.Text = grade.Percent.ToString();
+            gpa.Text = grade.GPA.ToString();
+        }
+
+        private void Letter_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            String letterEntry = letter.Text;
+
+            Grade grade = gradeConverter.convertLetter(letterEntry);
+
+            Console.WriteLine("Printing Returned Grade");
+            Console.WriteLine(grade.ToString());
+
+            percent.Text = grade.Percent.ToString();
+            gpa.Text = grade.GPA.ToString();
+        }
+
+        private void Letter_Click(object sender, EventArgs e)
+        {
+            percent.Focusable = false;
+            percent.FocusableInTouchMode = false;
+
+            letter.Focusable = false;
+            letter.FocusableInTouchMode = true;
+        }
+
+        private void Percent_Click(object sender, EventArgs e)
+        {
+            letter.Focusable = false;
+            letter.FocusableInTouchMode = false;
+
+            percent.Focusable = true;
+            percent.FocusableInTouchMode = true;
+        }
+
         private void Percent_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
             String percentEntry = percent.Text;

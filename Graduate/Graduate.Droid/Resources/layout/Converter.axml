@@ -2,78 +2,77 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/linearLayout1"
-        android:background="@android:color/darker_gray"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="40dp"
         android:layout_gravity="center">
         <TextView
             android:text="Percent"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:id="@+id/textView1"
-            android:textSize="15dp"
             android:gravity="center" />
         <EditText
-            android:inputType="number"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/editTextPercent"
-            android:textSize="60dp"
-            android:textAllCaps="true"
-            android:gravity="center" />
+            android:layout_height="match_parent"
+            android:id="@+id/editTextConverterPercenr"
+            android:textSize="40dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:numeric="integer"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/linearLayout2"
-        android:background="@android:color/darker_gray"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center">
         <TextView
             android:text="Letter"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            android:textSize="15dp"
             android:gravity="center" />
-        <EditText
+        <AutoCompleteTextView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/editTextLetter"
-            android:textSize="60dp"
+            android:layout_height="match_parent"
+            android:id="@+id/autoCompleteTextViewConverterLetter"
+            android:textSize="40dp"
             android:gravity="center"
-            android:textAllCaps="true" />
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:completionThreshold="1" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/linearLayout3"
-        android:background="@android:color/darker_gray"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="@color/bright_foreground_disabled_material_light">
         <TextView
             android:text="GPA"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:id="@+id/textView3"
-            android:textSize="15dp"
             android:gravity="center" />
         <TextView
+            android:text="4.00"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/textViewGPA"
-            android:textSize="50dp"
-            android:gravity="center"
-            android:textStyle="normal" />
+            android:layout_height="match_parent"
+            android:id="@+id/textViewConverterGPA"
+            android:textSize="40dp"
+            android:gravity="center" />
     </LinearLayout>
 </LinearLayout>

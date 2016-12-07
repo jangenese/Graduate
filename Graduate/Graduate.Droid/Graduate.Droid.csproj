@@ -191,16 +191,10 @@
     <AndroidResource Include="Resources\layout\PreferencesActivity.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\layout1.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\ClassFooterFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\SemesterAndSchoolYearFooterFragment.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\layout2.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
