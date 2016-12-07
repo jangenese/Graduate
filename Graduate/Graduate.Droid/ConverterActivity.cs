@@ -33,6 +33,8 @@ namespace Graduate.Droid
         TextView statement;
 
         Button calculate;
+
+        private String inputMessage = "";
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -92,24 +94,21 @@ namespace Graduate.Droid
         private void Calculate_Click(object sender, EventArgs e)
         {
 
-            String remaining = creditsRemaining.Text;      
+            if (estimateInputValid(currentGPA.Text, creditsRemaining.Text, creditsRequired.Text, desiredGPA.Text))
+            {
+                String remaining = creditsRemaining.Text;
 
-            double estimatedResult = gradeConverter.estimateGPA(currentGPA.Text, creditsRemaining.Text, creditsRequired.Text, desiredGPA.Text);
-            Console.WriteLine("Printing Result");
-            Console.WriteLine("Printing Result");
-            Console.WriteLine("Printing Result");
-            Console.WriteLine("Printing Result");
-            Console.WriteLine("Printing Result");
-            Console.WriteLine("Printing Result");
-            Console.WriteLine("Printing Result");
-            Console.WriteLine("Printing Result");
-            Console.WriteLine(estimatedResult);
-            String estimatedresultText = formatGPA(estimatedResult);
+                double estimatedResult = gradeConverter.estimateGPA(currentGPA.Text, creditsRemaining.Text, creditsRequired.Text, desiredGPA.Text);
+                String estimatedresultText = formatGPA(estimatedResult);
 
-            String stringStatement = "You need to average a " + estimatedresultText + " over your final " + remaining + " Credits to graduate with your desired GPA.";
+                String stringStatement = "You need to average a " + estimatedresultText + " over your final " + remaining + " Credits to graduate with your desired GPA.";
 
-            result.Text = estimatedresultText;
-            statement.Text = stringStatement;
+                result.Text = estimatedresultText;
+                statement.Text = stringStatement;
+            }
+            else {
+                Toast.MakeText(this, inputMessage, ToastLength.Short).Show();
+            }           
         }
 
         private void DesiredGPA_Click(object sender, EventArgs e)
@@ -245,5 +244,34 @@ namespace Graduate.Droid
             return String.Format("{0:0.00}", gpa);
 
         }
+
+        private Boolean estimateInputValid(String strCurrentGPA, String strRemainingCredits, String strRequireCredits, String strDdesiredGPA) {
+            
+            try { Convert.ToDecimal(strCurrentGPA); }
+            catch {
+                inputMessage = "Current GPA is invalid";                
+                return false;
+                }
+            try { Convert.ToDecimal(strRemainingCredits); }
+            catch
+            {
+                inputMessage = "Remaining Credits is invalid";
+                return false;
+            }
+            try { Convert.ToDecimal(strRequireCredits); }
+            catch
+            {
+                inputMessage = "RequiredCredits is invalid";
+                return false;
+            }
+            try { Convert.ToDecimal(strDdesiredGPA); }
+            catch
+            {
+                inputMessage = "Desired GPA is invalid";
+                return false;
+            }
+
+            return true;
+                }
     }
 }
