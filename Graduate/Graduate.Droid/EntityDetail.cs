@@ -253,7 +253,7 @@ namespace Graduate.Droid
             label.Text = semester.label;
             parentLabel.Text = semester.parentLabel;
             credits.Text = semester.credits;
-            status.Text = semester.status;
+            status.Text = semester.statusLong;
             grade.Text = semester.percentGrade + " | " + semester.letterGrade + " | " + semester.gpaGrade;
             //******** Main Header Info
 
@@ -287,7 +287,7 @@ namespace Graduate.Droid
             label.Text = sy.label;
             parentLabel.Text = sy.parentLabel;
             credits.Text = sy.credits;
-            status.Text = sy.status;
+            status.Text = sy.statusLong;
             grade.Text = sy.percentGrade + " | " + sy.letterGrade + " | " + sy.gpaGrade;
             //******Populate Main Info
 
@@ -318,7 +318,7 @@ namespace Graduate.Droid
             parentLabel.Text = c.parentLabel;
             credits.Text = c.credits;
             parentLabel.Text = c.parentLabel;
-            status.Text = c.status;
+            status.Text = c.statusLong;
             grade.Text = c.percentGrade +" | "+ c.letterGrade +" | "+ c.gpaGrade;
             //******Populate Main Info
 

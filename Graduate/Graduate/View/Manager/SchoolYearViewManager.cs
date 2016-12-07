@@ -64,6 +64,7 @@ namespace Graduate.Core.View.Manager
             schoolYearView.letterGrade = formatLetterGrade(getLetterFromSchema(getPercentGradeFromChildren(sy.Id.ToString())));        
             schoolYearView.parentLabel = "";
             schoolYearView.status = getStatus(sy.Id.ToString());
+            schoolYearView.statusLong = getLongStatus(sy.Id.ToString());
             return schoolYearView;
         }
 
@@ -83,6 +84,8 @@ namespace Graduate.Core.View.Manager
 
             return i;
         }
+
+       
 
         private double getGPAGradeFromChildren(String fid)
         {
@@ -162,6 +165,25 @@ namespace Graduate.Core.View.Manager
                 if (!c.completed)
                 {
                     status = "INP";
+                }
+            }
+
+
+            return status;
+        }
+
+        private String getLongStatus(String fid)
+        {
+            String status = "Completed";
+
+
+            IList<Class> children = getChildrensChildren(fid);
+
+            foreach (Class c in children)
+            {
+                if (!c.completed)
+                {
+                    status = "InProgress";
                 }
             }
 

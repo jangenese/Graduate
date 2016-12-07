@@ -48,6 +48,7 @@ namespace Graduate.Core.View.Manager
             classView.credits = c.credits.ToString();
             classView.parentLabel = getParentLabel(c.FId.ToString());
             classView.status = getStatus(c.completed);
+            classView.statusLong = getLongStatus(c.completed);
             classView.children = getChildren(c.Id.ToString());
             classView.completed = c.completed;
             classView.remainingWeight = getRemainingWeight(c.Id.ToString()) + "%";
@@ -242,6 +243,17 @@ namespace Graduate.Core.View.Manager
                 {
                     status = "INP";
                 }  
+            return status;
+        }
+
+        private String getLongStatus(Boolean b)
+        {
+            String status = "Complete";
+
+            if (!b)
+            {
+                status = "InProgress";
+            }
             return status;
         }
 

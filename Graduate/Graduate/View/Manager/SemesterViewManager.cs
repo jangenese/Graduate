@@ -55,6 +55,7 @@ namespace Graduate.Core.View.Manager
             semesterView.letterGrade = formatLetterGrade(getLetterFromSchema(getPercentGradeFromChildren(sem.Id.ToString())));
             semesterView.parentLabel = getParentLabel(sem.FId.ToString());
             semesterView.status = getStatus(sem.Id.ToString());
+            semesterView.statusLong = getLongStatus(sem.Id.ToString());
             return semesterView;
         }
 
@@ -156,6 +157,23 @@ namespace Graduate.Core.View.Manager
                 if (!c.completed) {
                     status = "INP";
                 }                
+            }
+            return status;
+        }
+
+        private String getLongStatus(String fid)
+        {
+            String status = "Complete";
+
+
+            IList<Class> children = getChildren(fid);
+
+            foreach (Class c in children)
+            {
+                if (!c.completed)
+                {
+                    status = "InProgress";
+                }
             }
             return status;
         }
