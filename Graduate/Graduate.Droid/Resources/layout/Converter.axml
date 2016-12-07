@@ -161,7 +161,8 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:inputType="numberDecimal"
-                android:numeric="decimal" />
+                android:numeric="decimal"
+                android:imeOptions="actionNext" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -185,7 +186,8 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:inputType="number"
-                android:numeric="integer" />
+                android:numeric="integer"
+                android:imeOptions="actionNext" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -209,7 +211,8 @@
                 android:focusableInTouchMode="false"
                 android:focusable="false"
                 android:inputType="number"
-                android:numeric="integer" />
+                android:numeric="integer"
+                android:imeOptions="actionNext" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -233,7 +236,8 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:inputType="numberDecimal"
-                android:numeric="decimal" />
+                android:numeric="decimal"
+                android:imeOptions="actionNext" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
