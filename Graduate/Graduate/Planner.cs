@@ -116,6 +116,7 @@ namespace Graduate.Core
 
         public void deleteClass(String id) {
             classManager.deleteClass(id);
+            deleteClassActivity(id);
         }
 
         public void deleteSemester(String id) {
@@ -146,6 +147,12 @@ namespace Graduate.Core
             classActivityManager.UpdateItem(id, fid, label, grade, weight, completed);
         }
 
+        private void deleteClassChildren(String fid) {
+            IEnumerable<ClassActivity> acitivities = classActivityManager.getClassActivitiesByFID(fid);
+            foreach (ClassActivity cActivity in acitivities) {
+                classActivityManager.deleteClassActivity(cActivity.Id.ToString());
+            }
+        }
 
       
     }
