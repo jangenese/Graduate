@@ -41,32 +41,18 @@ namespace Graduate.Droid
             converter = new GradeConverter(conn);
             firstRun = prefs.GetBoolean("firstRun", true);
 
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n"); Console.WriteLine("First run check\n"); Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
-            Console.WriteLine("First run check\n");
+            
 
             if (firstRun)
-            {
-
-                Console.WriteLine("Hi, this is my first run");
-
-
+            {    
                 ISharedPreferencesEditor editor = prefs.Edit();
                 editor.PutBoolean("firstRun", false);
                 editor.Apply();
+
+                converter.initGradeSchema();
             }
 
-            Console.WriteLine("Not a a first run");
+            
 
 
         }

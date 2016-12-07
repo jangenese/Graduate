@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Graduate.Core.Data.DataAccessLayer;
 using Graduate.Core.Data.Models;
+using Graduate.Core.MiscTools;
 
 namespace Graduate.Core.Manager
 {
@@ -15,6 +16,17 @@ namespace Graduate.Core.Manager
         GradeDataAccess grades;
         public GradeManager(SQLiteConnection conn) {
             grades = new GradeDataAccess(conn);
+        }
+
+        public void initTable() {
+            grades.initTable();
+
+            GradePopulator gradesPopulator = new GradePopulator();
+            IList<Grade> gradesRecords = gradesPopulator.getTableContents();
+            foreach (Grade gradeEntry in gradesRecords)
+            {
+                grades.SaveItem(gradeEntry);
+            }
         }
 
         private int stringToInt(String str) {

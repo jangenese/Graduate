@@ -16,19 +16,15 @@ namespace Graduate.Core.Data.DataAccessLayer
 
         public GradeDataAccess(SQLiteConnection conn) : base(conn)
         {
-            database = conn; 
-            init();
+            database = conn;            
         }
 
-        public void init()
-        {
-            GradePopulator grades = new GradePopulator();
-            IList<Grade> gradesRecords = grades.getTableContents();            
-            foreach (Grade gradeEntry in gradesRecords)
-            {
-                SaveItem(gradeEntry);
-            }
-        }
+
+        public void initTable() {
+            try { database.DropTable<Grade>(); }catch { }
+
+            database.CreateTable<Grade>();
+        }    
 
         public Grade getItemByPercent(int percent)
         {
