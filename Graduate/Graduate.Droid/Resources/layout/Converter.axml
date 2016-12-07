@@ -159,7 +159,9 @@
                 android:hint="3.00"
                 android:gravity="center"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:inputType="numberDecimal"
+                android:numeric="decimal" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -181,7 +183,9 @@
                 android:hint="12"
                 android:gravity="center"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:inputType="number"
+                android:numeric="integer" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -203,7 +207,9 @@
                 android:hint="120"
                 android:gravity="center"
                 android:focusableInTouchMode="false"
-                android:focusable="false" />
+                android:focusable="false"
+                android:inputType="number"
+                android:numeric="integer" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -225,7 +231,9 @@
                 android:hint="4.00"
                 android:gravity="center"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:inputType="numberDecimal"
+                android:numeric="decimal" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -244,7 +252,6 @@
                 android:layout_height="match_parent"
                 android:id="@+id/textViewResult"
                 android:gravity="center"
-                android:hint="3.89"
                 android:textSize="18dp"
                 android:focusable="false"
                 android:focusableInTouchMode="false" />
@@ -258,7 +265,6 @@
             android:id="@+id/linearLayout15"
             android:layout_weight="12">
             <TextView
-                android:text="You need to average a 3.98 over your final 12 Credits to graduate with your desired GPA."
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textViewStatement"
