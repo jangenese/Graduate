@@ -425,7 +425,7 @@ namespace Graduate.Droid.Fragments
 
         private Boolean isInputValidForActivitySave(String percentGrade, String weight)
         {
-            Console.WriteLine("Activity Save Checl Started");
+           
 
             Boolean isValid = true;
             int inputWeight = 200;
@@ -434,24 +434,21 @@ namespace Graduate.Droid.Fragments
             try
             {
                 inputWeight = Convert.ToInt32(weight);
-                Console.WriteLine("Weight was converted succesfully");                
+                          
             }
             catch
             {
                 isValid = false;
             }
 
-            Console.WriteLine("Checking for remaining weight nowy" + getRemainingWeight().ToString());
+            
 
-            if (inputWeight > getRemainingWeight())
-            {
-                Console.WriteLine("\n\n\n\n\n");
-                Console.WriteLine("asdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-                Console.WriteLine("Remaining Weight is" + getRemainingWeight().ToString());
+            if (inputWeight > getRemainingWeight() && inputWeight != 0)
+            {                
                 isValid = false;
             }
 
-            Console.WriteLine("Finish checking the remaining weight");
+           
 
             if (!percentGrades.Contains(percentGrade))
             {

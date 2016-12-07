@@ -32,7 +32,7 @@ namespace Graduate.Droid.Fragments
         private EditText creditsEntry;
         private CheckBox checkbox;
         private Button cancelButton;
-        private Button saveButton;
+        private Button editButton;
         private Planner planner;
 
 
@@ -50,6 +50,8 @@ namespace Graduate.Droid.Fragments
 
         public int entityID { get; set; } = 0;
         public Boolean fromParent { get; set; } = false;
+
+        private int originalWeight = 0;
 
 
         public static EditDialogFragment NewInstance(Bundle bundle)
@@ -98,7 +100,7 @@ namespace Graduate.Droid.Fragments
             creditsEntry = fragmentView.FindViewById<EditText>(Resource.Id.editTextCreditsEntry);
             checkbox = fragmentView.FindViewById<CheckBox>(Resource.Id.checkBoxCompleted);
             cancelButton = fragmentView.FindViewById<Button>(Resource.Id.buttonCancel);
-            saveButton = fragmentView.FindViewById<Button>(Resource.Id.buttonSave);
+            editButton = fragmentView.FindViewById<Button>(Resource.Id.buttonSave);
 
             parentRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutParentRow);
             classRow = fragmentView.FindViewById<LinearLayout>(Resource.Id.linearLayoutMainClass);
@@ -111,7 +113,7 @@ namespace Graduate.Droid.Fragments
 
         private void handleEvents()
         {
-            saveButton.Click += SaveButton_Click;
+            editButton.Click += SaveButton_Click;
             cancelButton.Click += CancelButton_Click;
             checkbox.Click += Checkbox_Click;
 
@@ -140,58 +142,105 @@ namespace Graduate.Droid.Fragments
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            editEntry(type);
-            Dismiss();
-            Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
+            Boolean successful = editEntry(type);
+
+           
+            if (successful)
+            {
+                Dismiss();
+                Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
+            }
+            else
+            {
+                Toast.MakeText(Activity, "Please Enter A valid Input", ToastLength.Short).Show();
+            }
+
+
         }
 
-        private void editSchoolYear()
+        private Boolean editSchoolYear()
         {
-            planner.editSchoolYear(entityID.ToString(), entry.Text.ToString());
+
+            planner.editSchoolYear(entityID.ToString(),entry.Text.ToString());
+                
+
+            return true;
         }
 
-        private void editSemester()
+        private Boolean editSemester()
         {
-            String fid = getSchoolYearParentID(parentEntry.Text, planner.getAllSchoolYears());
-            planner.editSemester(entityID.ToString(), fid, entry.Text.ToString());
+            
+            
+                String fid = getSchoolYearParentID(parentEntry.Text, planner.getAllSchoolYears());
+                planner.editSemester(entityID.ToString(), fid, entry.Text.ToString());
+            
+
+            return true;
         }
 
-        private void editClass()
+        private Boolean editClass()
         {
-            String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
-            planner.editClass(entityID.ToString(), fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+            Boolean successful = true;
+
+            if (isInputValidForClassSave(gradeEntry.Text, creditsEntry.Text))
+            {
+               
+              
+                    String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
+                    planner.editClass(entityID.ToString(), fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+                
+            }
+            else
+            {
+                successful = false;
+            }
+
+            return successful;
         }
 
-        private void editClassActivity()
+        private Boolean editClassActivity()
         {
-            planner.editClassActivity(entityID.ToString(), parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
+            Boolean successful = true;
+
+            if (isInputValidForActivitySave(gradeEntry.Text, creditsEntry.Text, originalWeight))
+            {
+                planner.editClassActivity(entityID.ToString(), parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
+            }
+            else
+            {
+                successful = false;
+            }
+
+            return successful;
         }
 
-        private void editEntry(int type)
+        private Boolean editEntry(int type)
         {
+            Boolean successful = true;
             switch (type)
             {
                 case 1:
 
-                    editSchoolYear();
+                    successful = editSchoolYear();
 
                     break;
                 case 2:
 
-                    editSemester();
+                    successful = editSemester();
 
                     break;
                 case 3:
 
-                    editClass();
+                    successful = editClass();
                     break;
                 case 4:
-                    editClassActivity();
+                    successful = editClassActivity();
                     break;
                 default:
 
                     break;
             }
+            return successful;
         }
 
         private void checkFormType(int type)
@@ -287,12 +336,14 @@ namespace Graduate.Droid.Fragments
 
             checkBoxRow.Visibility = ViewStates.Gone;
 
+            
 
 
             ClassActivityView classActivity = planner.getClassActivity(entityID.ToString());
             title.Text = "Edit : Class";
             hideParentEntry();
 
+            originalWeight = Convert.ToInt32(classActivity.weight);
 
             var gradeEntryOptions = planner.getAllPercentGrades();
             ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
@@ -347,6 +398,69 @@ namespace Graduate.Droid.Fragments
         private void hideParentEntry()
         {
             parentRow.Visibility = ViewStates.Gone;
+        }
+
+        private Boolean isInputValidForClassSave(String letterGrade, String credits)
+        {
+            Boolean isValid = true;
+            IList<String> letterGrades = planner.getAllLetterGrades();
+            try
+            {
+                Convert.ToInt32(credits);
+            }
+            catch
+            {
+                isValid = false;
+            }
+
+            if (!letterGrades.Contains(letterGrade))
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private Boolean isInputValidForActivitySave(String percentGrade, String weight, int originalWeight)
+        {
+
+
+            Boolean isValid = true;
+            int inputWeight = 200;
+
+            IList<String> percentGrades = planner.getAllPercentGrades();
+            try
+            {
+                inputWeight = Convert.ToInt32(weight);
+
+            }
+            catch
+            {
+                isValid = false;
+            }
+
+
+
+            if (inputWeight > (getRemainingWeight() + originalWeight) && inputWeight != 0)
+            {
+                isValid = false;
+            }
+
+
+
+            if (!percentGrades.Contains(percentGrade))
+            {
+                isValid = false;
+            }
+
+            return isValid;
+
+        }
+
+        private int getRemainingWeight()
+        {
+            ClassView c = planner.getClass(entityID.ToString());
+            return Convert.ToInt32(c.remainingWeight);
         }
 
 
