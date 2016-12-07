@@ -180,5 +180,7 @@ namespace Graduate.Core.Manager
         private String getLetterFromSchema(int percent) {
             return gradeRepo.getItemByPercent(percent).Letter;
         }   
+
+
     }
 }

@@ -138,8 +138,7 @@ namespace Graduate.Droid.Fragments
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-
-            saveEntry(type);
+            Boolean successful = saveEntry(type);
 
             if (fromParent) {
                 OnActivityResult(TargetRequestCode, Result.Ok, this.Activity.Intent);
@@ -148,17 +147,26 @@ namespace Graduate.Droid.Fragments
             }
 
 
+            if (successful)
+            {
+                Dismiss();
+                Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
+            }
+            else {
+                Toast.MakeText(Activity, "Please Enter A valid Input", ToastLength.Short).Show();
+            }
 
-            Dismiss();
-            Toast.MakeText(Activity, "Saved", ToastLength.Short).Show();
+            
         }
 
-        private void saveSchoolYear() {
+        private Boolean saveSchoolYear() {
 
             planner.saveSchoolYear(entry.Text.ToString());
+
+            return true;
         }
 
-        private void saveSemester() {
+        private Boolean saveSemester() {
 
             if (fromParent) {
                 planner.saveSemester(parentId.ToString(), entry.Text.ToString());
@@ -167,49 +175,63 @@ namespace Graduate.Droid.Fragments
                 planner.saveSemester(fid, entry.Text.ToString());
             }
 
-
+            return true;
         }
 
-        private void saveClass() {
-            if (fromParent) {
-                planner.saveClass(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
-            } else {
-                String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
-                planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+        private Boolean saveClass() {
+            Boolean successful = true;
+
+            if (planner.isInputValidForClassSave(gradeEntry.Text, creditsEntry.Text))
+            {
+                if (fromParent)
+                {
+                    planner.saveClass(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+                }
+                else
+                {
+                    String fid = getSemesterParentID(parentEntry.Text, planner.getAllSemesters());
+                    planner.saveClass(fid, entry.Text, gradeEntry.Text, creditsEntry.Text, status);
+                }
+            }
+            else{
+                successful = false;
             }
 
-
+            return successful;
         }
 
-        private void saveClassActivity() {
+        private Boolean saveClassActivity() {
                         planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
+            return true;
         }
 
-        private void saveEntry(int type)
+        private Boolean saveEntry(int type)
         {
+            Boolean successful = true;
             switch (type)
             {
                 case 1:
 
-                    saveSchoolYear();
+                    successful = saveSchoolYear();
 
                     break;
                 case 2:
 
-                    saveSemester();
+                    successful = saveSemester();
 
                     break;
                 case 3:
 
-                    saveClass();
+                    successful = saveClass();
                     break;
                 case 4:
-                    saveClassActivity();
+                    successful = saveClassActivity();
                     break;
                 default:
 
                     break;
             }
+            return successful;
         }
 
         private void checkFormType(int type) {
@@ -352,14 +374,7 @@ namespace Graduate.Droid.Fragments
         }
 
 
-        private void gradeEntryIsValid(String entry) {
-            //make sure letter grade is within the schema table
-        }
-
-        private void weightEntryIsValid(String entry) {
-            //make sure entry is within remaining weight
-        }
-                
+        
 
         private void displayError(String message) {
             //set alert for executing the task
