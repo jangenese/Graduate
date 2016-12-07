@@ -28,7 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/linearLayout3"
-                android:layout_weight="50">
+                android:layout_weight="40">
                 <TextView
                     android:text="Label"
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/linearLayout4"
-                android:layout_weight="25">
+                android:layout_weight="30">
                 <TextView
                     android:text="Status"
                     android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/linearLayout5"
-                android:layout_weight="25"
+                android:layout_weight="30"
                 android:gravity="center">
                 <TextView
                     android:text="Grade"
