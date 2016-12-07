@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:p2="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,14 +8,31 @@
     android:paddingRight="5dp"
     android:paddingLeft="5dp"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingBottom="10dp"
+    p2:gridSpec="1|8|#0093eeff|K:#ee8700ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r"
+    android:id="@+id/linearLayout12">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout13"
+        android:layout_weight="15">
+        <TextView
+            android:text="Quick Convert"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView8"
+            android:textSize="20dp" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/linearLayout4"
         android:weightSum="100"
-        android:layout_weight="25">
+        android:layout_weight="30">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -25,10 +43,10 @@
             <TextView
                 android:text="Percent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/textView1"
                 android:gravity="center"
-                android:textSize="20dp" />
+                android:textSize="15dp"
+                android:layout_height="wrap_content" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -55,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
                 android:gravity="center"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
             <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -79,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
                 android:gravity="center"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -88,6 +106,163 @@
                 android:id="@+id/textViewConverterGPA"
                 android:hint="4.00"
                 android:textColor="@color/abc_input_method_navigation_guard" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout14"
+        android:layout_weight="10" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout5"
+        android:layout_weight="40"
+        android:weightSum="100">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout6"
+            android:layout_weight="20">
+            <TextView
+                android:text="GPA Estimate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView9"
+                android:textSize="20dp"
+                android:gravity="bottom" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout7"
+            android:layout_weight="12"
+            android:layout_gravity="center">
+            <TextView
+                android:text="Current GPA               "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView4"
+                android:gravity="center_vertical" />
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/editTextCurrentGPA"
+                android:hint="3.00"
+                android:gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout8"
+            android:layout_weight="12"
+            android:layout_gravity="center">
+            <TextView
+                android:text="Credits Remaining    "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView5"
+                android:gravity="center_vertical" />
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/editTextCreditsRemaining"
+                android:hint="12"
+                android:gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout9"
+            android:layout_weight="12"
+            android:layout_gravity="center">
+            <TextView
+                android:text="Credits Required       "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView6"
+                android:gravity="center_vertical" />
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/editTextCreditsRequired"
+                android:hint="120"
+                android:gravity="center"
+                android:focusableInTouchMode="false"
+                android:focusable="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout10"
+            android:layout_weight="12"
+            android:layout_gravity="center">
+            <TextView
+                android:text="Desired GPA             "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView7"
+                android:gravity="center_vertical" />
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/editTextDesiredGPA"
+                android:hint="4.00"
+                android:gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout11"
+            android:layout_weight="12"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:text="Calculate"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:id="@+id/buttonCalculate" />
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textViewResult"
+                android:gravity="center"
+                android:hint="3.89"
+                android:textSize="18dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/linearLayout15"
+            android:layout_weight="12">
+            <TextView
+                android:text="You need to average a 3.98 over your final 12 Credits to graduate with your desired GPA."
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textViewStatement"
+                android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

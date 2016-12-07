@@ -38,5 +38,31 @@ namespace Graduate.Core
 
             return str;
         }
+
+        public double estimateGPA(String strCurrentGPA, String strRemainingCredits, String strRequireCredits, String strDdesiredGPA) {
+                                                                                           
+
+            decimal currentGPA = Convert.ToDecimal(strCurrentGPA);                                                                                           
+
+            decimal remainingCredits = Convert.ToDecimal(strRemainingCredits);
+                                                                                            
+            decimal requiredCredits = Convert.ToDecimal(strRequireCredits);                                                                                             
+
+            decimal desiredGPA = Convert.ToDecimal(strDdesiredGPA);
+
+            
+
+            decimal totalDesiredPoints = requiredCredits * desiredGPA;
+
+            decimal earnedPoint = (requiredCredits - remainingCredits) * currentGPA;
+
+            decimal missingPoints = totalDesiredPoints - earnedPoint;
+
+            decimal result = missingPoints / remainingCredits;
+
+
+            return Convert.ToDouble(result);
+        }
     }
+
 }
