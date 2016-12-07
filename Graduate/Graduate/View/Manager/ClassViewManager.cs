@@ -51,7 +51,7 @@ namespace Graduate.Core.View.Manager
             classView.statusLong = getLongStatus(c.completed);
             classView.children = getChildren(c.Id.ToString());
             classView.completed = c.completed;
-            classView.remainingWeight = getRemainingWeight(c.Id.ToString()) + "%";
+            classView.remainingWeight = getRemainingWeight(c.Id.ToString()).ToString();
 
 
 

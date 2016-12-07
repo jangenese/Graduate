@@ -12,6 +12,7 @@ using Android.Widget;
 
 using Graduate.Core.Data.Models;
 using Graduate.Core;
+using Graduate.Core.View.Model;
 using Graduate.Droid.ListAdapters;
 
 
@@ -47,6 +48,9 @@ namespace Graduate.Droid.Fragments
         private View fragmentView;
         public int type { get; set; } = 0;
         public Boolean fromParent { get; set; } = false;
+        public int entityID { get; set; } = 0;
+
+        public int remainingWeight { get; set; }
         public static NewEntryDialogFragment NewInstance(Bundle bundle)
         {
             NewEntryDialogFragment fragment = new NewEntryDialogFragment();
@@ -181,7 +185,7 @@ namespace Graduate.Droid.Fragments
         private Boolean saveClass() {
             Boolean successful = true;
 
-            if (planner.isInputValidForClassSave(gradeEntry.Text, creditsEntry.Text))
+            if (isInputValidForClassSave(gradeEntry.Text, creditsEntry.Text))
             {
                 if (fromParent)
                 {
@@ -201,8 +205,17 @@ namespace Graduate.Droid.Fragments
         }
 
         private Boolean saveClassActivity() {
-                        planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
-            return true;
+            Boolean successful = true;
+
+            if (isInputValidForActivitySave(gradeEntry.Text, creditsEntry.Text))
+            {
+                planner.saveClassActivity(parentId.ToString(), entry.Text, gradeEntry.Text, creditsEntry.Text, true);
+            }
+            else {
+                successful = false;
+            }
+           
+            return successful;
         }
 
         private Boolean saveEntry(int type)
@@ -389,6 +402,72 @@ namespace Graduate.Droid.Fragments
             dialog.Show();
         }
 
+        private Boolean isInputValidForClassSave(String letterGrade, String credits)
+        {
+            Boolean isValid = true;
+            IList<String> letterGrades = planner.getAllLetterGrades();
+            try
+            {
+                Convert.ToInt32(credits);
+            }
+            catch
+            {
+                isValid = false;
+            }
+
+            if (!letterGrades.Contains(letterGrade))
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private Boolean isInputValidForActivitySave(String percentGrade, String weight)
+        {
+            Console.WriteLine("Activity Save Checl Started");
+
+            Boolean isValid = true;
+            int inputWeight = 200;
+
+            IList<String> percentGrades = planner.getAllPercentGrades();
+            try
+            {
+                inputWeight = Convert.ToInt32(weight);
+                Console.WriteLine("Weight was converted succesfully");                
+            }
+            catch
+            {
+                isValid = false;
+            }
+
+            Console.WriteLine("Checking for remaining weight nowy" + getRemainingWeight().ToString());
+
+            if (inputWeight > getRemainingWeight())
+            {
+                Console.WriteLine("\n\n\n\n\n");
+                Console.WriteLine("asdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+                Console.WriteLine("Remaining Weight is" + getRemainingWeight().ToString());
+                isValid = false;
+            }
+
+            Console.WriteLine("Finish checking the remaining weight");
+
+            if (!percentGrades.Contains(percentGrade))
+            {
+                isValid = false;
+            }
+
+            return isValid;
+
+        }
+
+        private int getRemainingWeight() {
+            ClassView c = planner.getClass(entityID.ToString());
+            return Convert.ToInt32(c.remainingWeight);
+        }
+
+       
 
     }
     }

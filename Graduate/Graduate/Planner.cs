@@ -147,43 +147,6 @@ namespace Graduate.Core
         }
 
 
-        public Boolean isInputValidForClassSave(String letterGrade, String credits) {
-            Boolean isValid = true;
-            IList<String> letterGrades = getAllLetterGrades();
-            try
-            {
-                Convert.ToInt32(credits); 
-            }
-            catch {
-                isValid = false;
-            }
-
-            if (!letterGrades.Contains(letterGrade)) {
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        public Boolean isInputValidForActivitySave(String percentGrade, String weight) {
-            Boolean isValid = true;
-            IList<String> percentGrades = getAllPercentGrades();
-            try
-            {
-                Convert.ToInt32(weight);
-            }
-            catch
-            {
-                isValid = false;
-            }
-
-            if (!percentGrades.Contains(percentGrade))
-            {
-                isValid = false;
-            }
-
-            return isValid;
-
-        }
+      
     }
 }

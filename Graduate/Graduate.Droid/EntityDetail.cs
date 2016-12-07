@@ -217,7 +217,7 @@ namespace Graduate.Droid
        */
         private void Fab_Click(object sender, EventArgs e)
         {
-            showEntryForm();
+            showEntryForm(Intent.Extras.GetInt("type"), Intent.Extras.GetInt("selectedEntityID"));
         }
 
 
@@ -369,7 +369,7 @@ namespace Graduate.Droid
         /*
         Shows the new Entry form by calling a dialog fragment 
         */
-        private void showEntryForm()
+        private void showEntryForm(int type, int ID)
         {
             FragmentTransaction ft = FragmentManager.BeginTransaction();
             Fragment prev = FragmentManager.FindFragmentByTag("dialog");
@@ -385,6 +385,7 @@ namespace Graduate.Droid
             dialogFrag.parentId = selectedID;
             dialogFrag.type = childrenType;
             dialogFrag.fromParent = true;
+            dialogFrag.entityID = ID;
             dialogFrag.Show(ft, "dialog");
 
         }
@@ -497,6 +498,9 @@ namespace Graduate.Droid
             View footerView = inflater.Inflate(layout, container, false);
             return footerView;
         }
+
+
+
 
     }
 
