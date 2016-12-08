@@ -288,24 +288,35 @@ namespace Graduate.Droid
 
         private Boolean estimateInputValid(String strCurrentGPA, String strRemainingCredits, String strRequireCredits, String strDdesiredGPA) {
             
-            try { Convert.ToDecimal(strCurrentGPA); }
+            try { decimal value =  Convert.ToDecimal(strCurrentGPA);
+                decimal.Divide(value, value);
+            }
             catch {
                 inputMessage = "Current GPA is invalid";                
                 return false;
                 }
-            try { Convert.ToDecimal(strRemainingCredits); }
+            try {
+                decimal value = Convert.ToDecimal(strRemainingCredits);
+                decimal.Divide(value, value);
+            }
             catch
             {
                 inputMessage = "Remaining Credits is invalid";
                 return false;
             }
-            try { Convert.ToDecimal(strRequireCredits); }
+            try {
+                decimal value = Convert.ToDecimal(strRequireCredits);
+                decimal.Divide(value, value);
+            }
             catch
             {
                 inputMessage = "RequiredCredits is invalid";
                 return false;
             }
-            try { Convert.ToDecimal(strDdesiredGPA); }
+            try {
+                decimal value = Convert.ToDecimal(strDdesiredGPA);
+                decimal.Divide(value, value);
+            }
             catch
             {
                 inputMessage = "Desired GPA is invalid";
