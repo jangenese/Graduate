@@ -319,8 +319,8 @@ namespace Graduate.Droid.Fragments
             creditsEntry.Text = classView.credits;
             var gradeEntryOptions = planner.getAllLetterGrades();
             ArrayAdapter gradeEntryAdapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleDropDownItem1Line, gradeEntryOptions);
-            gradeEntry.Adapter = gradeEntryAdapter;            
-            gradeEntry.Text = classView.goalLetterGrade;
+            gradeEntry.Adapter = gradeEntryAdapter;
+            gradeEntry.Text = classView.goalLetterGrade.Replace(" ", String.Empty);
 
 
             if (classView.completed) {
