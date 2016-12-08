@@ -325,7 +325,7 @@ namespace Graduate.Droid
 
 
             //Populate Body Info (Children List)******
-            headerlabel.Text = "Actvities";
+            headerlabel.Text = "Activities";
             headerstatus.Text = "Weight";
             classChildrenList = c.children;
 
