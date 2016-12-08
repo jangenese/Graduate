@@ -355,6 +355,7 @@ namespace Graduate.Droid.Fragments
             entry.Text = classActivity.label;
             credits.Text = "Weight";
             creditsEntry.Text = classActivity.weight;
+            grade.Text = "Grade";
             gradeEntry.Text = classActivity.percentGrade;
         }
 
