@@ -31,7 +31,7 @@ namespace Graduate.Core.Manager
 
         private int stringToInt(String str) {
 
-            int i = 0;
+            int i = 999;
 
             try
             {

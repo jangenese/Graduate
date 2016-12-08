@@ -8,9 +8,9 @@ namespace Graduate.Core.Data.Models
 {
   public  class Grade : GraduateEntityBase
     {
-        public int Percent { get; set; } = 0;
-        public string Letter { get; set; } = "";
-        public double GPA { get; set; } = 0.0;
+        public int Percent { get; set; }
+        public string Letter { get; set; }
+        public double GPA { get; set; }
         public override string ToString()
         {
             return string.Format("[Grade: ID={0}, Percent={1}, Letter={2}, GPA={3}]", Id, Percent, Letter, GPA);
