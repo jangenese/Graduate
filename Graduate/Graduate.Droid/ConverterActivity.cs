@@ -123,8 +123,16 @@ namespace Graduate.Droid
 
                 double estimatedResult = gradeConverter.estimateGPA(currentGPA.Text, creditsRemaining.Text, creditsRequired.Text, desiredGPA.Text);
                 String estimatedresultText = formatGPA(estimatedResult);
+                String stringStatement = "";
+                if (estimatedResult > 4)
+                {
+                    stringStatement = "Im So Sorry";
+                }
+                else {
+                    stringStatement = "You need to average a " + estimatedresultText + " over your final " + remaining + " Credits to graduate with your desired GPA.";
 
-                String stringStatement = "You need to average a " + estimatedresultText + " over your final " + remaining + " Credits to graduate with your desired GPA.";
+                }
+
 
                 result.Text = estimatedresultText;
                 statement.Text = stringStatement;

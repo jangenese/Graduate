@@ -57,8 +57,7 @@
                 android:maxLength="3"
                 android:numeric="integer"
                 android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:hint="100" />
+                android:focusableInTouchMode="false" />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -82,7 +81,7 @@
                 android:gravity="center"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:hint="A+" />
+                android:completionThreshold="1" />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -104,7 +103,6 @@
                 android:textSize="40dp"
                 android:gravity="center"
                 android:id="@+id/textViewConverterGPA"
-                android:hint="4.00"
                 android:textColor="@color/abc_input_method_navigation_guard" />
         </LinearLayout>
     </LinearLayout>
@@ -156,7 +154,6 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:id="@+id/editTextCurrentGPA"
-                android:hint="3.00"
                 android:gravity="center"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
@@ -181,7 +178,6 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:id="@+id/editTextCreditsRemaining"
-                android:hint="12"
                 android:gravity="center"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
@@ -206,7 +202,6 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:id="@+id/editTextCreditsRequired"
-                android:hint="120"
                 android:gravity="center"
                 android:focusableInTouchMode="false"
                 android:focusable="false"
@@ -231,7 +226,6 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:id="@+id/editTextDesiredGPA"
-                android:hint="4.00"
                 android:gravity="center"
                 android:focusable="false"
                 android:focusableInTouchMode="false"

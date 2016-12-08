@@ -9,7 +9,7 @@ namespace Graduate.Core.Data.Models
   public  class Grade : GraduateEntityBase
     {
         public int Percent { get; set; } = 0;
-        public string Letter { get; set; } = "Z";
+        public string Letter { get; set; } = "";
         public double GPA { get; set; } = 0.0;
         public override string ToString()
         {
