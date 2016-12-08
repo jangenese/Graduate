@@ -6,27 +6,119 @@
     android:weightSum="100"
     android:paddingLeft="5dp"
     android:paddingRight="5dp">
-  <ImageView
-      android:src="@drawable/logo"
-      android:layout_width="match_parent"
-      android:id="@+id/imageView1"
-      android:layout_marginTop="10dp"
-      android:layout_height="0dp"
-      android:layout_weight="35" />
-  <TextView
-      android:text="About"
-      android:layout_width="match_parent"
-      android:id="@+id/textView1"
-      android:textSize="25dp"
-      android:layout_marginBottom="0.0dp"
-      android:layout_height="0dp"
-      android:layout_weight="10" />
-  <TextView
-      android:text="This is a test about page"
-      android:layout_width="match_parent"
-      android:id="@+id/textView2"
-      android:textSize="18dp"
-      android:layout_marginBottom="0.0dp"
-      android:layout_height="0dp"
-      android:layout_weight="55" />
+    <ImageView
+        android:src="@drawable/logo"
+        android:layout_width="match_parent"
+        android:id="@+id/imageView1"
+        android:layout_marginTop="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="35" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout1"
+        android:layout_weight="65"
+        android:weightSum="100">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:text="Team ToughCookie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center"
+            android:text="ToughCookie@gmail.com" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:text="Jan Genese"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center"
+            android:textSize="20dp" />
+        <TextView
+            android:text="Lead Developer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:text="Daniel Truong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center"
+            android:textSize="20dp" />
+        <TextView
+            android:text="Desgin/Marketing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:text="Version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center"
+            android:textStyle="bold" />
+        <TextView
+            android:text="1.00"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewRights"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:text="logo rights" />
+    </LinearLayout>
 </LinearLayout>
