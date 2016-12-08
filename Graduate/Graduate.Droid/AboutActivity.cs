@@ -27,11 +27,13 @@ namespace Graduate.Droid
             SetContentView(Resource.Layout.AboutActivity);
 
 
+            String rightsInfo = "People graphic by <a href=http://www.flaticon.com/authors/freepik>Freepik</a> from <a href=http://www.flaticon.com/>Flaticon</a> is licensed under <a href=http://creativecommons.org/licenses/by/3.0/ title=Creative Commons BY 3.0>CC BY 3.0</a>. Made with <a href=http://logomakr.com title=Logo Maker>Logo Maker</a>";
+            TextView rights = FindViewById<TextView>(Resource.Id.textViewRights);
+            rights.Text = Android.Text.Html.FromHtml(rightsInfo).ToString();
 
-            TextView t = (TextView)FindViewById(Resource.Id.textView2);
-            t.Text = "App Version 1.00 \n\nDeveloped By Tough Cookie Team\nTerm Project For COMP3504 - MRU"
-                + "\n\nJan Genese - Lead Programmer/Developer, \nDaniel Truong - Design/Marketing\n\n" +
-                "For any questions or concerns please contact Tough Cookie at ToughCookie@gmail.com";
+            
+
+
 
 
         }

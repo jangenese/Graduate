@@ -104,7 +104,7 @@ namespace Graduate.Core.View.Manager
                     classView.percentGrade = calculatePercentGrade(c.Id.ToString()).ToString() + "%";
                    
                     classView.letterGrade = formatLetterGrade(getLetterFromSchema(calculatePercentGrade(c.Id.ToString())));
-                    classView.gpaGrade = formatGPA(getGPAGradeFromSchema(classView.letterGrade)).ToString();
+                    classView.gpaGrade = formatGPA(GetGPAGradeViaPercent(calculatePercentGrade(c.Id.ToString()).ToString())).ToString();
 
                     //save updated grade values
                     c.percentGrade = calculatePercentGrade(c.Id.ToString());
@@ -294,6 +294,10 @@ namespace Graduate.Core.View.Manager
         private String getLetterFromSchema(int percent)
         {
             return gradeManager.getByPercent(percent.ToString()).Letter;
+        }
+
+        private double GetGPAGradeViaPercent(String percent) {
+            return gradeManager.getByPercent(percent).GPA;
         }
 
     }

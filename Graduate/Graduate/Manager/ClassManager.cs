@@ -27,9 +27,7 @@ namespace Graduate.Core.Manager
             c.completed = completed;
 
             //user entered grade is either completed or goal in letter form
-            
-            if (completed)
-            {
+                     
                 c.letterGrade = grade;
                 c.percentGrade = getPercentGradeFromSchema(grade);
                 c.gpaGrade = getGPAGradeFromSchema(grade);
@@ -37,16 +35,8 @@ namespace Graduate.Core.Manager
                 c.percentGoalGrade = getPercentGradeFromSchema(grade);
                 c.letterGoalGrade = grade;
                 c.gpaGoalGrade = getGPAGradeFromSchema(grade);
-            }
-            else
-            {
-                c.percentGoalGrade = getPercentGradeFromSchema(grade);
-                c.letterGoalGrade = grade;
-                c.gpaGoalGrade = getGPAGradeFromSchema(grade);
-
-                
-            }
-
+            
+          
             repo.saveItem(c);
         }
 

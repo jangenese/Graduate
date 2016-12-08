@@ -123,8 +123,16 @@ namespace Graduate.Droid
 
                 double estimatedResult = gradeConverter.estimateGPA(currentGPA.Text, creditsRemaining.Text, creditsRequired.Text, desiredGPA.Text);
                 String estimatedresultText = formatGPA(estimatedResult);
+                String stringStatement = "";
+                if (estimatedResult > 4)
+                {
+                    stringStatement = "Im So Sorry";
+                }
+                else {
+                    stringStatement = "You need to average a " + estimatedresultText + " over your final " + remaining + " Credits to graduate with your desired GPA.";
 
-                String stringStatement = "You need to average a " + estimatedresultText + " over your final " + remaining + " Credits to graduate with your desired GPA.";
+                }
+
 
                 result.Text = estimatedresultText;
                 statement.Text = stringStatement;
@@ -256,10 +264,20 @@ namespace Graduate.Droid
         {
             String percentEntry = percent.Text;
 
-            Grade grade = gradeConverter.convertPercent(percentEntry);           
+            if (percentEntry.Length <= 0)
+            {
+                letter.Text = "";
+                gpa.Text = "";
+            }
+            else {               
 
-            letter.Text = grade.Letter;
-            gpa.Text = formatGPA(grade.GPA);
+                Grade grade = gradeConverter.convertPercent(percentEntry);
+
+                letter.Text = grade.Letter;
+                gpa.Text = formatGPA(grade.GPA);
+            }
+
+           
         }
 
         private String formatGPA(double gpa)
@@ -270,24 +288,35 @@ namespace Graduate.Droid
 
         private Boolean estimateInputValid(String strCurrentGPA, String strRemainingCredits, String strRequireCredits, String strDdesiredGPA) {
             
-            try { Convert.ToDecimal(strCurrentGPA); }
+            try { decimal value =  Convert.ToDecimal(strCurrentGPA);
+                decimal.Divide(value, value);
+            }
             catch {
                 inputMessage = "Current GPA is invalid";                
                 return false;
                 }
-            try { Convert.ToDecimal(strRemainingCredits); }
+            try {
+                decimal value = Convert.ToDecimal(strRemainingCredits);
+                decimal.Divide(value, value);
+            }
             catch
             {
                 inputMessage = "Remaining Credits is invalid";
                 return false;
             }
-            try { Convert.ToDecimal(strRequireCredits); }
+            try {
+                decimal value = Convert.ToDecimal(strRequireCredits);
+                decimal.Divide(value, value);
+            }
             catch
             {
                 inputMessage = "RequiredCredits is invalid";
                 return false;
             }
-            try { Convert.ToDecimal(strDdesiredGPA); }
+            try {
+                decimal value = Convert.ToDecimal(strDdesiredGPA);
+                decimal.Divide(value, value);
+            }
             catch
             {
                 inputMessage = "Desired GPA is invalid";
