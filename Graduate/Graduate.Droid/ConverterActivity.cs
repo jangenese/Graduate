@@ -264,10 +264,20 @@ namespace Graduate.Droid
         {
             String percentEntry = percent.Text;
 
-            Grade grade = gradeConverter.convertPercent(percentEntry);           
+            if (percentEntry.Length <= 0)
+            {
+                letter.Text = "";
+                gpa.Text = "";
+            }
+            else {               
 
-            letter.Text = grade.Letter;
-            gpa.Text = formatGPA(grade.GPA);
+                Grade grade = gradeConverter.convertPercent(percentEntry);
+
+                letter.Text = grade.Letter;
+                gpa.Text = formatGPA(grade.GPA);
+            }
+
+           
         }
 
         private String formatGPA(double gpa)
