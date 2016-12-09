@@ -68,9 +68,9 @@ namespace Graduate.Core.View.Manager
             return schoolYearView;
         }
 
-        private int getCreditsFromChildren(String fid)
+        private double getCreditsFromChildren(String fid)
         {
-            int i = 0;
+            double i = 0;
 
             IList<Class> children = getChildrensChildren(fid);
 
@@ -85,35 +85,42 @@ namespace Graduate.Core.View.Manager
             return i;
         }
 
-       
+
 
         private double getGPAGradeFromChildren(String fid)
         {
+            double grade = 0.00;
+            double totalCredits = 0;
+
+            double points = 0;
+
+            IList<Class> children = getChildrensChildren(fid);
+
+
+            if (children.Count > 0)
+            {
+                foreach (Class c in children)
+                {
+
+                    points += (c.gpaGrade * c.credits);
+                    totalCredits += c.credits;
+                }
+
+                grade = Math.Round((points / totalCredits), 2);
+            }
+
+
+            return grade;
+        }
+
+
+        private int getPercentGradeFromChildren(String fid)
+        {
+
             double grade = 0;
-            int count = 0;
+            double totalCredits = 0;
 
-            IList<Class> children = getChildrensChildren(fid);
-            
-
-            if (children.Count > 0)
-            {
-                foreach (Class c in children)
-                {
-                    grade += c.gpaGrade;
-                    count++;
-                }
-
-                grade = Math.Round((grade / count), 2);
-            }
-
-
-            return grade;
-        }
-
-        private int getPercentGradeFromChildren(String fid) {
-
-            int grade = 0;
-            int count = 0;
+            double points = 0;
 
             IList<Class> children = getChildrensChildren(fid);
 
@@ -122,15 +129,29 @@ namespace Graduate.Core.View.Manager
             {
                 foreach (Class c in children)
                 {
-                    grade += c.percentGrade;
-                    count++;
+                    points += (c.percentGrade * c.credits);
+                    totalCredits += c.credits;
                 }
-                grade = grade / count;
+
+                grade = points / totalCredits;
             }
 
 
-            return grade;
+            return Convert.ToInt32(grade);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private String formatLetterGrade(String letter)
         {

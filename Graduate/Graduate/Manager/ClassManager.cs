@@ -23,7 +23,7 @@ namespace Graduate.Core.Manager
             Class c = new Class();           
             c.FId = stringToInt(fid);
             c.label = label;
-            c.credits = stringToInt(credit);
+            c.credits = stringToDouble(credit);
             c.completed = completed;
 
             //user entered grade is either completed or goal in letter form
@@ -45,7 +45,7 @@ namespace Graduate.Core.Manager
             c.Id = stringToInt(id);
             c.FId = stringToInt(fid);
             c.label = label;
-            c.credits = stringToInt(credit);
+            c.credits = stringToDouble(credit);
             c.completed = completed;
 
             //user entered grade is either completed or goal in letter form
@@ -107,9 +107,9 @@ namespace Graduate.Core.Manager
             {
                 i = Convert.ToInt32(str);
             }
-            catch (System.Exception e)
+            catch
             {
-                throw e;
+                
             }
             return i;
         }
@@ -123,9 +123,9 @@ namespace Graduate.Core.Manager
             {
                 i = Convert.ToDouble(str);
             }
-            catch (System.Exception e)
+            catch
             {
-                throw e;
+                
             }
             return i;
         }

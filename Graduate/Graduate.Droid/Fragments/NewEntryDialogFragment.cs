@@ -409,7 +409,7 @@ namespace Graduate.Droid.Fragments
             IList<String> letterGrades = planner.getAllLetterGrades();
             try
             {
-                Convert.ToInt32(credits);                
+                Convert.ToDouble(credits);                
             }
             catch
             {

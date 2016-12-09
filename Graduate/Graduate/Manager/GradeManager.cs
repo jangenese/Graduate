@@ -37,7 +37,7 @@ namespace Graduate.Core.Manager
             {
                 i = Convert.ToInt32(str);
             }
-            catch (System.Exception e)
+            catch 
             {
                 
             }

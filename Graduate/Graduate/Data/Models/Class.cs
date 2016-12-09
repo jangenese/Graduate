@@ -20,7 +20,7 @@ namespace Graduate.Core.Data.Models
         public double gpaGrade { get; set; }
         public string letterGrade { get; set; }       
         public Boolean completed { get; set; } = false;
-        public int credits { get; set; }
+        public double credits { get; set; }
        
 
         public override string ToString()
