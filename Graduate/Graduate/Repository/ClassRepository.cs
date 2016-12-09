@@ -36,6 +36,10 @@ namespace Graduate.Core.Repository
             dataAccess.DeleteItem<Class>(c);
         }
 
-       
+        public void deleteItem(int id)
+        {
+            dataAccess.DeleteClass(id);
+        }
+
     }
 }

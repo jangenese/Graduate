@@ -115,8 +115,9 @@ namespace Graduate.Core
         }
 
         public void deleteClass(String id) {
+            System.Diagnostics.Debug.WriteLine("Delete Called class with id : " + id);
             classManager.deleteClass(id);
-            deleteClassActivity(id);
+            deleteClassChildren(id);
         }
 
         public void deleteSemester(String id) {

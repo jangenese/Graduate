@@ -45,27 +45,27 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLite-net, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\sqlite-net-pcl.1.2.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+      <HintPath>..\..\packages\sqlite-net-pcl.1.2.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.0\lib\MonoAndroid\SQLitePCLRaw.batteries_green.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.1\lib\MonoAndroid\SQLitePCLRaw.batteries_green.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.0\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.1\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.0\lib\MonoAndroid\SQLitePCLRaw.core.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.1\lib\MonoAndroid\SQLitePCLRaw.core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCLRaw.lib.e_sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ad490600e2234c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.0\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.1\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.0\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.1\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -126,7 +126,6 @@
   <ItemGroup>
     <Compile Include="AboutActivity.cs" />
     <Compile Include="Application.cs" />
-    <Compile Include="CalculatorActivity.cs" />
     <Compile Include="ConverterActivity.cs" />
     <Compile Include="EntityDetail.cs" />
     <Compile Include="Fragments\ClassFragment.cs" />
@@ -153,7 +152,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\CalculatorRowFragment.axml" />
     <AndroidResource Include="Resources\layout\ClassFragment.axml" />
     <AndroidResource Include="Resources\layout\MainActivity.axml" />
     <AndroidResource Include="Resources\layout\PlannerActivity_Main.axml" />
@@ -161,25 +159,13 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\SemesterFragment.axml" />
-    <AndroidResource Include="Resources\layout\CalculatorActivity.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\EntityDetail.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Converter.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\GraduateEntityEntryActivity.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\NewEntryDialogFragment.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\ListViewPlanner.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\GPASchemaEdit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PlannerListViewRow.axml">

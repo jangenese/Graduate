@@ -32,5 +32,10 @@ namespace Graduate.Core.Data.DataAccessLayer
             return (from i in database.Table<Class>() where i.FId == fid select i);
         }
 
+
+        public int DeleteClass(int id)
+        {
+            return database.Delete<Class>(id);
+        }
     }
 }

@@ -91,8 +91,14 @@ namespace Graduate.Core.Manager
         }
 
         public void deleteClass(String id) {
+            System.Diagnostics.Debug.WriteLine("In Class Manager for Delete");
+
             Class c = repo.getItem(stringToInt(id));
-            repo.deleteItem(c);
+
+            System.Diagnostics.Debug.WriteLine("Class to be Deleted is" + c.ToString());
+            repo.deleteItem(stringToInt(id));
+
+            
         }
 
 

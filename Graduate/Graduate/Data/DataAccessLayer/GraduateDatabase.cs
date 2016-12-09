@@ -26,6 +26,7 @@ namespace Graduate.Core.Data.DataAccessLayer
             connection.DropTable<Class>();
             connection.DropTable<ClassActivity>();
             */
+            
 
     
             
@@ -98,9 +99,7 @@ namespace Graduate.Core.Data.DataAccessLayer
 
         public int DeleteItem<T>(T item) where T : IGraduateEntity, new()
         {
-
             return connection.Delete(item);
-
         }
 
     }
